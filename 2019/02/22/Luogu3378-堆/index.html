@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="因为是模板题所以就只贴代码 学习笔记戳这里 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include&amp;lt;bits/stdc++.h&amp;gt;using namespace std;int heap[1000001];int m,n,x,size;inline vo">
+<meta name="description" content="因为是模板题所以就只贴代码">
 <meta name="keywords" content="堆">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[Luogu3378]堆">
 <meta property="og:url" content="http://ricardoships.github.io/2019/02/22/Luogu3378-堆/index.html">
 <meta property="og:site_name" content="Something For Nothing">
-<meta property="og:description" content="因为是模板题所以就只贴代码 学习笔记戳这里 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include&amp;lt;bits/stdc++.h&amp;gt;using namespace std;int heap[1000001];int m,n,x,size;inline vo">
+<meta property="og:description" content="因为是模板题所以就只贴代码">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-22T13:28:50.745Z">
+<meta property="og:updated_time" content="2019-02-22T13:42:29.825Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Luogu3378]堆">
-<meta name="twitter:description" content="因为是模板题所以就只贴代码 学习笔记戳这里 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include&amp;lt;bits/stdc++.h&amp;gt;using namespace std;int heap[1000001];int m,n,x,size;inline vo">
+<meta name="twitter:description" content="因为是模板题所以就只贴代码">
 
 
 
@@ -366,11 +366,6 @@
           
 
           
-            <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-            </span>
-          
 
           
 
@@ -390,6 +385,7 @@
 
       
         <p><del>因为是模板题所以就只贴代码</del></p>
+<a id="more"></a>
 <p><a href="https://ricardoships.github.io/2019/02/22/%E6%B5%85%E8%B0%88%E6%89%8B%E6%89%93%E5%A0%86/">学习笔记戳这里</a></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> heap[<span class="number">1000001</span>];</span><br><span class="line"><span class="keyword">int</span> m,n,x,size;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> now,next;</span><br><span class="line">	heap[++size]=y;</span><br><span class="line">	now=size;</span><br><span class="line">	<span class="keyword">while</span>(now&gt;<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		next=now&gt;&gt;<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(heap[now]&gt;=heap[next]) <span class="keyword">break</span>;</span><br><span class="line">		swap(heap[now],heap[next]);</span><br><span class="line">		now=next;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">get</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> now,next;</span><br><span class="line">	heap[<span class="number">1</span>]=heap[size--];</span><br><span class="line">	now=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(now*<span class="number">2</span>&lt;=size)</span><br><span class="line">	&#123;</span><br><span class="line">		next=now*<span class="number">2</span>;</span><br><span class="line">		<span class="keyword">if</span>(next&lt;size&amp;&amp;heap[next+<span class="number">1</span>]&lt;heap[next])</span><br><span class="line">		    next++;</span><br><span class="line">		<span class="keyword">if</span>(heap[now]&lt;=heap[next]) <span class="keyword">break</span>;</span><br><span class="line">		swap(heap[now],heap[next]);</span><br><span class="line">		now=next;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;m);</span><br><span class="line">		<span class="keyword">if</span>(m==<span class="number">1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;x);</span><br><span class="line">			put(x);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(m==<span class="number">2</span>) <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,heap[<span class="number">1</span>]);</span><br><span class="line">		<span class="keyword">if</span>(m==<span class="number">3</span>) get();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
@@ -612,26 +608,6 @@
 
 
         
-<div class="busuanzi-count">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="site-uv">
-      <i class="fa fa-user"></i>
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      
-    </span>
-  
-
-  
-    <span class="site-pv">
-      <i class="fa fa-eye"></i>
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-      
-    </span>
-  
-</div>
-
 
 
 

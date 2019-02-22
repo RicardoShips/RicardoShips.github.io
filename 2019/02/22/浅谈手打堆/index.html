@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="贪心,">
+  <meta name="keywords" content="堆,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="代码应该算是比较简练的 首先可以考虑贪心，而且是$O$ $($ $m$ $)$的贪心 然后再来思考一下贪心策略 这道题其实比较适合反向思维，思考难度因人而异 就是先确定一大块板，再去把它分成很多块小板 具体的来说就是从第一个牛棚到最后一个牛棚 因为这段区间的长度是一定的 又因为总共要覆盖$m$块木板,所以中间最多只能有$m$ $-$ $1$块空隙 所以我们只要找出$m$ $-$ $1$块最大的空隙">
-<meta name="keywords" content="贪心">
+<meta name="description" content="故事的起因很有趣，还是去年的事了 $Noip2018$之前谢骚说他不会手打堆？？？ 我当时就一句这么简单的东西怎么不会 然后他就因为这个一直膜我到现在 那时候就有了写一写手打堆的念头 只是因为谢骚$Noip2018$混到一等之后功成身退，所以就一直咕到现在 堆，一般指的是小根堆，它是一颗完全二叉树 它满足一个性质，父亲的权值不大于儿子的权值 由于这个性质，树根存的就是最小值 这里我们来看一下堆的三">
+<meta name="keywords" content="堆">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[USACO1.3]修理牛棚 Barn Repair">
-<meta property="og:url" content="http://ricardoships.github.io/2019/02/21/USACO1-3-修理牛棚-Barn-Repair/index.html">
+<meta property="og:title" content="浅谈手打堆">
+<meta property="og:url" content="http://ricardoships.github.io/2019/02/22/浅谈手打堆/index.html">
 <meta property="og:site_name" content="Something For Nothing">
-<meta property="og:description" content="代码应该算是比较简练的 首先可以考虑贪心，而且是$O$ $($ $m$ $)$的贪心 然后再来思考一下贪心策略 这道题其实比较适合反向思维，思考难度因人而异 就是先确定一大块板，再去把它分成很多块小板 具体的来说就是从第一个牛棚到最后一个牛棚 因为这段区间的长度是一定的 又因为总共要覆盖$m$块木板,所以中间最多只能有$m$ $-$ $1$块空隙 所以我们只要找出$m$ $-$ $1$块最大的空隙">
+<meta property="og:description" content="故事的起因很有趣，还是去年的事了 $Noip2018$之前谢骚说他不会手打堆？？？ 我当时就一句这么简单的东西怎么不会 然后他就因为这个一直膜我到现在 那时候就有了写一写手打堆的念头 只是因为谢骚$Noip2018$混到一等之后功成身退，所以就一直咕到现在 堆，一般指的是小根堆，它是一颗完全二叉树 它满足一个性质，父亲的权值不大于儿子的权值 由于这个性质，树根存的就是最小值 这里我们来看一下堆的三">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-21T12:11:19.126Z">
+<meta property="og:updated_time" content="2019-02-22T13:19:42.827Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[USACO1.3]修理牛棚 Barn Repair">
-<meta name="twitter:description" content="代码应该算是比较简练的 首先可以考虑贪心，而且是$O$ $($ $m$ $)$的贪心 然后再来思考一下贪心策略 这道题其实比较适合反向思维，思考难度因人而异 就是先确定一大块板，再去把它分成很多块小板 具体的来说就是从第一个牛棚到最后一个牛棚 因为这段区间的长度是一定的 又因为总共要覆盖$m$块木板,所以中间最多只能有$m$ $-$ $1$块空隙 所以我们只要找出$m$ $-$ $1$块最大的空隙">
+<meta name="twitter:title" content="浅谈手打堆">
+<meta name="twitter:description" content="故事的起因很有趣，还是去年的事了 $Noip2018$之前谢骚说他不会手打堆？？？ 我当时就一句这么简单的东西怎么不会 然后他就因为这个一直膜我到现在 那时候就有了写一写手打堆的念头 只是因为谢骚$Noip2018$混到一等之后功成身退，所以就一直咕到现在 堆，一般指的是小根堆，它是一颗完全二叉树 它满足一个性质，父亲的权值不大于儿子的权值 由于这个性质，树根存的就是最小值 这里我们来看一下堆的三">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://ricardoships.github.io/2019/02/21/USACO1-3-修理牛棚-Barn-Repair/">
+  <link rel="canonical" href="http://ricardoships.github.io/2019/02/22/浅谈手打堆/">
 
 
 
 
 
-  <title>[USACO1.3]修理牛棚 Barn Repair | Something For Nothing</title>
+  <title>浅谈手打堆 | Something For Nothing</title>
   
 
 
@@ -295,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://ricardoships.github.io/2019/02/21/USACO1-3-修理牛棚-Barn-Repair/">
+    <link itemprop="mainEntityOfPage" href="http://ricardoships.github.io/2019/02/22/浅谈手打堆/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="RicardoShips">
@@ -312,7 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">[USACO1.3]修理牛棚 Barn Repair</h1>
+          <h1 class="post-title" itemprop="name headline">浅谈手打堆</h1>
         
 
         <div class="post-meta">
@@ -324,8 +324,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-21T20:10:33+08:00">
-                2019-02-21
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-22T20:57:12+08:00">
+                2019-02-22
               </time>
             
 
@@ -347,8 +347,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/题解/" itemprop="url" rel="index">
-                    <span itemprop="name">题解</span>
+                  <a href="/categories/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
                   </a>
                 </span>
 
@@ -389,20 +389,33 @@
       
 
       
-        <p>代码应该算是比较简练的</p>
-<p>首先可以考虑贪心，而且是$O$ $($ $m$ $)$的贪心</p>
-<p>然后再来思考一下贪心策略</p>
-<p>这道题其实比较适合反向思维，思考难度因人而异</p>
-<p>就是先确定一大块板，再去把它分成很多块小板</p>
-<p>具体的来说就是从第一个牛棚到最后一个牛棚</p>
-<p>因为这段区间的长度是一定的</p>
-<p>又因为总共要覆盖$m$块木板,所以中间最多只能有$m$ $-$ $1$块空隙</p>
-<p>所以我们只要找出$m$ $-$ $1$块最大的空隙，以确保木板总长度最短</p>
-<p>所以我们可以使用两遍快速排序</p>
-<p>第一遍排序牛棚，确定区间的长度</p>
-<p>第二遍排序空隙，求出最长的$m$ $-$ $1$块空隙</p>
-<p>然后依次减去最长的$m$ $-$ $1$块空隙就是所得的答案</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> w[<span class="number">222</span>];</span><br><span class="line"><span class="keyword">int</span> y[<span class="number">222</span>];</span><br><span class="line"><span class="keyword">int</span> c,m,s,ans;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;m,&amp;s,&amp;c);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=c;++i)</span><br><span class="line">	    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;w[i]);</span><br><span class="line">	<span class="keyword">if</span>(m&gt;=c) ans=c;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		sort(w+<span class="number">1</span>,w+c+<span class="number">1</span>);</span><br><span class="line">		ans=w[c]-w[<span class="number">1</span>]+<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=c<span class="number">-1</span>;++i)</span><br><span class="line">		    y[i]=w[i+<span class="number">1</span>]-w[i]<span class="number">-1</span>;</span><br><span class="line">		sort(y+<span class="number">1</span>,y+c);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=c<span class="number">-1</span>;i&gt;=c-m+<span class="number">1</span>;--i)</span><br><span class="line">		    ans-=y[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>故事的起因很有趣，还是去年的事了</p>
+<p>$Noip2018$之前谢骚说他不会手打堆？？？</p>
+<p>我当时就一句这么简单的东西怎么不会</p>
+<p>然后他就因为这个一直膜我到现在</p>
+<p>那时候就有了写一写手打堆的念头</p>
+<p>只是因为谢骚$Noip2018$混到一等之后功成身退，<del>所以就一直咕到现在</del></p>
+<p>堆，一般指的是小根堆，它是一颗完全二叉树</p>
+<p>它满足一个性质，父亲的权值不大于儿子的权值</p>
+<p>由于这个性质，树根存的就是最小值</p>
+<p>这里我们来看一下堆的三种性质</p>
+<ul>
+<li>插入操作</li>
+</ul>
+<p>为了保证插入后也是一棵完全二叉树，我们从最下面一层最右边的叶子节点后面插入</p>
+<p>如果最下面一层已满，就新增一层再从最左边开始插入</p>
+<p>如果这个结点的权值大于它父亲的权值，就进行交换</p>
+<p>直到不满足或者已经到根节点就停止，那么插入操作的复杂度就是$logn$的</p>
+<ul>
+<li>删除操作</li>
+</ul>
+<p>先把根节点与最后一个节点交换，再删除最后一个节点</p>
+<p>如果根节点的权值大于它的儿子的权值，就进行交换</p>
+<p>这里究竟是左儿子还是右儿子需要分类讨论一下</p>
+<p>直到不满足或者已经到最下面一层就停止，那么删除操作的复杂度就是$logn$的</p>
+<p>简言之，各种操作都是建立在向上向下交换的基础上的</p>
+<p><del>其实学这玩意还不如用$STL$</del></p>
+
       
     </div>
     
@@ -419,7 +432,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/贪心/" rel="tag"># 贪心</a>
+            <a href="/tags/堆/" rel="tag"># 堆</a>
           
         </div>
       
@@ -432,8 +445,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/21/USACO1-2-命名那个数字-Name-That-Number/" rel="next" title="[USACO1.2]命名那个数字 Name That Number">
-                <i class="fa fa-chevron-left"></i> [USACO1.2]命名那个数字 Name That Number
+              <a href="/2019/02/21/USACO1-3-修理牛棚-Barn-Repair/" rel="next" title="[USACO1.3]修理牛棚 Barn Repair">
+                <i class="fa fa-chevron-left"></i> [USACO1.3]修理牛棚 Barn Repair
               </a>
             
           </div>
@@ -441,10 +454,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/22/浅谈手打堆/" rel="prev" title="浅谈手打堆">
-                浅谈手打堆 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

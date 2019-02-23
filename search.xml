@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[IOI2000]回文字串]]></title>
+    <url>%2F2019%2F02%2F23%2FIOI2000-%E5%9B%9E%E6%96%87%E5%AD%97%E4%B8%B2%2F</url>
+    <content type="text"><![CDATA[今天模拟赛三道动态规划，这是最简单的一道 考试的时候想的是贪心，大力分类讨论一波以为能过 考完才知道正解就是一道最长公共子序列？？？ 这个跟回文串的性质有关，它正着读和倒着读是完全一样的 这样的话我们就可以把原串反过来跟它自己匹配 最后的答案就是原串的长度减去匹配的长度 考完才发现我不会打最长公共子序列 123456789101112131415161718#include&lt;bits/stdc++.h&gt;using namespace std;char s1[10086];char s2[10086];int f[5005][5005];int n,ans;int main()&#123; scanf("%s",s1+1);n=strlen(s1+1); for(register int i=1;i&lt;=n;++i) s2[n-i+1]=s1[i]; for(register int i=1;i&lt;=n;++i) for(register int j=1;j&lt;=n;++j) if(s1[i]==s2[j]) f[i][j]=f[i-1][j-1]+1; else f[i][j]=max(f[i-1][j],f[i][j-1]); ans=n-f[n][n]; printf("%d\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>动态规划</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[Luogu3378]堆]]></title>
     <url>%2F2019%2F02%2F22%2FLuogu3378-%E5%A0%86%2F</url>
     <content type="text"><![CDATA[因为是模板题所以就只贴代码 学习笔记戳这里 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include&lt;bits/stdc++.h&gt;using namespace std;int heap[1000001];int m,n,x,size;inline void put(int y)&#123; int now,next; heap[++size]=y; now=size; while(now&gt;1) &#123; next=now&gt;&gt;1; if(heap[now]&gt;=heap[next]) break; swap(heap[now],heap[next]); now=next; &#125;&#125;inline void get()&#123; int now,next; heap[1]=heap[size--]; now=1; while(now*2&lt;=size) &#123; next=now*2; if(next&lt;size&amp;&amp;heap[next+1]&lt;heap[next]) next++; if(heap[now]&lt;=heap[next]) break; swap(heap[now],heap[next]); now=next; &#125;&#125;int main()&#123; scanf("%d",&amp;n); for(register int i=1;i&lt;=n;++i) &#123; scanf("%d",&amp;m); if(m==1) &#123; scanf("%d",&amp;x); put(x); &#125; if(m==2) printf("%d\n",heap[1]); if(m==3) get(); &#125; return 0;&#125;]]></content>

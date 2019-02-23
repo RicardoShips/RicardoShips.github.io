@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="故事的起因很有趣，还是去年的事了 $Noip2018$之前谢骚说他不会手打堆？？？ 我当时就一句这么简单的东西怎么不会 然后他就因为这个一直膜我到现在 那时候就有了写一写手打堆的念头 只是因为谢骚$Noip2018$混到一等之后功成身退，所以就一直咕到现在 堆，一般指的是小根堆，它是一颗完全二叉树 它满足一个性质，父亲的权值不大于儿子的权值 由于这个性质，树根存的就是最小值 这里我们来看一下堆的三">
+<meta name="description" content="故事的起因很有趣，还是去年的事了">
 <meta name="keywords" content="堆">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浅谈手打堆">
 <meta property="og:url" content="http://ricardoships.github.io/2019/02/22/浅谈手打堆/index.html">
 <meta property="og:site_name" content="Something For Nothing">
-<meta property="og:description" content="故事的起因很有趣，还是去年的事了 $Noip2018$之前谢骚说他不会手打堆？？？ 我当时就一句这么简单的东西怎么不会 然后他就因为这个一直膜我到现在 那时候就有了写一写手打堆的念头 只是因为谢骚$Noip2018$混到一等之后功成身退，所以就一直咕到现在 堆，一般指的是小根堆，它是一颗完全二叉树 它满足一个性质，父亲的权值不大于儿子的权值 由于这个性质，树根存的就是最小值 这里我们来看一下堆的三">
+<meta property="og:description" content="故事的起因很有趣，还是去年的事了">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-22T13:19:42.827Z">
+<meta property="og:updated_time" content="2019-02-23T00:12:32.342Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈手打堆">
-<meta name="twitter:description" content="故事的起因很有趣，还是去年的事了 $Noip2018$之前谢骚说他不会手打堆？？？ 我当时就一句这么简单的东西怎么不会 然后他就因为这个一直膜我到现在 那时候就有了写一写手打堆的念头 只是因为谢骚$Noip2018$混到一等之后功成身退，所以就一直咕到现在 堆，一般指的是小根堆，它是一颗完全二叉树 它满足一个性质，父亲的权值不大于儿子的权值 由于这个性质，树根存的就是最小值 这里我们来看一下堆的三">
+<meta name="twitter:description" content="故事的起因很有趣，还是去年的事了">
 
 
 
@@ -385,6 +385,7 @@
 
       
         <p>故事的起因很有趣，还是去年的事了</p>
+<a id="more"></a>
 <p>$Noip2018$之前谢骚说他不会手打堆？？？</p>
 <p>我当时就一句这么简单的东西怎么不会</p>
 <p>然后他就因为这个一直膜我到现在</p>
@@ -393,7 +394,7 @@
 <p>堆，一般指的是小根堆，它是一颗完全二叉树</p>
 <p>它满足一个性质，父亲的权值不大于儿子的权值</p>
 <p>由于这个性质，树根存的就是最小值</p>
-<p>这里我们来看一下堆的三种性质</p>
+<p>这里我们来看一下堆的两种操作</p>
 <ul>
 <li>插入操作</li>
 </ul>
@@ -408,7 +409,7 @@
 <p>如果根节点的权值大于它的儿子的权值，就进行交换</p>
 <p>这里究竟是左儿子还是右儿子需要分类讨论一下</p>
 <p>直到不满足或者已经到最下面一层就停止，那么删除操作的复杂度就是$logn$的</p>
-<p>简言之，各种操作都是建立在向上向下交换的基础上的</p>
+<p>实际上各种操作都是建立在向上向下交换的基础上的</p>
 <p><del>其实学这玩意还不如用$STL$</del></p>
 
       

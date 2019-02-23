@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[HDU5763]Another Meaning]]></title>
+    <url>%2F2019%2F02%2F23%2FHDU5763-Another-Meaning%2F</url>
+    <content type="text"><![CDATA[话说这道题考场上把我弄自闭了 $KMP$板子有点忘记了，强行回忆了一波 然后突然发现不会计数。。。 不会$DP$的我就自闭了，其实这题$DP$式子不是一般的简单 先把子串的$Fail$指针预处理出来 然后在母串中匹配出子串的位置 最后进行$DP$计数，转移方程$F$$[$$i$$]$$=$$F$$[$$i-1$$]$$+$$F$$[$$i-m$$]$ 其中$i$是母串中成功匹配的位置，$m$为子串的长度 因为每匹配一次子串，都会带来新的意思，加上这个子串的方案数即可 123456789101112131415161718192021222324252627282930313233343536373839#include&lt;bits/stdc++.h&gt;#define mod 1000000007using namespace std;char s[200002];char t[200002];int m,n,T;int f[200002];int fail[200002];int main()&#123; freopen("meaning.in","r",stdin); freopen("meaning.out","w",stdout); scanf("%d",&amp;T); while(T--) &#123; scanf("%s%s",s+1,t+1); n=strlen(s+1);m=strlen(t+1); for(register int i=2;i&lt;=m;++i) &#123; int j=fail[i-1]; while(j&amp;&amp;t[j+1]!=t[i]) j=fail[j]; if(t[j+1]==t[i]) ++j; fail[i]=j; &#125; f[0]=1; for(register int i=1,j=0;i&lt;=n;++i) &#123; while(j&amp;&amp;s[i]!=t[j+1]) j=fail[j]; if(s[i]==t[j+1]) ++j; if(j==m) j=fail[j],f[i]=f[i-m]; f[i]+=f[i-1]; f[i]-=f[i]&gt;=mod?mod:0; &#125; printf("%d\n",f[n]); memset(f,0,sizeof(f)); memset(fail,0,sizeof(fail)); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>KMP</tag>
+        <tag>动态规划</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[IOI2000]回文字串]]></title>
     <url>%2F2019%2F02%2F23%2FIOI2000-%E5%9B%9E%E6%96%87%E5%AD%97%E4%B8%B2%2F</url>
     <content type="text"><![CDATA[今天模拟赛三道动态规划，这是最简单的一道 考试的时候想的是贪心，大力分类讨论一波以为能过 考完才知道正解就是一道最长公共子序列？？？ 这个跟回文串的性质有关，它正着读和倒着读是完全一样的 这样的话我们就可以把原串反过来跟它自己匹配 最后的答案就是原串的长度减去匹配的长度 考完才发现我不会打最长公共子序列 123456789101112131415161718#include&lt;bits/stdc++.h&gt;using namespace std;char s1[10086];char s2[10086];int f[5005][5005];int n,ans;int main()&#123; scanf("%s",s1+1);n=strlen(s1+1); for(register int i=1;i&lt;=n;++i) s2[n-i+1]=s1[i]; for(register int i=1;i&lt;=n;++i) for(register int j=1;j&lt;=n;++j) if(s1[i]==s2[j]) f[i][j]=f[i-1][j-1]+1; else f[i][j]=max(f[i-1][j],f[i][j-1]); ans=n-f[n][n]; printf("%d\n",ans); return 0;&#125;]]></content>

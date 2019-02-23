@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="动态规划,离散化,二分查找,">
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="Blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="http://ricardoships.github.io/categories/index.html">
+<meta name="description" content="考试的时候这道题直接看错了题意，后来看懂了之后就直接不会做">
+<meta name="keywords" content="动态规划,离散化,二分查找">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[LeetCode873]Length of Longest Fibonacci Subsequence">
+<meta property="og:url" content="http://ricardoships.github.io/2019/02/23/LeetCode873-Length-of-Longest-Fibonacci-Subsequence/index.html">
 <meta property="og:site_name" content="Something For Nothing">
-<meta property="og:description" content="Blog">
+<meta property="og:description" content="考试的时候这道题直接看错了题意，后来看懂了之后就直接不会做">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-20T13:52:32.307Z">
+<meta property="og:updated_time" content="2019-02-23T12:57:01.817Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="categories">
-<meta name="twitter:description" content="Blog">
+<meta name="twitter:title" content="[LeetCode873]Length of Longest Fibonacci Subsequence">
+<meta name="twitter:description" content="考试的时候这道题直接看错了题意，后来看懂了之后就直接不会做">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://ricardoships.github.io/categories/">
+  <link rel="canonical" href="http://ricardoships.github.io/2019/02/23/LeetCode873-Length-of-Longest-Fibonacci-Subsequence/">
 
 
 
 
 
-  <title>categories | Something For Nothing</title>
+  <title>[LeetCode873]Length of Longest Fibonacci Subsequence | Something For Nothing</title>
   
 
 
@@ -282,40 +283,181 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://ricardoships.github.io/2019/02/23/LeetCode873-Length-of-Longest-Fibonacci-Subsequence/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RicardoShips">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Something For Nothing">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">categories</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="category-all-page">
-            <div class="category-all-title">
-                2 categories in total
-            </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习笔记/">学习笔记</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/题解/">题解</a><span class="category-list-count">8</span></li></ul>
-            </div>
-          </div>
+          <h1 class="post-title" itemprop="name headline">[LeetCode873]Length of Longest Fibonacci Subsequence</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-23T20:31:25+08:00">
+                2019-02-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/题解/" itemprop="url" rel="index">
+                    <span itemprop="name">题解</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>考试的时候这道题直接看错了题意，<del>后来看懂了之后就直接不会做</del></p>
+<a id="more"></a>
+<p><del>因为是$Fibonacci$，所以考虑$DP$</del></p>
+<p>可以设$F$$[$$i$$]$$[$$j$$]$为以$C$$[$$i$$]$为当前数，以$C$$[$$j$$]$为当前倒数第一个数的最大长度</p>
+<p>我们可以考虑枚举$i$、$j$、$k$</p>
+<p>如果$C$$[$$i$$]$$=$$C$$[$$j$$]$$+$$C$$[$$k$$]$</p>
+<p>那么转移合法，$F$$[$$i$$]$$[$$j$$]$$=$$max$$($$F$$[$$i$$]$$[$$j$$]$$,$$F$$[$$j$$]$$[$$k$$]$$+$$1$$)$</p>
+<p>但是这样的复杂度就是$O$$($$n^3$$)$的，那么考虑优化</p>
+<p>如果枚举$i$、$j$，那么$C$$[$$k$$]$$=$$C$$[$$i$$]$$-$$C$$[$$j$$]$是固定的</p>
+<p>这里可以离散化和二分查找，时间复杂度是$log$级别的</p>
+<p>然后再用$G$$[$$j$$]$$[$$i$$]$表示对于$C$$[$$k$$]$的最大值即可</p>
+<p>那么总时间复杂度就是$O$$($$n^2$$logn$$)$的</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> m,n,ans;</span><br><span class="line"><span class="keyword">int</span> a[<span class="number">3333</span>];</span><br><span class="line"><span class="keyword">int</span> b[<span class="number">3333</span>];</span><br><span class="line"><span class="keyword">int</span> c[<span class="number">3333</span>];</span><br><span class="line"><span class="keyword">int</span> f[<span class="number">3333</span>][<span class="number">3333</span>];</span><br><span class="line"><span class="keyword">int</span> g[<span class="number">3333</span>][<span class="number">3333</span>];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> ch=getchar();<span class="keyword">int</span> c=<span class="number">0</span>,f=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch)) &#123; <span class="keyword">if</span>(ch==<span class="string">'-'</span>) f=<span class="number">0</span>; ch=getchar(); &#125;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch)) c=(c&lt;&lt;<span class="number">3</span>)+(c&lt;&lt;<span class="number">1</span>)+(ch^<span class="string">'0'</span>),ch=getchar();</span><br><span class="line">    <span class="keyword">return</span> f?c:-c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">Half</span><span class="params">(<span class="keyword">int</span> z)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> l=<span class="number">1</span>,r=m,mid;</span><br><span class="line">    <span class="keyword">while</span>(l&lt;=r)</span><br><span class="line">    &#123;</span><br><span class="line">        mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(a[mid]&gt;z) r=mid<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(a[mid]&lt;z) l=mid+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> mid;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    n=read();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i) c[i]=read(),b[i]=c[i];</span><br><span class="line">    sort(b+<span class="number">1</span>,b+n+<span class="number">1</span>);a[++m]=b[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(b[i<span class="number">-1</span>]==b[i]) <span class="keyword">continue</span> ;</span><br><span class="line">        a[++m]=b[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;++i)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> j=<span class="number">1</span>;j&lt;i;++j)</span><br><span class="line">        &#123;</span><br><span class="line">            f[j][i]=<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">int</span> k=Half(c[i]-c[j]);</span><br><span class="line">            <span class="keyword">int</span> l=Half(c[j]);</span><br><span class="line">            f[j][i]=max(f[j][i],g[k][j]+<span class="number">1</span>);</span><br><span class="line">            ans=max(ans,f[j][i]);</span><br><span class="line">            g[l][i]=max(g[l][i],f[j][i]);</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/动态规划/" rel="tag"># 动态规划</a>
+          
+            <a href="/tags/离散化/" rel="tag"># 离散化</a>
+          
+            <a href="/tags/二分查找/" rel="tag"># 二分查找</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/23/HDU5763-Another-Meaning/" rel="next" title="[HDU5763]Another Meaning">
+                <i class="fa fa-chevron-left"></i> [HDU5763]Another Meaning
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 

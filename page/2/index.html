@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="堆,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -79,18 +79,16 @@
 
 
 
-<meta name="description" content="故事的起因很有趣，还是去年的事了">
-<meta name="keywords" content="堆">
-<meta property="og:type" content="article">
-<meta property="og:title" content="浅谈手打堆">
-<meta property="og:url" content="http://ricardoships.github.io/2019/02/22/浅谈手打堆/index.html">
+<meta name="description" content="Blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Something For Nothing">
+<meta property="og:url" content="http://ricardoships.github.io/page/2/index.html">
 <meta property="og:site_name" content="Something For Nothing">
-<meta property="og:description" content="故事的起因很有趣，还是去年的事了">
+<meta property="og:description" content="Blog">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-23T07:19:24.400Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="浅谈手打堆">
-<meta name="twitter:description" content="故事的起因很有趣，还是去年的事了">
+<meta name="twitter:title" content="Something For Nothing">
+<meta name="twitter:description" content="Blog">
 
 
 
@@ -120,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://ricardoships.github.io/2019/02/22/浅谈手打堆/">
+  <link rel="canonical" href="http://ricardoships.github.io/page/2/">
 
 
 
 
 
-  <title>浅谈手打堆 | Something For Nothing</title>
+  <title>Something For Nothing</title>
   
 
 
@@ -145,7 +143,8 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -280,9 +279,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -295,7 +294,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://ricardoships.github.io/2019/02/22/浅谈手打堆/">
+    <link itemprop="mainEntityOfPage" href="http://ricardoships.github.io/2019/02/19/USACO1-1-坏掉的项链Broken-Necklace/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="RicardoShips">
@@ -312,7 +311,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">浅谈手打堆</h1>
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/19/USACO1-1-坏掉的项链Broken-Necklace/" itemprop="url">[USACO1.1]坏掉的项链Broken Necklace</a></h1>
         
 
         <div class="post-meta">
@@ -324,8 +325,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-22T20:57:12+08:00">
-                2019-02-22
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-19T22:07:29+08:00">
+                2019-02-19
               </time>
             
 
@@ -347,8 +348,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">学习笔记</span>
+                  <a href="/categories/题解/" itemprop="url" rel="index">
+                    <span itemprop="name">题解</span>
                   </a>
                 </span>
 
@@ -384,34 +385,16 @@
       
 
       
-        <p>故事的起因很有趣，还是去年的事了</p>
-<a id="more"></a>
-<p>$Noip2018$之前谢骚说他不会手打堆？？？</p>
-<p>我当时就一句这么简单的东西怎么不会</p>
-<p>然后他就因为这个一直膜我到现在</p>
-<p>那时候就有了写一写手打堆的念头</p>
-<p>只是因为谢骚$Noip2018$混到一等之后功成身退，<del>所以就一直咕到现在</del></p>
-<p>堆，一般指的是小根堆，它是一颗完全二叉树</p>
-<p>它满足一个性质，父亲的权值不大于儿子的权值</p>
-<p>由于这个性质，树根存的就是最小值</p>
-<p>这里我们来看一下堆的两种操作</p>
-<ul>
-<li>插入操作</li>
-</ul>
-<p>为了保证插入后也是一棵完全二叉树，我们从最下面一层最右边的叶子节点后面插入</p>
-<p>如果最下面一层已满，就新增一层再从最左边开始插入</p>
-<p>如果这个结点的权值大于它父亲的权值，就进行交换</p>
-<p>直到不满足或者已经到根节点就停止，那么插入操作的复杂度就是$logn$的</p>
-<ul>
-<li>删除操作</li>
-</ul>
-<p>先把根节点与最后一个节点交换，再删除最后一个节点</p>
-<p>如果根节点的权值大于它的儿子的权值，就进行交换</p>
-<p>这里究竟是左儿子还是右儿子需要分类讨论一下</p>
-<p>直到不满足或者已经到最下面一层就停止，那么删除操作的复杂度就是$logn$的</p>
-<p>实际上各种操作都是建立在向上向下交换的基础上的</p>
-<p><del>其实学这玩意还不如用$STL$</del></p>
-
+        
+          <p>话说$USACO$的<del>水题</del>质量挺高的，好像真的是这样</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/02/19/USACO1-1-坏掉的项链Broken-Necklace/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
       
     </div>
     
@@ -426,40 +409,14 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/堆/" rel="tag"># 堆</a>
-          
-        </div>
+
+      
+
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/02/21/USACO1-3-修理牛棚-Barn-Repair/" rel="next" title="[USACO1.3]修理牛棚 Barn Repair">
-                <i class="fa fa-chevron-left"></i> [USACO1.3]修理牛棚 Barn Repair
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/22/Luogu3378-堆/" rel="prev" title="[Luogu3378]堆">
-                [Luogu3378]堆 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -469,11 +426,14 @@
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
 
 
           </div>
@@ -481,10 +441,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -738,10 +694,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 

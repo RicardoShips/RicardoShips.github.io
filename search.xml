@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[Luogu3370]字符串哈希]]></title>
+    <url>%2F2019%2F02%2F25%2FLuogu3370-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C%2F</url>
+    <content type="text"><![CDATA[因为是模板题所以就只贴代码 学习笔记戳这里 这份远古代码貌似还是当时$JBY$大佬边教我边打的 可惜$JBY$大佬退役太早，而且也身不由己 123456789101112131415161718192021222324252627282930313233343536373839#include&lt;bits/stdc++.h&gt;#define moa 19260817#define mob 19491001using namespace std;char s[2002];int m,n,ans;struct AG&#123; int a; int b;&#125;f[10001];inline bool cmp(AG xx,AG yy)&#123; if(xx.a==yy.a) return xx.b&lt;yy.b; return xx.a&lt;yy.a;&#125;int main()&#123; scanf("%d",&amp;n); for(register int i=1;i&lt;=n;++i) &#123; scanf("%s",s+1); m=strlen(s+1); for(register int j=1;j&lt;=m;++j) &#123; f[i].a=(f[i].a*11+(int)s[j])%moa; f[i].b=(f[i].b*13+(int)s[j])%mob; &#125; &#125; sort(f+1,f+n+1,cmp); ans=1; for(register int i=2;i&lt;=n;++i) if(f[i].a!=f[i-1].a||f[i].b!=f[i-1].b) ++ans; printf("%d\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>哈希</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[字符串哈希]]></title>
     <url>%2F2019%2F02%2F25%2F%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C%2F</url>
     <content type="text"><![CDATA[字符串哈希是一种对于字符串问题的乱搞骗分方法 很多字符串问题都能用哈希得到很高的部分分，所以可以把哈希当暴力打 个人理解，哈希就是把所有字符当做数字来计算 这里的进制最好取一个小一点的质数 就算不取质数也一定要和后面的模数互质 不然的话哈希冲突的概率会成倍增加 如果这个字符串很长的话，计算出来的数字明显是存不下的 所以我们可以通过取模，将这个数字映射到我们能够存下的范围内 既然是映射就会存在冲突，即两个不同的串对应两个不同的数对应两个相同的映射 为了减小哈希冲突的概率，模数我们一般要取一个大一点的质数 当然还是有很多毒瘤出题人专门制造哈希冲突 虽然可能会被卡，但是我们还是有两种方法来解决的 自然溢出 通过不取模让它自然溢出，实际上就是把模数变得很大 然后再用一些奇技淫巧来判断值是否相同，比如$Trie$树 双模数哈希 就是做两遍哈希，只有两个值都完全相等的时候才能通过 至于用如何哈希解决其他的一些字符串问题，先挖个坑在这里以后有时间再慢慢填 谨以此文纪念当初退役前三天教会我哈希的$JBY$大佬]]></content>

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="堆,">
+  <meta name="keywords" content="哈希,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="故事的起因很有趣，还是去年的事了">
-<meta name="keywords" content="堆">
+<meta name="description" content="因为是模板题所以就只贴代码 学习笔记戳这里 这份远古代码貌似还是当时$JBY$大佬边教我边打的 可惜$JBY$大佬退役太早，而且也身不由己 123456789101112131415161718192021222324252627282930313233343536373839#include&amp;lt;bits/stdc++.h&amp;gt;#define moa 19260817#define mob">
+<meta name="keywords" content="哈希">
 <meta property="og:type" content="article">
-<meta property="og:title" content="浅谈手打堆">
-<meta property="og:url" content="http://ricardoships.github.io/2019/02/22/浅谈手打堆/index.html">
+<meta property="og:title" content="[Luogu3370]字符串哈希">
+<meta property="og:url" content="http://ricardoships.github.io/2019/02/25/Luogu3370-字符串哈希/index.html">
 <meta property="og:site_name" content="Something For Nothing">
-<meta property="og:description" content="故事的起因很有趣，还是去年的事了">
+<meta property="og:description" content="因为是模板题所以就只贴代码 学习笔记戳这里 这份远古代码貌似还是当时$JBY$大佬边教我边打的 可惜$JBY$大佬退役太早，而且也身不由己 123456789101112131415161718192021222324252627282930313233343536373839#include&amp;lt;bits/stdc++.h&amp;gt;#define moa 19260817#define mob">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-23T07:19:24.400Z">
+<meta property="og:updated_time" content="2019-02-25T14:55:43.931Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="浅谈手打堆">
-<meta name="twitter:description" content="故事的起因很有趣，还是去年的事了">
+<meta name="twitter:title" content="[Luogu3370]字符串哈希">
+<meta name="twitter:description" content="因为是模板题所以就只贴代码 学习笔记戳这里 这份远古代码貌似还是当时$JBY$大佬边教我边打的 可惜$JBY$大佬退役太早，而且也身不由己 123456789101112131415161718192021222324252627282930313233343536373839#include&amp;lt;bits/stdc++.h&amp;gt;#define moa 19260817#define mob">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://ricardoships.github.io/2019/02/22/浅谈手打堆/">
+  <link rel="canonical" href="http://ricardoships.github.io/2019/02/25/Luogu3370-字符串哈希/">
 
 
 
 
 
-  <title>浅谈手打堆 | Something For Nothing</title>
+  <title>[Luogu3370]字符串哈希 | Something For Nothing</title>
   
 
 
@@ -295,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://ricardoships.github.io/2019/02/22/浅谈手打堆/">
+    <link itemprop="mainEntityOfPage" href="http://ricardoships.github.io/2019/02/25/Luogu3370-字符串哈希/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="RicardoShips">
@@ -312,7 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">浅谈手打堆</h1>
+          <h1 class="post-title" itemprop="name headline">[Luogu3370]字符串哈希</h1>
         
 
         <div class="post-meta">
@@ -324,8 +324,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-22T20:57:12+08:00">
-                2019-02-22
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-25T22:55:16+08:00">
+                2019-02-25
               </time>
             
 
@@ -347,8 +347,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">学习笔记</span>
+                  <a href="/categories/题解/" itemprop="url" rel="index">
+                    <span itemprop="name">题解</span>
                   </a>
                 </span>
 
@@ -384,34 +384,11 @@
       
 
       
-        <p>故事的起因很有趣，还是去年的事了</p>
-<a id="more"></a>
-<p>$Noip2018$之前谢骚说他不会手打堆？？？</p>
-<p>我当时就一句这么简单的东西怎么不会</p>
-<p>然后他就因为这个一直膜我到现在</p>
-<p>那时候就有了写一写手打堆的念头</p>
-<p>只是因为谢骚$Noip2018$混到一等之后功成身退，<del>所以就一直咕到现在</del></p>
-<p>堆，一般指的是小根堆，它是一颗完全二叉树</p>
-<p>它满足一个性质，父亲的权值不大于儿子的权值</p>
-<p>由于这个性质，树根存的就是最小值</p>
-<p>这里我们来看一下堆的两种操作</p>
-<ul>
-<li>插入操作</li>
-</ul>
-<p>为了保证插入后也是一棵完全二叉树，我们从最下面一层最右边的叶子节点后面插入</p>
-<p>如果最下面一层已满，就新增一层再从最左边开始插入</p>
-<p>如果这个结点的权值大于它父亲的权值，就进行交换</p>
-<p>直到不满足或者已经到根节点就停止，那么插入操作的复杂度就是$logn$的</p>
-<ul>
-<li>删除操作</li>
-</ul>
-<p>先把根节点与最后一个节点交换，再删除最后一个节点</p>
-<p>如果根节点的权值大于它的儿子的权值，就进行交换</p>
-<p>这里究竟是左儿子还是右儿子需要分类讨论一下</p>
-<p>直到不满足或者已经到最下面一层就停止，那么删除操作的复杂度就是$logn$的</p>
-<p>实际上各种操作都是建立在向上向下交换的基础上的</p>
-<p><del>其实学这玩意还不如用$STL$</del></p>
-
+        <p><del>因为是模板题所以就只贴代码</del></p>
+<p><a href="https://ricardoships.github.io/2019/02/25/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C/">学习笔记戳这里</a></p>
+<p>这份远古代码貌似还是当时$JBY$大佬边教我边打的</p>
+<p>可惜$JBY$大佬退役太早，而且也身不由己</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> moa 19260817</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mob 19491001</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">char</span> s[<span class="number">2002</span>];</span><br><span class="line"><span class="keyword">int</span> m,n,ans;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">AG</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> a;</span><br><span class="line">	<span class="keyword">int</span> b;</span><br><span class="line">&#125;</span><br><span class="line">f[<span class="number">10001</span>];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(AG xx,AG yy)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(xx.a==yy.a)</span><br><span class="line">	    <span class="keyword">return</span> xx.b&lt;yy.b;</span><br><span class="line">	<span class="keyword">return</span> xx.a&lt;yy.a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%s"</span>,s+<span class="number">1</span>);</span><br><span class="line">		m=<span class="built_in">strlen</span>(s+<span class="number">1</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=m;++j)</span><br><span class="line">		&#123;</span><br><span class="line">			f[i].a=(f[i].a*<span class="number">11</span>+(<span class="keyword">int</span>)s[j])%moa;</span><br><span class="line">			f[i].b=(f[i].b*<span class="number">13</span>+(<span class="keyword">int</span>)s[j])%mob;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	sort(f+<span class="number">1</span>,f+n+<span class="number">1</span>,cmp);</span><br><span class="line">	ans=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;++i)</span><br><span class="line">	    <span class="keyword">if</span>(f[i].a!=f[i<span class="number">-1</span>].a||f[i].b!=f[i<span class="number">-1</span>].b)</span><br><span class="line">	        ++ans;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -428,7 +405,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/堆/" rel="tag"># 堆</a>
+            <a href="/tags/哈希/" rel="tag"># 哈希</a>
           
         </div>
       
@@ -441,8 +418,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/21/USACO1-3-修理牛棚-Barn-Repair/" rel="next" title="[USACO1.3]修理牛棚 Barn Repair">
-                <i class="fa fa-chevron-left"></i> [USACO1.3]修理牛棚 Barn Repair
+              <a href="/2019/02/25/字符串哈希/" rel="next" title="字符串哈希">
+                <i class="fa fa-chevron-left"></i> 字符串哈希
               </a>
             
           </div>
@@ -450,10 +427,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/22/Luogu3378-堆/" rel="prev" title="[Luogu3378]堆">
-                [Luogu3378]堆 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

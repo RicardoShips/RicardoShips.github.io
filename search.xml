@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[CTSC2014]企鹅QQ]]></title>
+    <url>%2F2019%2F02%2F26%2FCTSC2014-%E4%BC%81%E9%B9%85QQ%2F</url>
+    <content type="text"><![CDATA[这道题是一道哈希的裸题 其实学长之前上课讲哈希的时候顺带讲过 只是当时我在干嘛？？？ 先把所有字符串的哈希值都预处理出来 然后枚举哪一位不一样 把所有字符串这一位前缀和后缀的哈希值加起来 最后判断刚才计算的哈希值是否相等并且统计答案即可 12345678910111213141516171819202122232425#include&lt;bits/stdc++.h&gt;using namespace std;int l,m,n,ans,now;char s[202];unsigned long long t[30003];unsigned long long _hash[30003][202];unsigned long long hash_[30003][202];int main()&#123; scanf("%d%d%d",&amp;n,&amp;l,&amp;m); for(register int i=1;i&lt;=n;++i) &#123; scanf("%s",s+1); for(register int j=1;j&lt;=l;++j) _hash[i][j]=_hash[i][j-1]*223+s[j]; for(register int j=l;j&gt;=1;--j) hash_[i][j]=hash_[i][j+1]*233+s[j]; &#125; for(register int i=1;i&lt;=l;++i) &#123; for(register int j=1;j&lt;=n;++j) t[j]=_hash[j][i-1]*229+hash_[j][i+1]*239; sort(t+1,t+n+1);now=1; for(register int j=2;j&lt;=n;++j) t[j-1]==t[j]?ans+=now++:now=1; &#125; printf("%d\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>哈希</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[Luogu3370]字符串哈希]]></title>
     <url>%2F2019%2F02%2F25%2FLuogu3370-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C%2F</url>
     <content type="text"><![CDATA[因为是模板题所以就只贴代码 学习笔记戳这里 这份远古代码貌似还是当时$JBY$大佬边教我边打的 可惜$JBY$大佬退役太早，而且也身不由己 123456789101112131415161718192021222324252627282930313233343536373839#include&lt;bits/stdc++.h&gt;#define moa 19260817#define mob 19491001using namespace std;char s[2002];int m,n,ans;struct AG&#123; int a; int b;&#125;f[10001];inline bool cmp(AG xx,AG yy)&#123; if(xx.a==yy.a) return xx.b&lt;yy.b; return xx.a&lt;yy.a;&#125;int main()&#123; scanf("%d",&amp;n); for(register int i=1;i&lt;=n;++i) &#123; scanf("%s",s+1); m=strlen(s+1); for(register int j=1;j&lt;=m;++j) &#123; f[i].a=(f[i].a*11+(int)s[j])%moa; f[i].b=(f[i].b*13+(int)s[j])%mob; &#125; &#125; sort(f+1,f+n+1,cmp); ans=1; for(register int i=2;i&lt;=n;++i) if(f[i].a!=f[i-1].a||f[i].b!=f[i-1].b) ++ans; printf("%d\n",ans); return 0;&#125;]]></content>

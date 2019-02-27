@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[浅谈KMP]]></title>
+    <url>%2F2019%2F02%2F27%2F%E6%B5%85%E8%B0%88KMP%2F</url>
+    <content type="text"><![CDATA[$KMP$算法是一种很基本的字符串匹配算法 $KMP$算法通常用来解决在母串中寻找子串的问题 但是$KMP$算法不太容易理解，我觉得我是不可能讲清楚的 $KMP$算法最难的地方就是失配指针，也就是$Next$数组 如果是普通的一位一位去匹配的话，会匹配许多无效信息 那么我们可以考虑利用已知信息，构建一个失配指针来解决这个问题 失配指针的作用就是在每次匹配失败的时候 直接跳转到下一个有效信息进行匹配，避免时间的浪费 失配指针的构建跟当前成功匹配串的最长相同前后缀有关 因为最长相同前后缀一定是相同的 那么如果当前这一位匹配失败，那么我们可以将整个串跳转到后缀上再重新开始匹配 这就是$KMP$算法的思想，是不是感觉特别简单？？？ 至于我们怎么预处理计算$Next$数组，就是用子串匹配子串 这里要结合代码讲一下，码风有点小众先注明一下 所有字符串从$0$开始，$Next$数组的初始值为$-1$，那么真实值就要$+1$ 1234567for (register int i=1;i&lt;n;++i)&#123; int j=Next[i-1]; while (S[i]!=S[j+1]&amp;&amp;j&gt;=0) j=F[j]; if (B[j+1]==B[i]) Next[i]=j+1; else Next[i]=-1;&#125; 因为这个是一个线性的递推，所以可以一直往前找到一个最大的相同前后缀为止 如果还没有看懂的话可以自己手玩几组样例，感觉其实我并没有讲清楚 最后安利一下$SYC$大佬的博客]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>KMP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[CTSC2014]企鹅QQ]]></title>
     <url>%2F2019%2F02%2F26%2FCTSC2014-%E4%BC%81%E9%B9%85QQ%2F</url>
     <content type="text"><![CDATA[这道题是一道哈希的裸题 其实学长之前上课讲哈希的时候顺带讲过 只是当时我在干嘛？？？ 先把所有字符串的哈希值都预处理出来 然后枚举哪一位不一样 把所有字符串这一位前缀和后缀的哈希值加起来 最后判断刚才计算的哈希值是否相等并且统计答案即可 12345678910111213141516171819202122232425#include&lt;bits/stdc++.h&gt;using namespace std;int l,m,n,ans,now;char s[202];unsigned long long t[30003];unsigned long long _hash[30003][202];unsigned long long hash_[30003][202];int main()&#123; scanf("%d%d%d",&amp;n,&amp;l,&amp;m); for(register int i=1;i&lt;=n;++i) &#123; scanf("%s",s+1); for(register int j=1;j&lt;=l;++j) _hash[i][j]=_hash[i][j-1]*223+s[j]; for(register int j=l;j&gt;=1;--j) hash_[i][j]=hash_[i][j+1]*233+s[j]; &#125; for(register int i=1;i&lt;=l;++i) &#123; for(register int j=1;j&lt;=n;++j) t[j]=_hash[j][i-1]*229+hash_[j][i+1]*239; sort(t+1,t+n+1);now=1; for(register int j=2;j&lt;=n;++j) t[j-1]==t[j]?ans+=now++:now=1; &#125; printf("%d\n",ans); return 0;&#125;]]></content>

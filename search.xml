@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[Luogu3375]KMP字符串匹配]]></title>
+    <url>%2F2019%2F02%2F27%2FLuogu3375-KMP%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%2F</url>
+    <content type="text"><![CDATA[因为是模板题所以就只贴代码 学习笔记戳这里 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include&lt;bits/stdc++.h&gt;using namespace std;char s1[1000001];char s2[1000001];int m,n,tot;int ans[1000001];int next[1000001];inline void P()&#123; next[0]=-1; for(register int i=1;i&lt;m;++i) &#123; int j=next[i-1]; while(j&gt;=0&amp;&amp;s2[j+1]!=s2[i]) j=next[j]; if(s2[j+1]==s2[i]) next[i]=j+1; else next[i]=-1; &#125;&#125;inline void KMP()&#123; int i=0,j=0; while(i&lt;n) &#123; if(s1[i]==s2[j]) &#123; ++i;++j; if(j==m) &#123; ans[++tot]=i-m+1; j=next[j-1]+1; &#125; &#125; else &#123; if(j==0) ++i; else j=next[j-1]+1; &#125; &#125;&#125;int main()&#123; scanf("%s%s",s1,s2); n=strlen(s1);m=strlen(s2); P();KMP(); for(register int i=1;i&lt;=tot;++i) printf("%d\n",ans[i]); for(register int i=0;i&lt;m;++i) printf("%d ",next[i]+1); return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>KMP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[浅谈KMP]]></title>
     <url>%2F2019%2F02%2F27%2F%E6%B5%85%E8%B0%88KMP%2F</url>
     <content type="text"><![CDATA[$KMP$算法是一种很基本的字符串匹配算法 $KMP$算法通常用来解决在母串中寻找子串的问题 但是$KMP$算法不太容易理解，我觉得我是不可能讲清楚的 $KMP$算法最难的地方就是失配指针，也就是$Next$数组 如果是普通的一位一位去匹配的话，会匹配许多无效信息 那么我们可以考虑利用已知信息，构建一个失配指针来解决这个问题 失配指针的作用就是在每次匹配失败的时候 直接跳转到下一个有效信息进行匹配，避免时间的浪费 失配指针的构建跟当前成功匹配串的最长相同前后缀有关 因为最长相同前后缀一定是相同的 那么如果当前这一位匹配失败，那么我们可以将整个串跳转到后缀上再重新开始匹配 这就是$KMP$算法的思想，是不是感觉特别简单？？？ 至于我们怎么预处理计算$Next$数组，就是用子串匹配子串 这里要结合代码讲一下，码风有点小众先注明一下 所有字符串从$0$开始，$Next$数组的初始值为$-1$，那么真实值就要$+1$ 1234567for (register int i=1;i&lt;n;++i)&#123; int j=Next[i-1]; while (S[i]!=S[j+1]&amp;&amp;j&gt;=0) j=F[j]; if (B[j+1]==B[i]) Next[i]=j+1; else Next[i]=-1;&#125; 因为这个是一个线性的递推，所以可以一直往前找到一个最大的相同前后缀为止 如果还没有看懂的话可以自己手玩几组样例，感觉其实我并没有讲清楚 最后安利一下$SYC$大佬的博客]]></content>

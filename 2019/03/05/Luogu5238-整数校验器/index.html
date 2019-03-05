@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="动态规划,">
+  <meta name="keywords" content="模拟,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="今天模拟赛三道动态规划，这是最简单的一道">
-<meta name="keywords" content="动态规划">
+<meta name="description" content="把洛谷月赛当$ACM$打差点出惨案">
+<meta name="keywords" content="模拟">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[IOI2000]回文字串">
-<meta property="og:url" content="http://ricardoships.github.io/2019/02/23/IOI2000-回文字串/index.html">
+<meta property="og:title" content="[Luogu5238]整数校验器">
+<meta property="og:url" content="http://ricardoships.github.io/2019/03/05/Luogu5238-整数校验器/index.html">
 <meta property="og:site_name" content="Something For Nothing">
-<meta property="og:description" content="今天模拟赛三道动态规划，这是最简单的一道">
+<meta property="og:description" content="把洛谷月赛当$ACM$打差点出惨案">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-23T07:37:32.826Z">
+<meta property="og:updated_time" content="2019-03-05T12:57:28.615Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[IOI2000]回文字串">
-<meta name="twitter:description" content="今天模拟赛三道动态规划，这是最简单的一道">
+<meta name="twitter:title" content="[Luogu5238]整数校验器">
+<meta name="twitter:description" content="把洛谷月赛当$ACM$打差点出惨案">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://ricardoships.github.io/2019/02/23/IOI2000-回文字串/">
+  <link rel="canonical" href="http://ricardoships.github.io/2019/03/05/Luogu5238-整数校验器/">
 
 
 
 
 
-  <title>[IOI2000]回文字串 | Something For Nothing</title>
+  <title>[Luogu5238]整数校验器 | Something For Nothing</title>
   
 
 
@@ -295,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://ricardoships.github.io/2019/02/23/IOI2000-回文字串/">
+    <link itemprop="mainEntityOfPage" href="http://ricardoships.github.io/2019/03/05/Luogu5238-整数校验器/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="RicardoShips">
@@ -312,7 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">[IOI2000]回文字串</h1>
+          <h1 class="post-title" itemprop="name headline">[Luogu5238]整数校验器</h1>
         
 
         <div class="post-meta">
@@ -324,8 +324,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-23T15:28:26+08:00">
-                2019-02-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-05T20:35:38+08:00">
+                2019-03-05
               </time>
             
 
@@ -384,15 +384,16 @@
       
 
       
-        <p>今天模拟赛三道动态规划，这是最简单的一道</p>
+        <p><del>把洛谷月赛当$ACM$打差点出惨案</del></p>
 <a id="more"></a>
-<p>考试的时候想的是贪心，大力分类讨论一波以为能过</p>
-<p>考完才知道正解就是一道最长公共子序列？？？</p>
-<p>这个跟回文串的性质有关，它正着读和倒着读是完全一样的</p>
-<p>这样的话我们就可以把原串反过来跟它自己匹配</p>
-<p>最后的答案就是原串的长度减去匹配的长度</p>
-<p><del>考完才发现我不会打最长公共子序列</del></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">char</span> s1[<span class="number">10086</span>];</span><br><span class="line"><span class="keyword">char</span> s2[<span class="number">10086</span>];</span><br><span class="line"><span class="keyword">int</span> f[<span class="number">5005</span>][<span class="number">5005</span>];</span><br><span class="line"><span class="keyword">int</span> n,ans;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>,s1+<span class="number">1</span>);n=<span class="built_in">strlen</span>(s1+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i) s2[n-i+<span class="number">1</span>]=s1[i];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;++j)</span><br><span class="line">            <span class="keyword">if</span>(s1[i]==s2[j]) f[i][j]=f[i<span class="number">-1</span>][j<span class="number">-1</span>]+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> f[i][j]=max(f[i<span class="number">-1</span>][j],f[i][j<span class="number">-1</span>]);</span><br><span class="line">    ans=n-f[n][n];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>就是这道题导致开黑被发现。。。</p>
+<p>开始是自己码的，码了半个小时结果全$WA$</p>
+<p>然后大力调调调，调了半个小时结果还是全$WA$</p>
+<p>然后拿着$Jerry$的代码魔改之后就交了，可能魔改得不彻底吧</p>
+<p>言归正传，这道题严格意义上来说应该算一道大模拟</p>
+<p>需要判断的情况特别多，还有这种一个负号的</p>
+<p>总之大力分类讨论几波即可，下面贴代码</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">char</span> s[<span class="number">1000001</span>];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> m,n,l,r,T;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> num;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%lld%lld%lld"</span>,&amp;l,&amp;r,&amp;T);</span><br><span class="line">    <span class="keyword">while</span>(T--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%s"</span>,s+<span class="number">1</span>);</span><br><span class="line">        n=<span class="built_in">strlen</span>(s+<span class="number">1</span>);num=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(s[<span class="number">1</span>]==<span class="string">'-'</span>&amp;&amp;(n==<span class="number">1</span>||s[<span class="number">2</span>]==<span class="string">'0'</span>))&#123; <span class="built_in">puts</span>(<span class="string">"1"</span>); <span class="keyword">continue</span> ; &#125;</span><br><span class="line">        <span class="keyword">if</span>(s[<span class="number">1</span>]==<span class="string">'0'</span>&amp;&amp;n!=<span class="number">1</span>) &#123; <span class="built_in">puts</span>(<span class="string">"1"</span>); <span class="keyword">continue</span> ; &#125;</span><br><span class="line">        <span class="keyword">if</span>(s[<span class="number">1</span>]!=<span class="string">'-'</span>&amp;&amp;n&gt;<span class="number">19</span>) &#123; <span class="built_in">puts</span>(<span class="string">"2"</span>); <span class="keyword">continue</span> ; &#125;</span><br><span class="line">        <span class="keyword">if</span>(s[<span class="number">1</span>]==<span class="string">'-'</span>&amp;&amp;n&gt;<span class="number">20</span>) &#123; <span class="built_in">puts</span>(<span class="string">"2"</span>); <span class="keyword">continue</span> ; &#125;</span><br><span class="line">        <span class="keyword">if</span>(s[<span class="number">1</span>]!=<span class="string">'-'</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">long</span> <span class="keyword">long</span> i=<span class="number">1</span>;i&lt;=n;++i) num=num*<span class="number">10</span>+s[i]-<span class="string">'0'</span>;</span><br><span class="line">            <span class="keyword">if</span>(num&gt;=(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span>)<span class="number">1</span>&lt;&lt;<span class="number">63</span>) &#123; <span class="built_in">puts</span>(<span class="string">"2"</span>); <span class="keyword">continue</span> ; &#125; m=num;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(s[<span class="number">1</span>]==<span class="string">'-'</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">long</span> <span class="keyword">long</span> i=<span class="number">2</span>;i&lt;=n;++i) num=num*<span class="number">10</span>+s[i]-<span class="string">'0'</span>;</span><br><span class="line">            <span class="keyword">if</span>(num&gt;(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span>)<span class="number">1</span>&lt;&lt;<span class="number">63</span>) &#123; <span class="built_in">puts</span>(<span class="string">"2"</span>); <span class="keyword">continue</span> ; &#125; m=-num;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">puts</span>(l&lt;=m&amp;&amp;m&lt;=r?<span class="string">"0"</span>:<span class="string">"2"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -409,7 +410,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/动态规划/" rel="tag"># 动态规划</a>
+            <a href="/tags/模拟/" rel="tag"># 模拟</a>
           
         </div>
       
@@ -422,8 +423,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/22/Luogu3378-堆/" rel="next" title="[Luogu3378]堆">
-                <i class="fa fa-chevron-left"></i> [Luogu3378]堆
+              <a href="/2019/02/27/Luogu3375-KMP字符串匹配/" rel="next" title="[Luogu3375]KMP字符串匹配">
+                <i class="fa fa-chevron-left"></i> [Luogu3375]KMP字符串匹配
               </a>
             
           </div>
@@ -432,8 +433,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/02/23/HDU5763-Another-Meaning/" rel="prev" title="[HDU5763]Another Meaning">
-                [HDU5763]Another Meaning <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/05/Luogu5239-回忆京都/" rel="prev" title="[Luogu5239]回忆京都">
+                [Luogu5239]回忆京都 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

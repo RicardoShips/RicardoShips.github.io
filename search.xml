@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[Luogu5239]回忆京都]]></title>
+    <url>%2F2019%2F03%2F05%2FLuogu5239-%E5%9B%9E%E5%BF%86%E4%BA%AC%E9%83%BD%2F</url>
+    <content type="text"><![CDATA[提到组合数就想起杨辉三角 这道题的数据范围显然不能直接搞 我们可以预处理出杨辉三角 从上往下做一遍前缀和 最后只要在一行里面统计答案即可 12345678910111213141516171819202122#include&lt;bits/stdc++.h&gt;using namespace std;long long m,n,ans,Q;long long f[1008][1008];const long long mod=19260817;int main()&#123; f[1][1]=1; for(register int i=2;i&lt;=1001;++i) for(register int j=1;j&lt;=i;++j) f[i][j]=(f[i-1][j]+f[i-1][j-1])%mod; for(register int i=1;i&lt;=1001;++i) for(register int j=i+1;j&lt;=1001;++j) (f[j][i]+=f[j-1][i])%=mod; scanf("%lld",&amp;Q); while(Q--) &#123; scanf("%lld%lld",&amp;n,&amp;m); ans=0;++m,++n; for(register int i=2;i&lt;=n;++i) (ans+=f[m][i])%=mod; printf("%lld\n",ans); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>组合数</tag>
+        <tag>杨辉三角</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[Luogu5238]整数校验器]]></title>
+    <url>%2F2019%2F03%2F05%2FLuogu5238-%E6%95%B4%E6%95%B0%E6%A0%A1%E9%AA%8C%E5%99%A8%2F</url>
+    <content type="text"><![CDATA[把洛谷月赛当$ACM$打差点出惨案 就是这道题导致开黑被发现。。。 开始是自己码的，码了半个小时结果全$WA$ 然后大力调调调，调了半个小时结果还是全$WA$ 然后拿着$Jerry$的代码魔改之后就交了，可能魔改得不彻底吧 言归正传，这道题严格意义上来说应该算一道大模拟 需要判断的情况特别多，还有这种一个负号的 总之大力分类讨论几波即可，下面贴代码 123456789101112131415161718192021222324252627282930#include&lt;bits/stdc++.h&gt;using namespace std;char s[1000001];long long m,n,l,r,T;unsigned long long num;int main()&#123; scanf("%lld%lld%lld",&amp;l,&amp;r,&amp;T); while(T--) &#123; scanf("%s",s+1); n=strlen(s+1);num=0; if(s[1]=='-'&amp;&amp;(n==1||s[2]=='0'))&#123; puts("1"); continue ; &#125; if(s[1]=='0'&amp;&amp;n!=1) &#123; puts("1"); continue ; &#125; if(s[1]!='-'&amp;&amp;n&gt;19) &#123; puts("2"); continue ; &#125; if(s[1]=='-'&amp;&amp;n&gt;20) &#123; puts("2"); continue ; &#125; if(s[1]!='-') &#123; for(register long long i=1;i&lt;=n;++i) num=num*10+s[i]-'0'; if(num&gt;=(unsigned long long)1&lt;&lt;63) &#123; puts("2"); continue ; &#125; m=num; &#125; if(s[1]=='-') &#123; for(register long long i=2;i&lt;=n;++i) num=num*10+s[i]-'0'; if(num&gt;(unsigned long long)1&lt;&lt;63) &#123; puts("2"); continue ; &#125; m=-num; &#125; puts(l&lt;=m&amp;&amp;m&lt;=r?"0":"2"); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>模拟</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[Luogu3375]KMP字符串匹配]]></title>
     <url>%2F2019%2F02%2F27%2FLuogu3375-KMP%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%2F</url>
     <content type="text"><![CDATA[因为是模板题所以就只贴代码 学习笔记戳这里 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include&lt;bits/stdc++.h&gt;using namespace std;char s1[1000001];char s2[1000001];int m,n,tot;int ans[1000001];int next[1000001];inline void P()&#123; next[0]=-1; for(register int i=1;i&lt;m;++i) &#123; int j=next[i-1]; while(j&gt;=0&amp;&amp;s2[j+1]!=s2[i]) j=next[j]; if(s2[j+1]==s2[i]) next[i]=j+1; else next[i]=-1; &#125;&#125;inline void KMP()&#123; int i=0,j=0; while(i&lt;n) &#123; if(s1[i]==s2[j]) &#123; ++i;++j; if(j==m) &#123; ans[++tot]=i-m+1; j=next[j-1]+1; &#125; &#125; else &#123; if(j==0) ++i; else j=next[j-1]+1; &#125; &#125;&#125;int main()&#123; scanf("%s%s",s1,s2); n=strlen(s1);m=strlen(s2); P();KMP(); for(register int i=1;i&lt;=tot;++i) printf("%d\n",ans[i]); for(register int i=0;i&lt;m;++i) printf("%d ",next[i]+1); return 0;&#125;]]></content>

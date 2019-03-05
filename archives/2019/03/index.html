@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="动态规划,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -79,18 +79,16 @@
 
 
 
-<meta name="description" content="今天模拟赛三道动态规划，这是最简单的一道">
-<meta name="keywords" content="动态规划">
-<meta property="og:type" content="article">
-<meta property="og:title" content="[IOI2000]回文字串">
-<meta property="og:url" content="http://ricardoships.github.io/2019/02/23/IOI2000-回文字串/index.html">
+<meta name="description" content="Blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Something For Nothing">
+<meta property="og:url" content="http://ricardoships.github.io/archives/2019/03/index.html">
 <meta property="og:site_name" content="Something For Nothing">
-<meta property="og:description" content="今天模拟赛三道动态规划，这是最简单的一道">
+<meta property="og:description" content="Blog">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-23T07:37:32.826Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[IOI2000]回文字串">
-<meta name="twitter:description" content="今天模拟赛三道动态规划，这是最简单的一道">
+<meta name="twitter:title" content="Something For Nothing">
+<meta name="twitter:description" content="Blog">
 
 
 
@@ -120,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://ricardoships.github.io/2019/02/23/IOI2000-回文字串/">
+  <link rel="canonical" href="http://ricardoships.github.io/archives/2019/03/">
 
 
 
 
 
-  <title>[IOI2000]回文字串 | Something For Nothing</title>
+  <title>Archive | Something For Nothing</title>
   
 
 
@@ -145,7 +143,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left page-archive">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -281,180 +279,107 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block archive">
+    <div id="posts" class="posts-collapse">
+      <span class="archive-move-on"></span>
 
-  
+      <span class="archive-page-counter">
+        
+        
+        
+          
+        
+        Um..! 16 posts in total. Keep on posting.
+      </span>
 
-  
-  
-  
+      
+
+        
+        
+        
+
+        
+          
+          <div class="collection-title">
+            <h1 class="archive-year" id="archive-year-2019">2019</h1>
+          </div>
+        
+        
+
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://ricardoships.github.io/2019/02/23/IOI2000-回文字串/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="RicardoShips">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Something For Nothing">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
+            <a class="post-title-link" href="/2019/03/05/Luogu5239-回忆京都/" itemprop="url">
+              
+                <span itemprop="name">[Luogu5239]回忆京都</span>
+              
+            </a>
         
-          <h1 class="post-title" itemprop="name headline">[IOI2000]回文字串</h1>
-        
+      </h2>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-23T15:28:26+08:00">
-                2019-02-23
-              </time>
-            
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-03-05T21:01:54+08:00" content="2019-03-05">
+          03-05
+        </time>
+      </div>
 
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/题解/" itemprop="url" rel="index">
-                    <span itemprop="name">题解</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>今天模拟赛三道动态规划，这是最简单的一道</p>
-<a id="more"></a>
-<p>考试的时候想的是贪心，大力分类讨论一波以为能过</p>
-<p>考完才知道正解就是一道最长公共子序列？？？</p>
-<p>这个跟回文串的性质有关，它正着读和倒着读是完全一样的</p>
-<p>这样的话我们就可以把原串反过来跟它自己匹配</p>
-<p>最后的答案就是原串的长度减去匹配的长度</p>
-<p><del>考完才发现我不会打最长公共子序列</del></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">char</span> s1[<span class="number">10086</span>];</span><br><span class="line"><span class="keyword">char</span> s2[<span class="number">10086</span>];</span><br><span class="line"><span class="keyword">int</span> f[<span class="number">5005</span>][<span class="number">5005</span>];</span><br><span class="line"><span class="keyword">int</span> n,ans;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>,s1+<span class="number">1</span>);n=<span class="built_in">strlen</span>(s1+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i) s2[n-i+<span class="number">1</span>]=s1[i];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;++j)</span><br><span class="line">            <span class="keyword">if</span>(s1[i]==s2[j]) f[i][j]=f[i<span class="number">-1</span>][j<span class="number">-1</span>]+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> f[i][j]=max(f[i<span class="number">-1</span>][j],f[i][j<span class="number">-1</span>]);</span><br><span class="line">    ans=n-f[n][n];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/动态规划/" rel="tag"># 动态规划</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/02/22/Luogu3378-堆/" rel="next" title="[Luogu3378]堆">
-                <i class="fa fa-chevron-left"></i> [Luogu3378]堆
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/23/HDU5763-Another-Meaning/" rel="prev" title="[HDU5763]Another Meaning">
-                [HDU5763]Another Meaning <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
 
-    <div class="post-spread">
       
+
+        
+        
+        
+
+        
+        
+
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2019/03/05/Luogu5238-整数校验器/" itemprop="url">
+              
+                <span itemprop="name">[Luogu5238]整数校验器</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-03-05T20:35:38+08:00" content="2019-03-05">
+          03-05
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+      
+
     </div>
   </div>
+  
+  
+  
+
+  
+
 
 
           </div>
@@ -462,10 +387,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -723,10 +644,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 

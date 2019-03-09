@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="堆,数据结构,">
+  <meta name="keywords" content="欧拉筛,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="因为是模板题所以就只贴代码">
-<meta name="keywords" content="堆,数据结构">
+<meta name="description" content="今天模拟赛第一题成功劝退">
+<meta name="keywords" content="欧拉筛">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[Luogu3378]堆">
-<meta property="og:url" content="http://ricardoships.github.io/2019/02/22/Luogu3378-堆/index.html">
+<meta property="og:title" content="[Luogu1835]素数密度">
+<meta property="og:url" content="http://ricardoships.github.io/2019/03/09/Luogu1835-素数密度/index.html">
 <meta property="og:site_name" content="Something For Nothing">
-<meta property="og:description" content="因为是模板题所以就只贴代码">
+<meta property="og:description" content="今天模拟赛第一题成功劝退">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-23T07:21:13.978Z">
+<meta property="og:updated_time" content="2019-03-09T08:31:16.337Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[Luogu3378]堆">
-<meta name="twitter:description" content="因为是模板题所以就只贴代码">
+<meta name="twitter:title" content="[Luogu1835]素数密度">
+<meta name="twitter:description" content="今天模拟赛第一题成功劝退">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://ricardoships.github.io/2019/02/22/Luogu3378-堆/">
+  <link rel="canonical" href="http://ricardoships.github.io/2019/03/09/Luogu1835-素数密度/">
 
 
 
 
 
-  <title>[Luogu3378]堆 | Something For Nothing</title>
+  <title>[Luogu1835]素数密度 | Something For Nothing</title>
   
 
 
@@ -295,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://ricardoships.github.io/2019/02/22/Luogu3378-堆/">
+    <link itemprop="mainEntityOfPage" href="http://ricardoships.github.io/2019/03/09/Luogu1835-素数密度/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="RicardoShips">
@@ -312,7 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">[Luogu3378]堆</h1>
+          <h1 class="post-title" itemprop="name headline">[Luogu1835]素数密度</h1>
         
 
         <div class="post-meta">
@@ -324,8 +324,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-22T21:28:12+08:00">
-                2019-02-22
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-09T16:28:47+08:00">
+                2019-03-09
               </time>
             
 
@@ -384,10 +384,13 @@
       
 
       
-        <p><del>因为是模板题所以就只贴代码</del></p>
+        <p>今天模拟赛第一题成功劝退</p>
 <a id="more"></a>
-<p><a href="https://ricardoships.github.io/2019/02/22/%E6%B5%85%E8%B0%88%E6%89%8B%E6%89%93%E5%A0%86/">学习笔记戳这里</a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> heap[<span class="number">1000001</span>];</span><br><span class="line"><span class="keyword">int</span> m,n,x,size;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> now,next;</span><br><span class="line">	heap[++size]=y;</span><br><span class="line">	now=size;</span><br><span class="line">	<span class="keyword">while</span>(now&gt;<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		next=now&gt;&gt;<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(heap[now]&gt;=heap[next]) <span class="keyword">break</span>;</span><br><span class="line">		swap(heap[now],heap[next]);</span><br><span class="line">		now=next;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">get</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> now,next;</span><br><span class="line">	heap[<span class="number">1</span>]=heap[size--];</span><br><span class="line">	now=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(now*<span class="number">2</span>&lt;=size)</span><br><span class="line">	&#123;</span><br><span class="line">		next=now*<span class="number">2</span>;</span><br><span class="line">		<span class="keyword">if</span>(next&lt;size&amp;&amp;heap[next+<span class="number">1</span>]&lt;heap[next])</span><br><span class="line">		    next++;</span><br><span class="line">		<span class="keyword">if</span>(heap[now]&lt;=heap[next]) <span class="keyword">break</span>;</span><br><span class="line">		swap(heap[now],heap[next]);</span><br><span class="line">		now=next;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;m);</span><br><span class="line">		<span class="keyword">if</span>(m==<span class="number">1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;x);</span><br><span class="line">			put(x);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(m==<span class="number">2</span>) <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,heap[<span class="number">1</span>]);</span><br><span class="line">		<span class="keyword">if</span>(m==<span class="number">3</span>) get();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>欧拉筛显然是不行的，但是我们要用它来预处理</p>
+<p>先用欧拉筛来筛出$O$$($$\sqrt{m}$$)$内的质数</p>
+<p>然后用类似埃氏筛的方法，用已经筛出来的质数去再在$($n$ $,$ $m$)$范围内筛</p>
+<p>最后还要用$unsigned$卡卡常开开$O2$就过了</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int unsigned int</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> prime[<span class="number">100001</span>];</span><br><span class="line"><span class="keyword">int</span> ovo[<span class="number">100001</span>];</span><br><span class="line"><span class="keyword">int</span> n,m,ans,tot;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">    ovo[<span class="number">0</span>]=ovo[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">46342</span>;++i) &#123;</span><br><span class="line">        <span class="keyword">if</span>(!ovo[i]) prime[++tot]=i;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=tot&amp;&amp;i*prime[j]&lt;=<span class="number">46342</span>;++j) &#123;</span><br><span class="line">            ++ovo[i*prime[j]];</span><br><span class="line">            <span class="keyword">if</span>(i%prime[j]==<span class="number">0</span>) <span class="keyword">break</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    n=max(n,(<span class="keyword">int</span>)<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=n;i&lt;=m;++i) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=tot&amp;&amp;prime[j]*prime[j]&lt;=i;++j)</span><br><span class="line">            <span class="keyword">if</span>(i%prime[j]==<span class="number">0</span>) &#123; --ans; <span class="keyword">break</span> ; &#125;</span><br><span class="line">        ++ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -404,9 +407,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/堆/" rel="tag"># 堆</a>
-          
-            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+            <a href="/tags/欧拉筛/" rel="tag"># 欧拉筛</a>
           
         </div>
       
@@ -419,8 +420,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/22/浅谈手打堆/" rel="next" title="浅谈手打堆">
-                <i class="fa fa-chevron-left"></i> 浅谈手打堆
+              <a href="/2019/03/05/Luogu5239-回忆京都/" rel="next" title="[Luogu5239]回忆京都">
+                <i class="fa fa-chevron-left"></i> [Luogu5239]回忆京都
               </a>
             
           </div>
@@ -428,10 +429,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/23/IOI2000-回文字串/" rel="prev" title="[IOI2000]回文字串">
-                [IOI2000]回文字串 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

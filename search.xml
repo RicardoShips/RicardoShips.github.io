@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[Luogu1835]素数密度]]></title>
+    <url>%2F2019%2F03%2F09%2FLuogu1835-%E7%B4%A0%E6%95%B0%E5%AF%86%E5%BA%A6%2F</url>
+    <content type="text"><![CDATA[今天模拟赛第一题成功劝退 欧拉筛显然是不行的，但是我们要用它来预处理 先用欧拉筛来筛出$O$$($$\sqrt{m}$$)$内的质数 然后用类似埃氏筛的方法，用已经筛出来的质数去再在$($n$ $,$ $m$)$范围内筛 最后还要用$unsigned$卡卡常开开$O2$就过了 12345678910111213141516171819202122232425#include&lt;bits/stdc++.h&gt;#define int unsigned intusing namespace std;int prime[100001];int ovo[100001];int n,m,ans,tot;signed main() &#123; scanf("%d%d",&amp;n,&amp;m); ovo[0]=ovo[1]=1; for(register int i=1;i&lt;=46342;++i) &#123; if(!ovo[i]) prime[++tot]=i; for(register int j=1;j&lt;=tot&amp;&amp;i*prime[j]&lt;=46342;++j) &#123; ++ovo[i*prime[j]]; if(i%prime[j]==0) break ; &#125; &#125; n=max(n,(int)2); for(register int i=n;i&lt;=m;++i) &#123; for(register int j=1;j&lt;=tot&amp;&amp;prime[j]*prime[j]&lt;=i;++j) if(i%prime[j]==0) &#123; --ans; break ; &#125; ++ans; &#125; printf("%d\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>欧拉筛</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[Luogu5239]回忆京都]]></title>
     <url>%2F2019%2F03%2F05%2FLuogu5239-%E5%9B%9E%E5%BF%86%E4%BA%AC%E9%83%BD%2F</url>
     <content type="text"><![CDATA[提到组合数就想起杨辉三角 这道题的数据范围显然不能直接搞 我们可以预处理出杨辉三角 从上往下做一遍前缀和 最后只要在一行里面统计答案即可 12345678910111213141516171819202122#include&lt;bits/stdc++.h&gt;using namespace std;long long m,n,ans,Q;long long f[1008][1008];const long long mod=19260817;int main()&#123; f[1][1]=1; for(register int i=2;i&lt;=1001;++i) for(register int j=1;j&lt;=i;++j) f[i][j]=(f[i-1][j]+f[i-1][j-1])%mod; for(register int i=1;i&lt;=1001;++i) for(register int j=i+1;j&lt;=1001;++j) (f[j][i]+=f[j-1][i])%=mod; scanf("%lld",&amp;Q); while(Q--) &#123; scanf("%lld%lld",&amp;n,&amp;m); ans=0;++m,++n; for(register int i=2;i&lt;=n;++i) (ans+=f[m][i])%=mod; printf("%lld\n",ans); &#125; return 0;&#125;]]></content>

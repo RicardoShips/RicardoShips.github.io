@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="CDQ分治,树状数组,">
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="Blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="http://ricardoships.github.io/categories/index.html">
+<meta name="description" content="一入压行深似海，从此换行是路人">
+<meta name="keywords" content="CDQ分治,树状数组">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Luogu3810]-陌上花开">
+<meta property="og:url" content="http://ricardoships.github.io/2019/03/22/Luogu3810-陌上花开/index.html">
 <meta property="og:site_name" content="Something For Nothing">
-<meta property="og:description" content="Blog">
+<meta property="og:description" content="一入压行深似海，从此换行是路人">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-20T13:52:32.307Z">
+<meta property="og:updated_time" content="2019-03-22T13:40:27.210Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="categories">
-<meta name="twitter:description" content="Blog">
+<meta name="twitter:title" content="[Luogu3810]-陌上花开">
+<meta name="twitter:description" content="一入压行深似海，从此换行是路人">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://ricardoships.github.io/categories/">
+  <link rel="canonical" href="http://ricardoships.github.io/2019/03/22/Luogu3810-陌上花开/">
 
 
 
 
 
-  <title>categories | Something For Nothing</title>
+  <title>[Luogu3810]-陌上花开 | Something For Nothing</title>
   
 
 
@@ -282,40 +283,173 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://ricardoships.github.io/2019/03/22/Luogu3810-陌上花开/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RicardoShips">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Something For Nothing">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">categories</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="category-all-page">
-            <div class="category-all-title">
-                2 categories in total
-            </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习笔记/">学习笔记</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/题解/">题解</a><span class="category-list-count">17</span></li></ul>
-            </div>
-          </div>
+          <h1 class="post-title" itemprop="name headline">[Luogu3810]-陌上花开</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-22T21:39:31+08:00">
+                2019-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/题解/" itemprop="url" rel="index">
+                    <span itemprop="name">题解</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>一入压行深似海，从此换行是路人</p>
+<a id="more"></a>
+<p>排序解决第一维</p>
+<p>$CDQ$解决第二维</p>
+<p>树状数组解决第三维</p>
+<p>留坑代填</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n,k,cnt,ans[<span class="number">100001</span>],tree[<span class="number">200002</span>];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sakura</span> &#123;</span> <span class="keyword">int</span> a,b,c,ans,sum; &#125; node[<span class="number">100001</span>],now[<span class="number">100001</span>];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">cmp1</span><span class="params">(sakura x,sakura y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x.a!=y.a) <span class="keyword">return</span> x.a&lt;y.a;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(x.b!=y.b) <span class="keyword">return</span> x.b&lt;y.b;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> x.c&lt;y.c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">cmp2</span><span class="params">(sakura x,sakura y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x.b!=y.b) <span class="keyword">return</span> x.b&lt;y.b;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> x.c&lt;y.c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=x;i&lt;=k;i+=(i&amp;-i)) tree[i]+=val;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num=<span class="number">0</span>; <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=x;i;i-=(i&amp;-i)) num+=tree[i]; <span class="keyword">return</span> num;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">CDQ</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l==r) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">int</span> j=l,mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    CDQ(l,mid),CDQ(mid+<span class="number">1</span>,r);</span><br><span class="line">    sort(&amp;now[l],&amp;now[mid+<span class="number">1</span>],cmp2),sort(&amp;now[mid+<span class="number">1</span>],&amp;now[r+<span class="number">1</span>],cmp2);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=mid+<span class="number">1</span>;i&lt;=r;++i) &#123;</span><br><span class="line">        <span class="keyword">while</span>(j&lt;=mid&amp;&amp;now[j].b&lt;=now[i].b) add(now[j].c,now[j].sum),++j;</span><br><span class="line">        now[i].ans+=query(now[i].c);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=l;i&lt;j;++i) add(now[i].c,-now[i].sum);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;k);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;node[i].a,&amp;node[i].b,&amp;node[i].c);</span><br><span class="line">    sort(node+<span class="number">1</span>,node+n+<span class="number">1</span>,cmp1);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i) &#123;</span><br><span class="line">        <span class="keyword">if</span>(node[i<span class="number">-1</span>].a==node[i].a&amp;&amp;node[i<span class="number">-1</span>].b==node[i].b&amp;&amp;node[i<span class="number">-1</span>].c==node[i].c) ++now[cnt].sum;</span><br><span class="line">        <span class="keyword">else</span> ++cnt,now[cnt]=node[i],++now[cnt].sum;</span><br><span class="line">    &#125;</span><br><span class="line">    CDQ(<span class="number">1</span>,cnt);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=cnt;++i) ans[now[i].ans+now[i].sum<span class="number">-1</span>]+=now[i].sum;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i) <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans[i]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CDQ分治/" rel="tag"># CDQ分治</a>
+          
+            <a href="/tags/树状数组/" rel="tag"># 树状数组</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/22/SHOI2011-双倍回文/" rel="next" title="[SHOI2011]-双倍回文">
+                <i class="fa fa-chevron-left"></i> [SHOI2011]-双倍回文
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 

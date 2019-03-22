@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[Luogu3810]-陌上花开]]></title>
+    <url>%2F2019%2F03%2F22%2FLuogu3810-%E9%99%8C%E4%B8%8A%E8%8A%B1%E5%BC%80%2F</url>
+    <content type="text"><![CDATA[一入压行深似海，从此换行是路人 排序解决第一维 $CDQ$解决第二维 树状数组解决第三维 留坑代填 12345678910111213141516171819202122232425262728293031323334353637383940414243#include&lt;bits/stdc++.h&gt;using namespace std;int n,k,cnt,ans[100001],tree[200002];struct sakura &#123; int a,b,c,ans,sum; &#125; node[100001],now[100001];inline bool cmp1(sakura x,sakura y) &#123; if(x.a!=y.a) return x.a&lt;y.a; else if(x.b!=y.b) return x.b&lt;y.b; else return x.c&lt;y.c;&#125;inline bool cmp2(sakura x,sakura y) &#123; if(x.b!=y.b) return x.b&lt;y.b; else return x.c&lt;y.c;&#125;inline void add(int x,int val) &#123; for(register int i=x;i&lt;=k;i+=(i&amp;-i)) tree[i]+=val;&#125;inline int query(int x) &#123; int num=0; for(register int i=x;i;i-=(i&amp;-i)) num+=tree[i]; return num;&#125;inline void CDQ(int l,int r) &#123; if(l==r) return ; int j=l,mid=(l+r)&gt;&gt;1; CDQ(l,mid),CDQ(mid+1,r); sort(&amp;now[l],&amp;now[mid+1],cmp2),sort(&amp;now[mid+1],&amp;now[r+1],cmp2); for(register int i=mid+1;i&lt;=r;++i) &#123; while(j&lt;=mid&amp;&amp;now[j].b&lt;=now[i].b) add(now[j].c,now[j].sum),++j; now[i].ans+=query(now[i].c); &#125; for(register int i=l;i&lt;j;++i) add(now[i].c,-now[i].sum);&#125;int main() &#123; scanf("%d%d",&amp;n,&amp;k); for(register int i=1;i&lt;=n;++i) scanf("%d%d%d",&amp;node[i].a,&amp;node[i].b,&amp;node[i].c); sort(node+1,node+n+1,cmp1); for(register int i=1;i&lt;=n;++i) &#123; if(node[i-1].a==node[i].a&amp;&amp;node[i-1].b==node[i].b&amp;&amp;node[i-1].c==node[i].c) ++now[cnt].sum; else ++cnt,now[cnt]=node[i],++now[cnt].sum; &#125; CDQ(1,cnt); for(register int i=1;i&lt;=cnt;++i) ans[now[i].ans+now[i].sum-1]+=now[i].sum; for(register int i=0;i&lt;n;++i) printf("%d\n",ans[i]); return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>CDQ分治</tag>
+        <tag>树状数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[SHOI2011]-双倍回文]]></title>
+    <url>%2F2019%2F03%2F22%2FSHOI2011-%E5%8F%8C%E5%80%8D%E5%9B%9E%E6%96%87%2F</url>
+    <content type="text"><![CDATA[又是一道回文自动机的好题 如果一个串是双倍回文串，一定满足两个条件 长度是4的倍数 有一个长度为它的长度一半的回文后缀 先预处理建立回文自动机，再枚举每一个节点 暴力跳$fail$指针，判断是否存在长度为它一半的回文后缀即可 123456789101112131415161718192021222324252627282930#include&lt;bits/stdc++.h&gt;using namespace std;char s[500005];int fail[500005];int len[500005];int ch[500005][26];int n,ans,tot,last;int main() &#123; scanf("%d%s",&amp;n,s+1); tot=1;fail[0]=1;len[1]=-1; for(register int i=1;i&lt;=n;++i) &#123; while(s[i-len[last]-1]!=s[i]) last=fail[last]; if(!ch[last][s[i]-'a']) &#123; len[++tot]=len[last]+2; int j=fail[last]; while(s[i-len[j]-1]!=s[i]) j=fail[j]; fail[tot]=ch[j][s[i]-'a']; ch[last][s[i]-'a']=tot; &#125; last=ch[last][s[i]-'a']; &#125; for(register int i=tot;i;--i) &#123; int j=i; if(len[i]%4&gt;0||len[i]&lt;=ans) continue ; while((len[j]&lt;&lt;1)&gt;len[i]) j=fail[j]; if(len[j]&lt;&lt;1==len[i]) ans=len[i]; &#125; printf("%d\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>回文自动机</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[APIO2014]-回文串]]></title>
+    <url>%2F2019%2F03%2F22%2FAPIO2014-%E5%9B%9E%E6%96%87%E4%B8%B2%2F</url>
+    <content type="text"><![CDATA[因为最近沉迷搞学科所以没有半个月没有更博 毫无疑问这题最简单的做法应该是回文自动机 暴力跳$fail$指针再顺便统计一下节点的个数 最后取最大值即可，就是一道$PAM$模板题 12345678910111213141516171819202122232425262728293031#include&lt;bits/stdc++.h&gt;using namespace std;char s[300003];int n,tot,last;int cnt[300003];int len[300003];int fail[300003];int ch[300003][26];long long ans;int main() &#123; scanf("%s",s+1);n=strlen(s+1); tot=1;fail[0]=1;len[1]=-1; for(register int i=1;i&lt;=n;++i) &#123; while(s[i-len[last]-1]!=s[i]) last=fail[last]; if(!ch[last][s[i]-'a']) &#123; len[++tot]=len[last]+2; int j=fail[last]; while(s[i-len[j]-1]!=s[i]) j=fail[j]; fail[tot]=ch[j][s[i]-'a']; ch[last][s[i]-'a']=tot; &#125; last=ch[last][s[i]-'a']; ++cnt[last]; &#125; for(register int i=tot;i&gt;=2;--i) &#123; cnt[fail[i]]+=cnt[i]; ans=max(ans,(long long)len[i]*(long long)cnt[i]); &#125; printf("%lld\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>回文自动机</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[Luogu1835]素数密度]]></title>
     <url>%2F2019%2F03%2F09%2FLuogu1835-%E7%B4%A0%E6%95%B0%E5%AF%86%E5%BA%A6%2F</url>
     <content type="text"><![CDATA[今天模拟赛第一题成功劝退 欧拉筛显然是不行的，但是我们要用它来预处理 先用欧拉筛来筛出$O$$($$\sqrt{m}$$)$内的质数 然后用类似埃氏筛的方法，用已经筛出来的质数去再在$($n$ $,$ $m$)$范围内筛 最后还要用$unsigned$卡卡常开开$O2$就过了 12345678910111213141516171819202122232425#include&lt;bits/stdc++.h&gt;#define int unsigned intusing namespace std;int prime[100001];int ovo[100001];int n,m,ans,tot;signed main() &#123; scanf("%d%d",&amp;n,&amp;m); ovo[0]=ovo[1]=1; for(register int i=1;i&lt;=46342;++i) &#123; if(!ovo[i]) prime[++tot]=i; for(register int j=1;j&lt;=tot&amp;&amp;i*prime[j]&lt;=46342;++j) &#123; ++ovo[i*prime[j]]; if(i%prime[j]==0) break ; &#125; &#125; n=max(n,(int)2); for(register int i=n;i&lt;=m;++i) &#123; for(register int j=1;j&lt;=tot&amp;&amp;prime[j]*prime[j]&lt;=i;++j) if(i%prime[j]==0) &#123; --ans; break ; &#125; ++ans; &#125; printf("%d\n",ans); return 0;&#125;]]></content>

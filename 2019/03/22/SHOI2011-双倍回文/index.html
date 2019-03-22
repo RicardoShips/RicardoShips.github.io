@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="回文自动机,">
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="Blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="http://ricardoships.github.io/categories/index.html">
+<meta name="description" content="又是一道回文自动机的好题">
+<meta name="keywords" content="回文自动机">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[SHOI2011]-双倍回文">
+<meta property="og:url" content="http://ricardoships.github.io/2019/03/22/SHOI2011-双倍回文/index.html">
 <meta property="og:site_name" content="Something For Nothing">
-<meta property="og:description" content="Blog">
+<meta property="og:description" content="又是一道回文自动机的好题">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-20T13:52:32.307Z">
+<meta property="og:updated_time" content="2019-03-22T13:34:29.887Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="categories">
-<meta name="twitter:description" content="Blog">
+<meta name="twitter:title" content="[SHOI2011]-双倍回文">
+<meta name="twitter:description" content="又是一道回文自动机的好题">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://ricardoships.github.io/categories/">
+  <link rel="canonical" href="http://ricardoships.github.io/2019/03/22/SHOI2011-双倍回文/">
 
 
 
 
 
-  <title>categories | Something For Nothing</title>
+  <title>[SHOI2011]-双倍回文 | Something For Nothing</title>
   
 
 
@@ -282,40 +283,180 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://ricardoships.github.io/2019/03/22/SHOI2011-双倍回文/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RicardoShips">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Something For Nothing">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">categories</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="category-all-page">
-            <div class="category-all-title">
-                2 categories in total
-            </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习笔记/">学习笔记</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/题解/">题解</a><span class="category-list-count">17</span></li></ul>
-            </div>
-          </div>
+          <h1 class="post-title" itemprop="name headline">[SHOI2011]-双倍回文</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-22T21:33:56+08:00">
+                2019-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/题解/" itemprop="url" rel="index">
+                    <span itemprop="name">题解</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>又是一道回文自动机的好题</p>
+<a id="more"></a>
+<p>如果一个串是双倍回文串，一定满足两个条件</p>
+<ul>
+<li><p>长度是4的倍数</p>
+</li>
+<li><p>有一个长度为它的长度一半的回文后缀</p>
+</li>
+</ul>
+<p>先预处理建立回文自动机，再枚举每一个节点</p>
+<p>暴力跳$fail$指针，判断是否存在长度为它一半的回文后缀即可</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">char</span> s[<span class="number">500005</span>];</span><br><span class="line"><span class="keyword">int</span> fail[<span class="number">500005</span>];</span><br><span class="line"><span class="keyword">int</span> len[<span class="number">500005</span>];</span><br><span class="line"><span class="keyword">int</span> ch[<span class="number">500005</span>][<span class="number">26</span>];</span><br><span class="line"><span class="keyword">int</span> n,ans,tot,last;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%s"</span>,&amp;n,s+<span class="number">1</span>);</span><br><span class="line">    tot=<span class="number">1</span>;fail[<span class="number">0</span>]=<span class="number">1</span>;len[<span class="number">1</span>]=<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i) &#123;</span><br><span class="line">        <span class="keyword">while</span>(s[i-len[last]<span class="number">-1</span>]!=s[i]) last=fail[last];</span><br><span class="line">        <span class="keyword">if</span>(!ch[last][s[i]-<span class="string">'a'</span>]) &#123;</span><br><span class="line">            len[++tot]=len[last]+<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">int</span> j=fail[last];</span><br><span class="line">            <span class="keyword">while</span>(s[i-len[j]<span class="number">-1</span>]!=s[i]) j=fail[j];</span><br><span class="line">            fail[tot]=ch[j][s[i]-<span class="string">'a'</span>];</span><br><span class="line">            ch[last][s[i]-<span class="string">'a'</span>]=tot;</span><br><span class="line">        &#125;</span><br><span class="line">        last=ch[last][s[i]-<span class="string">'a'</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=tot;i;--i) &#123;</span><br><span class="line">        <span class="keyword">int</span> j=i;</span><br><span class="line">        <span class="keyword">if</span>(len[i]%<span class="number">4</span>&gt;<span class="number">0</span>||len[i]&lt;=ans) <span class="keyword">continue</span> ;</span><br><span class="line">        <span class="keyword">while</span>((len[j]&lt;&lt;<span class="number">1</span>)&gt;len[i]) j=fail[j];</span><br><span class="line">        <span class="keyword">if</span>(len[j]&lt;&lt;<span class="number">1</span>==len[i]) ans=len[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/回文自动机/" rel="tag"># 回文自动机</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/22/APIO2014-回文串/" rel="next" title="[APIO2014]-回文串">
+                <i class="fa fa-chevron-left"></i> [APIO2014]-回文串
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/22/Luogu3810-陌上花开/" rel="prev" title="[Luogu3810]-陌上花开">
+                [Luogu3810]-陌上花开 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 

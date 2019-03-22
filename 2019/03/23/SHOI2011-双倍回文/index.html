@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="CDQ分治,树状数组,">
+  <meta name="keywords" content="回文自动机,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="一入压行深似海，从此换行是路人">
-<meta name="keywords" content="CDQ分治,树状数组">
+<meta name="description" content="又是一道回文自动机的好题">
+<meta name="keywords" content="回文自动机">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[Luogu3810]-陌上花开">
-<meta property="og:url" content="http://ricardoships.github.io/2019/03/22/Luogu3810-陌上花开/index.html">
+<meta property="og:title" content="[SHOI2011]双倍回文">
+<meta property="og:url" content="http://ricardoships.github.io/2019/03/23/SHOI2011-双倍回文/index.html">
 <meta property="og:site_name" content="Something For Nothing">
-<meta property="og:description" content="一入压行深似海，从此换行是路人">
+<meta property="og:description" content="又是一道回文自动机的好题">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-22T13:40:27.210Z">
+<meta property="og:updated_time" content="2019-03-22T23:48:11.240Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[Luogu3810]-陌上花开">
-<meta name="twitter:description" content="一入压行深似海，从此换行是路人">
+<meta name="twitter:title" content="[SHOI2011]双倍回文">
+<meta name="twitter:description" content="又是一道回文自动机的好题">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://ricardoships.github.io/2019/03/22/Luogu3810-陌上花开/">
+  <link rel="canonical" href="http://ricardoships.github.io/2019/03/23/SHOI2011-双倍回文/">
 
 
 
 
 
-  <title>[Luogu3810]-陌上花开 | Something For Nothing</title>
+  <title>[SHOI2011]双倍回文 | Something For Nothing</title>
   
 
 
@@ -295,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://ricardoships.github.io/2019/03/22/Luogu3810-陌上花开/">
+    <link itemprop="mainEntityOfPage" href="http://ricardoships.github.io/2019/03/23/SHOI2011-双倍回文/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="RicardoShips">
@@ -312,7 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">[Luogu3810]-陌上花开</h1>
+          <h1 class="post-title" itemprop="name headline">[SHOI2011]双倍回文</h1>
         
 
         <div class="post-meta">
@@ -324,8 +324,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-22T21:39:31+08:00">
-                2019-03-22
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-23T07:47:31+08:00">
+                2019-03-23
               </time>
             
 
@@ -384,13 +384,16 @@
       
 
       
-        <p>一入压行深似海，从此换行是路人</p>
+        <p>又是一道回文自动机的好题</p>
 <a id="more"></a>
-<p>排序解决第一维</p>
-<p>$CDQ$解决第二维</p>
-<p>树状数组解决第三维</p>
-<p>留坑代填</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n,k,cnt,ans[<span class="number">100001</span>],tree[<span class="number">200002</span>];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sakura</span> &#123;</span> <span class="keyword">int</span> a,b,c,ans,sum; &#125; node[<span class="number">100001</span>],now[<span class="number">100001</span>];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">cmp1</span><span class="params">(sakura x,sakura y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x.a!=y.a) <span class="keyword">return</span> x.a&lt;y.a;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(x.b!=y.b) <span class="keyword">return</span> x.b&lt;y.b;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> x.c&lt;y.c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">cmp2</span><span class="params">(sakura x,sakura y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x.b!=y.b) <span class="keyword">return</span> x.b&lt;y.b;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> x.c&lt;y.c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=x;i&lt;=k;i+=(i&amp;-i)) tree[i]+=val;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num=<span class="number">0</span>; <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=x;i;i-=(i&amp;-i)) num+=tree[i]; <span class="keyword">return</span> num;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">CDQ</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l==r) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">int</span> j=l,mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    CDQ(l,mid),CDQ(mid+<span class="number">1</span>,r);</span><br><span class="line">    sort(&amp;now[l],&amp;now[mid+<span class="number">1</span>],cmp2),sort(&amp;now[mid+<span class="number">1</span>],&amp;now[r+<span class="number">1</span>],cmp2);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=mid+<span class="number">1</span>;i&lt;=r;++i) &#123;</span><br><span class="line">        <span class="keyword">while</span>(j&lt;=mid&amp;&amp;now[j].b&lt;=now[i].b) add(now[j].c,now[j].sum),++j;</span><br><span class="line">        now[i].ans+=query(now[i].c);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=l;i&lt;j;++i) add(now[i].c,-now[i].sum);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;k);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;node[i].a,&amp;node[i].b,&amp;node[i].c);</span><br><span class="line">    sort(node+<span class="number">1</span>,node+n+<span class="number">1</span>,cmp1);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i) &#123;</span><br><span class="line">        <span class="keyword">if</span>(node[i<span class="number">-1</span>].a==node[i].a&amp;&amp;node[i<span class="number">-1</span>].b==node[i].b&amp;&amp;node[i<span class="number">-1</span>].c==node[i].c) ++now[cnt].sum;</span><br><span class="line">        <span class="keyword">else</span> ++cnt,now[cnt]=node[i],++now[cnt].sum;</span><br><span class="line">    &#125;</span><br><span class="line">    CDQ(<span class="number">1</span>,cnt);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=cnt;++i) ans[now[i].ans+now[i].sum<span class="number">-1</span>]+=now[i].sum;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i) <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans[i]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果一个串是双倍回文串，一定满足两个条件</p>
+<ul>
+<li>长度是4的倍数</li>
+<li>有一个长度为它的长度一半的回文后缀</li>
+</ul>
+<p>先预处理建立回文自动机，再枚举每一个节点</p>
+<p>暴力跳$fail$指针，判断是否存在长度为它一半的回文后缀即可</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">char</span> s[<span class="number">500005</span>];</span><br><span class="line"><span class="keyword">int</span> fail[<span class="number">500005</span>];</span><br><span class="line"><span class="keyword">int</span> len[<span class="number">500005</span>];</span><br><span class="line"><span class="keyword">int</span> ch[<span class="number">500005</span>][<span class="number">26</span>];</span><br><span class="line"><span class="keyword">int</span> n,ans,tot,last;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%s"</span>,&amp;n,s+<span class="number">1</span>);</span><br><span class="line">    tot=<span class="number">1</span>;fail[<span class="number">0</span>]=<span class="number">1</span>;len[<span class="number">1</span>]=<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i) &#123;</span><br><span class="line">        <span class="keyword">while</span>(s[i-len[last]<span class="number">-1</span>]!=s[i]) last=fail[last];</span><br><span class="line">        <span class="keyword">if</span>(!ch[last][s[i]-<span class="string">'a'</span>]) &#123;</span><br><span class="line">            len[++tot]=len[last]+<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">int</span> j=fail[last];</span><br><span class="line">            <span class="keyword">while</span>(s[i-len[j]<span class="number">-1</span>]!=s[i]) j=fail[j];</span><br><span class="line">            fail[tot]=ch[j][s[i]-<span class="string">'a'</span>];</span><br><span class="line">            ch[last][s[i]-<span class="string">'a'</span>]=tot;</span><br><span class="line">        &#125;</span><br><span class="line">        last=ch[last][s[i]-<span class="string">'a'</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=tot;i;--i) &#123;</span><br><span class="line">        <span class="keyword">int</span> j=i;</span><br><span class="line">        <span class="keyword">if</span>(len[i]%<span class="number">4</span>&gt;<span class="number">0</span>||len[i]&lt;=ans) <span class="keyword">continue</span> ;</span><br><span class="line">        <span class="keyword">while</span>((len[j]&lt;&lt;<span class="number">1</span>)&gt;len[i]) j=fail[j];</span><br><span class="line">        <span class="keyword">if</span>(len[j]&lt;&lt;<span class="number">1</span>==len[i]) ans=len[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -407,9 +410,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/CDQ分治/" rel="tag"># CDQ分治</a>
-          
-            <a href="/tags/树状数组/" rel="tag"># 树状数组</a>
+            <a href="/tags/回文自动机/" rel="tag"># 回文自动机</a>
           
         </div>
       
@@ -422,8 +423,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/22/SHOI2011-双倍回文/" rel="next" title="[SHOI2011]-双倍回文">
-                <i class="fa fa-chevron-left"></i> [SHOI2011]-双倍回文
+              <a href="/2019/03/23/APIO2014-回文串/" rel="next" title="[APIO2014]回文串">
+                <i class="fa fa-chevron-left"></i> [APIO2014]回文串
               </a>
             
           </div>
@@ -431,6 +432,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/23/Luogu3810-陌上花开/" rel="prev" title="[Luogu3810]陌上花开">
+                [Luogu3810]陌上花开 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>

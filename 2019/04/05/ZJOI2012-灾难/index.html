@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="LCA,拓扑排序,">
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="Blog">
+<meta name="description" content="$ZJOI$里面的小清新思维题，思路参考了一些大神的博客">
+<meta name="keywords" content="LCA,拓扑排序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[ZJOI2012]灾难">
 <meta property="og:url" content="http://ricardoships.github.io/2019/04/05/ZJOI2012-灾难/index.html">
 <meta property="og:site_name" content="Something For Nothing">
-<meta property="og:description" content="Blog">
+<meta property="og:description" content="$ZJOI$里面的小清新思维题，思路参考了一些大神的博客">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-05T01:43:54.601Z">
+<meta property="og:updated_time" content="2019-04-05T04:00:03.341Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[ZJOI2012]灾难">
-<meta name="twitter:description" content="Blog">
+<meta name="twitter:description" content="$ZJOI$里面的小清新思维题，思路参考了一些大神的博客">
 
 
 
@@ -334,6 +335,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/题解/" itemprop="url" rel="index">
+                    <span itemprop="name">题解</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -361,7 +384,15 @@
       
 
       
-        
+        <p>$ZJOI$里面的小清新思维题，思路参考了一些大神的博客</p>
+<a id="more"></a>
+<p>首先每个节点死亡的条件就是指向它的所有食物都已经死亡</p>
+<p>那么我们可以反向建图，每个点指向它的食物</p>
+<p>既然保证这个图没有环，那么我们显然可以拓扑排序</p>
+<p>然后我们继续思考，不难发现每个节点死亡的条件等价于它所有食物的$LCA$死亡</p>
+<p>因为它所有食物的$LCA$已经死亡，所以它的所有食物也都会死亡</p>
+<p>最后求一下所有子树大小的前缀和就行，这里记得要减去自身</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> m,n,sum,num1,num2;</span><br><span class="line"><span class="keyword">int</span> to1[<span class="number">400004</span>],to2[<span class="number">400004</span>];</span><br><span class="line"><span class="keyword">int</span> from1[<span class="number">400004</span>],from2[<span class="number">400004</span>];</span><br><span class="line"><span class="keyword">int</span> head1[<span class="number">400004</span>],head2[<span class="number">400004</span>];</span><br><span class="line"><span class="keyword">int</span> ans[<span class="number">100001</span>],ind[<span class="number">100001</span>],topo[<span class="number">100001</span>];</span><br><span class="line"><span class="keyword">int</span> f[<span class="number">100001</span>][<span class="number">18</span>],depth[<span class="number">100001</span>],father[<span class="number">100001</span>];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add1</span><span class="params">(<span class="keyword">int</span> from,<span class="keyword">int</span> to)</span> </span>&#123;</span><br><span class="line">    from1[++num1]=head1[from];</span><br><span class="line">    to1[num1]=to;</span><br><span class="line">    head1[from]=num1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add2</span><span class="params">(<span class="keyword">int</span> from,<span class="keyword">int</span> to)</span> </span>&#123;</span><br><span class="line">    from2[++num2]=head2[from];</span><br><span class="line">    to2[num2]=to;</span><br><span class="line">    head2[from]=num2;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">LCA</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(depth[x]&lt;depth[y]) swap(x,y);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">16</span>;i&gt;=<span class="number">0</span>;--i)</span><br><span class="line">        <span class="keyword">if</span>(f[x][i]!=<span class="number">0</span>&amp;&amp;depth[f[x][i]]&gt;=depth[y]) x=f[x][i];</span><br><span class="line">    <span class="keyword">if</span>(x==y) <span class="keyword">return</span> y;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">16</span>;i&gt;=<span class="number">0</span>;--i)</span><br><span class="line">        <span class="keyword">if</span>(f[x][i]!=<span class="number">0</span>&amp;&amp;f[y][i]!=<span class="number">0</span>&amp;&amp;f[x][i]!=f[y][i]) x=f[x][i],y=f[y][i];</span><br><span class="line">    <span class="keyword">return</span> father[x];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">RMQ</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    f[x][<span class="number">0</span>]=father[x];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">16</span>;++i) f[x][i]=f[f[x][i<span class="number">-1</span>]][i<span class="number">-1</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Build</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    depth[n+<span class="number">1</span>]=<span class="number">1</span>,father[n+<span class="number">1</span>]=n+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=n;i;--i) &#123;</span><br><span class="line">        <span class="keyword">int</span> x=topo[i];</span><br><span class="line">        <span class="keyword">if</span>(!head1[x]) &#123;</span><br><span class="line">            add2(n+<span class="number">1</span>,x),depth[x]=<span class="number">2</span>;</span><br><span class="line">            f[x][<span class="number">0</span>]=n+<span class="number">1</span>,father[x]=n+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">continue</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> lca=to1[head1[x]];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=from1[head1[x]];i;i=from1[i]) lca=LCA(lca,to1[i]);</span><br><span class="line">        depth[x]=depth[lca]+<span class="number">1</span>,father[x]=lca;</span><br><span class="line">        add2(lca,x),RMQ(x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">DPtree</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    ans[x]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=head2[x];i;i=from2[i])</span><br><span class="line">        DPtree(to2[i]),ans[x]+=ans[to2[i]];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Toposort</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">queue</span> &lt; <span class="keyword">int</span> &gt; Q;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">        <span class="keyword">if</span>(!ind[i]) Q.push(i);</span><br><span class="line">    <span class="keyword">while</span>(!Q.empty())  &#123;</span><br><span class="line">        <span class="keyword">int</span> x=Q.front();</span><br><span class="line">        Q.pop(); topo[++sum]=x;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=head1[x];i;i=from1[i]) &#123;</span><br><span class="line">            --ind[to1[i]];</span><br><span class="line">            <span class="keyword">if</span>(!ind[to1[i]]) Q.push(to1[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i) &#123;</span><br><span class="line">        <span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;m);</span><br><span class="line">            <span class="keyword">if</span>(!m) <span class="keyword">break</span> ;</span><br><span class="line">            <span class="keyword">else</span> add1(i,m),++ind[m];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    Toposort(); Build(); DPtree(n+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans[i]<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -375,6 +406,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/LCA/" rel="tag"># LCA</a>
+          
+            <a href="/tags/拓扑排序/" rel="tag"># 拓扑排序</a>
+          
+        </div>
       
 
       
@@ -467,7 +506,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -489,7 +528,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

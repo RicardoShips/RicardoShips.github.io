@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[Luogu3376]网络最大流]]></title>
+    <url>%2F2019%2F04%2F12%2FLuogu3376-%E7%BD%91%E7%BB%9C%E6%9C%80%E5%A4%A7%E6%B5%81%2F</url>
+    <content type="text"><![CDATA[$Dinic$ 想看总结的戳这里 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657#include&lt;bits/stdc++.h&gt;#define INF 1000000009using namespace std;const int maxn=200002;int m,n,s,t,w,x,y,z,ans,num=-1;int cur[maxn],deep[maxn],head[maxn];struct SX &#123; int to,dis,from; &#125; edge[maxn] ;inline void Add(int from,int to,int dis) &#123; edge[++num].from=head[from]; edge[num].to=to; edge[num].dis=dis; head[from]=num;&#125;inline bool Bfs()&#123; memset(deep,0,sizeof(deep)); queue &lt; int &gt; Q; while(!Q.empty()) Q.pop(); Q.push(s); deep[s]=1; while(!Q.empty()) &#123; int u=Q.front(); Q.pop(); for(register int i=head[u];i!=-1;i=edge[i].from) &#123; int v=edge[i].to; if(deep[v]==0&amp;&amp;edge[i].dis&gt;0) deep[v]=deep[u]+1,Q.push(v); &#125; &#125; if(deep[t]) return true; else return false;&#125;inline int Dfs(int u,int f) &#123; if(u==t) return f; for(register int &amp;i=cur[u];i!=-1;i=edge[i].from) &#123; int v=edge[i].to; if(deep[v]==deep[u]+1&amp;&amp;edge[i].dis&gt;0) &#123; int d=Dfs(v,min(f,edge[i].dis)); if(d&gt;0) &#123; edge[i].dis-=d; edge[i^1].dis+=d; return d; &#125; &#125; &#125; return 0;&#125;int main() &#123; memset(head,-1,sizeof(head)); scanf("%d%d%d%d",&amp;n,&amp;m,&amp;s,&amp;t); for(register int i=1;i&lt;=m;++i) &#123; scanf("%d%d%d",&amp;x,&amp;y,&amp;z); Add(x,y,z); Add(y,x,0); &#125; while(Bfs()) &#123; for(register int i=1;i&lt;=n;++i) cur[i]=head[i]; while(w=Dfs(s,INF)) ans+=w; &#125; printf("%d\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>网络流</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[HNOI2019游记]]></title>
     <url>%2F2019%2F04%2F12%2FHNOI2019%E6%B8%B8%E8%AE%B0%2F</url>
     <content type="text"><![CDATA[省选结束了，大概是几家欢喜几家愁吧 $Day0$ 清明三天小长假的第一天，强制机房自习差评 心情有些烦，不太想做题，开始颓$PES$ 这种状态从没参加的安徽集训时开始，已经持续很久了 因为没人监督，所以颓得有点过分 有时候还和$Lyy$机房联机 半个月的时间就只搞了一点数学，成功把我搞自闭了 颓了一上午，下午捣鼓一下博客 晚上泊富吃饭，顺便逛了逛 回家之后没找到准考证，回学校机房找 最后准考证竟然是在我主机后面发现的 $Day1$ 早晨起得很早，去学校搭校车，竟然不是很困 校车迟到$10$分钟，问题不大 过去的路上是一个人坐，想一个人静一静 看着窗外熟悉的道路迷迷糊糊睡着了 醒来就快到$CSLG$了，司机飙车技术好评 刚睡醒有点困，赶紧灌了一口雀巢特浓 考场还是熟悉的考场，只不过这一次人好像少了许多 提前15分钟进考场，好像可以提前打配置 前面那一排用的都是$guide$，感觉很迷 开考之后先把题目看看了一遍，生怕开错题 没怎么仔细看所以看得很快 $T1$计算几何，$T2$字符串，$T3DP$ 决定先开$T2$，看了几遍题面确保没有读错题 撤销操作要查询历史版本，$KMP$套主席树 算了先码暴力$KMP$匹配，拿满暴力再说 突然发现自己忘了$KMP$怎么写 现场手推$KMP$可还行，这里可能浪费了两个小时 $T2$暴力写完还有两个多小时，心态没崩 接下来开$T1$，考前压根没复习计算几何 出去上个厕所呼吸一下新鲜空气 一堆人好像都还在爆肝$T1$？？？ 而且程序都莫名一样？？？ 怎么这么都多$for$循环？？？ 就这样我的思路被顺利地带偏了 又想了一下，好像可以枚举中轴线优化 好像有点难码，两个小时不一定能调出来 索性$O$$($$n^6$$)$，判角用的余弦定理 码完后死活调不出来，最后发现是$for$循环条件打错了 改完一发过样例，一看表还有$15$分钟 感觉这个$T3$不一定能骗得到分 拿出一堆零食，开始吃吃喝喝洗桑拿 吃着吃着就下考了，感觉今天发挥还算正常？？？ 出考场之后和大佬交流了一波 $Xmy$说$T1$可以$O$$($$n^2$$)$踩标算，$Lzk$说$T1$可以$O$$($$n^3$$)$吸氧卡常 我自闭了，这一个个都是要$AK$的节奏啊 下午回家睡不着觉，去$IFS$逛一逛 喝下午茶$+$看电影，调音师剧情好评 晚上听说成绩出了，就回机房去看一看 $T1$没挂分，$T2$爆零？？？ 后面发现我$T2$数组开小了。。。 特意看了一下，$Xmy$的$T1$只有$10$分，$Lzk$的$T1$只有$20$分 群里有人说他的$KMP$套主席树被卡到$20$分，$Xxz$的后缀自动机也只有$20$分 看来今天大家挂分都很严重 后排$6$人$generals$开黑可还行 问题不大，写了一下知乎回答，回家睡觉 $Day2$ 早上起早有些困，一上车就开始睡 睡醒就到了$CSLG$，还是困得不行 猛灌一大口雀巢特浓，全靠咖啡提神 还是先浏览了一遍题目，决定先开$T1$ $T1$感觉很迷，只能硬着头皮肝 没想出来什么暴力，最后深搜大剪枝 $T2$数论？？？题意好难理解 感觉这题出得太绕，出题人怕不是思维江化？？？ 稍微想了想，发现$n=1$的情况可以组合数计算贡献 然后开始码码码，码完自己手玩了几组样例 感觉正确就跳$T3$，$T3$感觉就像数据结构 深搜再用平均数剪一剪，感觉$10$分还是挺稳的 三题暴力码完大概还有$5$分钟，还是吃吃喝喝洗桑拿 不知不觉中我的第一次$HNOI$就这么结束了 下午回家吃完饭倒头就睡，一觉睡到五点 回学校机房看成绩，我今天爆零了？？？ 高二的学长有四个进队，好像$Jyx$也有希望进队？？？ $Zzs$把我们都赶回教室上晚自习，带着$Jyx$又去了$CSLG$ 晚自习和$Czz$聊得不亦乐乎，桌上作业堆得像山一样高 只写了语文数学，理性剪枝，怕是不想读书了 终于熬过了晚自习，跑到机房去了解一下情况 貌似后面又重测了一遍，还不分天算成绩？？？ $CCF$一年一个搞法？？？实在是不想吐槽$CCF$ $Jyx$貌似重测之后出队线了？？？不过应该有$D$吧 $T1$和$T3$挂了，因为今年$HNOI$的栈只有$8MB$ $T2$我至今没有找到$bug$，感觉最近码力直线下降 如果次次考试都这样挂分怕是真的要$AFO$ 毕竟马上我也快高二了，各种机会也都只有一次了 如果不想让自己后悔的话，那就自己好好努力吧 星光不问赶路人，时光不负有心人]]></content>
@@ -135,11 +146,6 @@
   <entry>
     <title><![CDATA[[Luogu3386]二分图匹配]]></title>
     <url>%2F2019%2F04%2F05%2FLuogu3386-%E4%BA%8C%E5%88%86%E5%9B%BE%E5%8C%B9%E9%85%8D%2F</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
-    <title><![CDATA[[Luogu3376]网络最大流]]></title>
-    <url>%2F2019%2F04%2F05%2FLuogu3376-%E7%BD%91%E7%BB%9C%E6%9C%80%E5%A4%A7%E6%B5%81%2F</url>
     <content type="text"></content>
   </entry>
   <entry>
@@ -310,8 +316,8 @@
         <category>题解</category>
       </categories>
       <tags>
-        <tag>动态规划</tag>
         <tag>KMP</tag>
+        <tag>动态规划</tag>
       </tags>
   </entry>
   <entry>

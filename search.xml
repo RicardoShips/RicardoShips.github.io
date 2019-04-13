@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[[Luogu3376]网络最大流]]></title>
     <url>%2F2019%2F04%2F12%2FLuogu3376-%E7%BD%91%E7%BB%9C%E6%9C%80%E5%A4%A7%E6%B5%81%2F</url>
-    <content type="text"><![CDATA[$Dinic$ 想看总结的戳这里 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657#include&lt;bits/stdc++.h&gt;#define INF 1000000009using namespace std;const int maxn=200002;int m,n,s,t,w,x,y,z,ans,num=-1;int cur[maxn],deep[maxn],head[maxn];struct SX &#123; int to,dis,from; &#125; edge[maxn] ;inline void Add(int from,int to,int dis) &#123; edge[++num].from=head[from]; edge[num].to=to; edge[num].dis=dis; head[from]=num;&#125;inline bool Bfs()&#123; memset(deep,0,sizeof(deep)); queue &lt; int &gt; Q; while(!Q.empty()) Q.pop(); Q.push(s); deep[s]=1; while(!Q.empty()) &#123; int u=Q.front(); Q.pop(); for(register int i=head[u];i!=-1;i=edge[i].from) &#123; int v=edge[i].to; if(deep[v]==0&amp;&amp;edge[i].dis&gt;0) deep[v]=deep[u]+1,Q.push(v); &#125; &#125; if(deep[t]) return true; else return false;&#125;inline int Dfs(int u,int f) &#123; if(u==t) return f; for(register int &amp;i=cur[u];i!=-1;i=edge[i].from) &#123; int v=edge[i].to; if(deep[v]==deep[u]+1&amp;&amp;edge[i].dis&gt;0) &#123; int d=Dfs(v,min(f,edge[i].dis)); if(d&gt;0) &#123; edge[i].dis-=d; edge[i^1].dis+=d; return d; &#125; &#125; &#125; return 0;&#125;int main() &#123; memset(head,-1,sizeof(head)); scanf("%d%d%d%d",&amp;n,&amp;m,&amp;s,&amp;t); for(register int i=1;i&lt;=m;++i) &#123; scanf("%d%d%d",&amp;x,&amp;y,&amp;z); Add(x,y,z); Add(y,x,0); &#125; while(Bfs()) &#123; for(register int i=1;i&lt;=n;++i) cur[i]=head[i]; while(w=Dfs(s,INF)) ans+=w; &#125; printf("%d\n",ans); return 0;&#125;]]></content>
+    <content type="text"><![CDATA[本文主要用于记录几种常用的最大流算法 $Dinic$ 想看总结的戳这里 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657#include&lt;bits/stdc++.h&gt;#define INF 1000000009using namespace std;const int maxn=200002;int m,n,s,t,w,x,y,z,ans,num=-1;int cur[maxn],deep[maxn],head[maxn];struct SX &#123; int to,dis,from; &#125; edge[maxn] ;inline void Add(int from,int to,int dis) &#123; edge[++num].from=head[from]; edge[num].to=to; edge[num].dis=dis; head[from]=num;&#125;inline bool Bfs()&#123; memset(deep,0,sizeof(deep)); queue &lt; int &gt; Q; while(!Q.empty()) Q.pop(); Q.push(s); deep[s]=1; while(!Q.empty()) &#123; int u=Q.front(); Q.pop(); for(register int i=head[u];i!=-1;i=edge[i].from) &#123; int v=edge[i].to; if(deep[v]==0&amp;&amp;edge[i].dis&gt;0) deep[v]=deep[u]+1,Q.push(v); &#125; &#125; if(deep[t]) return true; else return false;&#125;inline int Dfs(int u,int f) &#123; if(u==t) return f; for(register int &amp;i=cur[u];i!=-1;i=edge[i].from) &#123; int v=edge[i].to; if(deep[v]==deep[u]+1&amp;&amp;edge[i].dis&gt;0) &#123; int d=Dfs(v,min(f,edge[i].dis)); if(d&gt;0) &#123; edge[i].dis-=d; edge[i^1].dis+=d; return d; &#125; &#125; &#125; return 0;&#125;int main() &#123; memset(head,-1,sizeof(head)); scanf("%d%d%d%d",&amp;n,&amp;m,&amp;s,&amp;t); for(register int i=1;i&lt;=m;++i) &#123; scanf("%d%d%d",&amp;x,&amp;y,&amp;z); Add(x,y,z); Add(y,x,0); &#125; while(Bfs()) &#123; for(register int i=1;i&lt;=n;++i) cur[i]=head[i]; while(w=Dfs(s,INF)) ans+=w; &#125; printf("%d\n",ans); return 0;&#125;]]></content>
       <categories>
         <category>题解</category>
       </categories>
@@ -316,8 +316,8 @@
         <category>题解</category>
       </categories>
       <tags>
-        <tag>KMP</tag>
         <tag>动态规划</tag>
+        <tag>KMP</tag>
       </tags>
   </entry>
   <entry>

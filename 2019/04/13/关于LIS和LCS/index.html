@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="动态规划,">
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="Blog">
+<meta name="description" content="$LIS$，即最长上升子序列问题 $LCS$，即最长公共子序列问题 两种类型相似的典型动态规划问题，这里只讲$O$$($$n$$logn$$)$算法 $LIS$ 首先设$f$$[$$i$$]$为长度为$i$的上升子序列最后一位的值 好像听起来感觉稍微有点绕哈 因为$f$$[$$i$$]$也是一个单调上升序列 所以我们每次插入一个新的数字，就可以二分查找出一个数字 使得每次替换最优，这里运用了贪心的">
+<meta name="keywords" content="动态规划">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[ZJOI2008]树的统计">
-<meta property="og:url" content="http://ricardoships.github.io/2019/04/05/ZJOI2008-树的统计/index.html">
+<meta property="og:title" content="关于LIS和LCS">
+<meta property="og:url" content="http://ricardoships.github.io/2019/04/13/关于LIS和LCS/index.html">
 <meta property="og:site_name" content="Something For Nothing">
-<meta property="og:description" content="Blog">
+<meta property="og:description" content="$LIS$，即最长上升子序列问题 $LCS$，即最长公共子序列问题 两种类型相似的典型动态规划问题，这里只讲$O$$($$n$$logn$$)$算法 $LIS$ 首先设$f$$[$$i$$]$为长度为$i$的上升子序列最后一位的值 好像听起来感觉稍微有点绕哈 因为$f$$[$$i$$]$也是一个单调上升序列 所以我们每次插入一个新的数字，就可以二分查找出一个数字 使得每次替换最优，这里运用了贪心的">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-05T02:25:16.391Z">
+<meta property="og:updated_time" content="2019-04-13T08:25:12.072Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[ZJOI2008]树的统计">
-<meta name="twitter:description" content="Blog">
+<meta name="twitter:title" content="关于LIS和LCS">
+<meta name="twitter:description" content="$LIS$，即最长上升子序列问题 $LCS$，即最长公共子序列问题 两种类型相似的典型动态规划问题，这里只讲$O$$($$n$$logn$$)$算法 $LIS$ 首先设$f$$[$$i$$]$为长度为$i$的上升子序列最后一位的值 好像听起来感觉稍微有点绕哈 因为$f$$[$$i$$]$也是一个单调上升序列 所以我们每次插入一个新的数字，就可以二分查找出一个数字 使得每次替换最优，这里运用了贪心的">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://ricardoships.github.io/2019/04/05/ZJOI2008-树的统计/">
+  <link rel="canonical" href="http://ricardoships.github.io/2019/04/13/关于LIS和LCS/">
 
 
 
 
 
-  <title>[ZJOI2008]树的统计 | Something For Nothing</title>
+  <title>关于LIS和LCS | Something For Nothing</title>
   
 
 
@@ -294,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://ricardoships.github.io/2019/04/05/ZJOI2008-树的统计/">
+    <link itemprop="mainEntityOfPage" href="http://ricardoships.github.io/2019/04/13/关于LIS和LCS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="RicardoShips">
@@ -311,7 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">[ZJOI2008]树的统计</h1>
+          <h1 class="post-title" itemprop="name headline">关于LIS和LCS</h1>
         
 
         <div class="post-meta">
@@ -323,8 +324,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-05T10:25:16+08:00">
-                2019-04-05
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-13T16:24:41+08:00">
+                2019-04-13
               </time>
             
 
@@ -333,6 +334,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -361,7 +384,22 @@
       
 
       
-        
+        <p>$LIS$，即最长上升子序列问题</p>
+<p>$LCS$，即最长公共子序列问题</p>
+<p>两种类型相似的典型动态规划问题，这里只讲$O$$($$n$$logn$$)$算法</p>
+<p>$LIS$</p>
+<p>首先设$f$$[$$i$$]$为长度为$i$的上升子序列最后一位的值</p>
+<p>好像听起来感觉稍微有点绕哈</p>
+<p>因为$f$$[$$i$$]$也是一个单调上升序列</p>
+<p>所以我们每次插入一个新的数字，就可以二分查找出一个数字</p>
+<p>使得每次替换最优，这里运用了贪心的思想</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n,ans,a[<span class="number">100001</span>],f[<span class="number">100001</span>];</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">2000000002</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    n=read();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i) <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i]);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i) f[i]=INF;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i) *lower_bound(f,f+n,a[i])=a[i];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,lower_bound(f,f+n,INF)-f);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>$LCS$</p>
+<p>解决这个问题的本质是把该问题转化为$LIS$</p>
+<p>当两个序列中元素全部相同的情况下</p>
+<p>我们可以用$cap$$[$$i$$]$来记录$i$元素在序列$a$中的位置</p>
+<p>然后对序列$b$进行类似$LIS$的操作即可</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mod 1000000007</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">100001</span>;</span><br><span class="line"><span class="keyword">int</span> n,l,r,ans,mid,a[maxn],b[maxn],f[maxn],cap[maxn];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i]),cap[a[i]]=i;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;b[i]),f[i]=mod;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i) &#123;</span><br><span class="line">        l=<span class="number">0</span>,r=ans;</span><br><span class="line">        <span class="keyword">if</span>(cap[b[i]]&gt;f[ans]) f[++ans]=cap[b[i]];</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            l=lower_bound(f,f+r+<span class="number">1</span>,cap[b[i]])-f;</span><br><span class="line">            f[l]=min(f[l],cap[b[i]]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -376,6 +414,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/动态规划/" rel="tag"># 动态规划</a>
+          
+        </div>
+      
 
       
       
@@ -385,8 +429,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/05/Luogu3796-AC自动机（加强版）/" rel="next" title="[Luogu3796]AC自动机（加强版）">
-                <i class="fa fa-chevron-left"></i> [Luogu3796]AC自动机（加强版）
+              <a href="/2019/04/12/Luogu3376-网络最大流/" rel="next" title="[Luogu3376]网络最大流">
+                <i class="fa fa-chevron-left"></i> [Luogu3376]网络最大流
               </a>
             
           </div>
@@ -394,10 +438,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/05/Luogu3805-Manacher算法/" rel="prev" title="[Luogu3805]Manacher算法">
-                [Luogu3805]Manacher算法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

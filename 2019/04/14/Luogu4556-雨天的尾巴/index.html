@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="差分,线段树,树链剖分,">
 
 
 
@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="Blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Something For Nothing">
-<meta property="og:url" content="http://ricardoships.github.io/tags/树状数组/index.html">
+<meta name="description" content="这题给我的第一感觉就是树链剖分$+$树上差分，然而我不会">
+<meta name="keywords" content="差分,线段树,树链剖分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Luogu4556]雨天的尾巴">
+<meta property="og:url" content="http://ricardoships.github.io/2019/04/14/Luogu4556-雨天的尾巴/index.html">
 <meta property="og:site_name" content="Something For Nothing">
-<meta property="og:description" content="Blog">
+<meta property="og:description" content="这题给我的第一感觉就是树链剖分$+$树上差分，然而我不会">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-14T11:51:00.525Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Something For Nothing">
-<meta name="twitter:description" content="Blog">
+<meta name="twitter:title" content="[Luogu4556]雨天的尾巴">
+<meta name="twitter:description" content="这题给我的第一感觉就是树链剖分$+$树上差分，然而我不会">
 
 
 
@@ -118,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://ricardoships.github.io/tags/树状数组/">
+  <link rel="canonical" href="http://ricardoships.github.io/2019/04/14/Luogu4556-雨天的尾巴/">
 
 
 
 
 
-  <title>Tag: 树状数组 | Something For Nothing</title>
+  <title>[Luogu4556]雨天的尾巴 | Something For Nothing</title>
   
 
 
@@ -143,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -279,52 +281,180 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>树状数组<small>Tag</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://ricardoships.github.io/2019/04/14/Luogu4556-雨天的尾巴/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RicardoShips">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Something For Nothing">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/03/23/Luogu3810-陌上花开/" itemprop="url">
-              
-                <span itemprop="name">[Luogu3810]陌上花开</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">[Luogu4556]雨天的尾巴</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-23T07:48:42+08:00" content="2019-03-23">
-          03-23
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-14T19:35:11+08:00">
+                2019-04-14
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/题解/" itemprop="url" rel="index">
+                    <span itemprop="name">题解</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    </div>
+      
 
+      
+        <p>这题给我的第一感觉就是树链剖分$+$树上差分，然而我不会</p>
+<a id="more"></a>
+<p>事实上主流做法确实是树链剖分，复杂度$O$$($$n$$logn^2$$)$</p>
+<p>然而这题还可以线段树合并，复杂度$O$$($$n$$logn$$)$</p>
+<p>但是跑得比树链剖分慢一倍，<del>别问我为什么常数那么大</del></p>
+<p>直接对每一个节点都维护一颗权值线段树</p>
+<p>再套一个树上差分，最后直接线段树合并</p>
+<p>因为这题空间卡得紧，所以离线操作</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> M=<span class="number">100001</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">8000008</span>;</span><br><span class="line"><span class="keyword">int</span> w,cnt,num,d[N],l[N],r[N],t[N],to[M&lt;&lt;<span class="number">1</span>],from[M&lt;&lt;<span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> X[M],Y[M],Z[M],fa[M],ans[M],son[M],sum[M],top[M],deep[M],head[M],root[M];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">    from[++num]=head[u];</span><br><span class="line">    to[num]=v;</span><br><span class="line">    head[u]=num;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span> ch=getchar(); <span class="keyword">int</span> c=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch)) ch=getchar();</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch)) c=(c&lt;&lt;<span class="number">3</span>)+(c&lt;&lt;<span class="number">1</span>)+(ch^<span class="string">'0'</span>),ch=getchar();</span><br><span class="line">    <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(d[l[x]]&gt;=d[r[x]]) d[x]=d[l[x]],t[x]=t[l[x]];</span><br><span class="line">    <span class="keyword">else</span> d[x]=d[r[x]],t[x]=t[r[x]];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!a) <span class="keyword">return</span> b; <span class="keyword">if</span>(!b) <span class="keyword">return</span> a;</span><br><span class="line">    <span class="keyword">if</span>(x==y) &#123; d[a]+=d[b]; t[a]=x; <span class="keyword">return</span> a; &#125;</span><br><span class="line">    <span class="keyword">int</span> mid=(x+y)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    l[a]=merge(l[a],l[b],x,mid),r[a]=merge(r[a],r[b],mid+<span class="number">1</span>,y);</span><br><span class="line">    update(a); <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Dfs1</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    sum[x]=<span class="number">1</span>; <span class="keyword">int</span> maxx=<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=head[x];i;i=from[i])</span><br><span class="line">        <span class="keyword">if</span>(!deep[to[i]]) &#123;</span><br><span class="line">            deep[to[i]]=deep[x]+<span class="number">1</span>,fa[to[i]]=x;</span><br><span class="line">            Dfs1(to[i]); sum[x]+=sum[to[i]];</span><br><span class="line">            <span class="keyword">if</span>(sum[to[i]]&gt;maxx) maxx=sum[to[i]],son[x]=to[i];</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Dfs2</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> topx)</span> </span>&#123;</span><br><span class="line">    top[x]=topx; <span class="keyword">if</span>(!son[x]) <span class="keyword">return</span> ; Dfs2(son[x],topx);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=head[x];i;i=from[i]) <span class="keyword">if</span>(!top[to[i]]) Dfs2(to[i],to[i]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">LCA</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(top[x]!=top[y]) &#123;</span><br><span class="line">        <span class="keyword">if</span>(deep[top[x]]&lt;deep[top[y]]) swap(x,y);</span><br><span class="line">        x=fa[top[x]];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> deep[x]&lt;deep[y]?x:y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">Change</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> pos,<span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!a) a=++cnt;</span><br><span class="line">    <span class="keyword">if</span>(x==y) &#123; d[a]+=val; t[a]=x; <span class="keyword">return</span> a; &#125;</span><br><span class="line">    <span class="keyword">int</span> mid=(x+y)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(pos&lt;=mid) l[a]=Change(l[a],x,mid,pos,val);</span><br><span class="line">    <span class="keyword">else</span> r[a]=Change(r[a],mid+<span class="number">1</span>,y,pos,val);</span><br><span class="line">    update(a); <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">ReDfs</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=head[x];i;i=from[i])</span><br><span class="line">        <span class="keyword">if</span>(deep[to[i]]&gt;deep[x]) ReDfs(to[i]),root[x]=merge(root[x],root[to[i]],<span class="number">1</span>,w);</span><br><span class="line">    <span class="keyword">if</span>(d[root[x]]) ans[x]+=t[root[x]];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n=read(),m=read(),x,y,z;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;++i) x=read(),y=read(),add(x,y),add(y,x);</span><br><span class="line">    deep[<span class="number">1</span>]=<span class="number">1</span>; Dfs1(<span class="number">1</span>),Dfs2(<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;++i) X[i]=read(),Y[i]=read(),Z[i]=read(),w=max(w,Z[i]);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> lca=LCA(X[i],Y[i]);</span><br><span class="line">        root[X[i]]=Change(root[X[i]],<span class="number">1</span>,w,Z[i],<span class="number">1</span>),root[Y[i]]=Change(root[Y[i]],<span class="number">1</span>,w,Z[i],<span class="number">1</span>);</span><br><span class="line">        root[lca]=Change(root[lca],<span class="number">1</span>,w,Z[i],<span class="number">-1</span>);</span><br><span class="line">        <span class="keyword">if</span>(fa[lca]) root[fa[lca]]=Change(root[fa[lca]],<span class="number">1</span>,w,Z[i],<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    ReDfs(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans[i]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/差分/" rel="tag"># 差分</a>
+          
+            <a href="/tags/线段树/" rel="tag"># 线段树</a>
+          
+            <a href="/tags/树链剖分/" rel="tag"># 树链剖分</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/13/关于LIS和LCS/" rel="next" title="关于LIS和LCS">
+                <i class="fa fa-chevron-left"></i> 关于LIS和LCS
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -332,6 +462,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -593,6 +727,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

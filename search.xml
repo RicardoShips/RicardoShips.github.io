@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[Luogu4556]雨天的尾巴]]></title>
+    <url>%2F2019%2F04%2F14%2FLuogu4556-%E9%9B%A8%E5%A4%A9%E7%9A%84%E5%B0%BE%E5%B7%B4%2F</url>
+    <content type="text"><![CDATA[这题给我的第一感觉就是树链剖分$+$树上差分，然而我不会 事实上主流做法确实是树链剖分，复杂度$O$$($$n$$logn^2$$)$ 然而这题还可以线段树合并，复杂度$O$$($$n$$logn$$)$ 但是跑得比树链剖分慢一倍，别问我为什么常数那么大 直接对每一个节点都维护一颗权值线段树 再套一个树上差分，最后直接线段树合并 因为这题空间卡得紧，所以离线操作 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576#include&lt;bits/stdc++.h&gt;using namespace std;const int M=100001;const int N=8000008;int w,cnt,num,d[N],l[N],r[N],t[N],to[M&lt;&lt;1],from[M&lt;&lt;1];int X[M],Y[M],Z[M],fa[M],ans[M],son[M],sum[M],top[M],deep[M],head[M],root[M];inline void add(int u,int v) &#123; from[++num]=head[u]; to[num]=v; head[u]=num;&#125;inline int read() &#123; char ch=getchar(); int c=0; while(!isdigit(ch)) ch=getchar(); while(isdigit(ch)) c=(c&lt;&lt;3)+(c&lt;&lt;1)+(ch^'0'),ch=getchar(); return c;&#125;inline void update(int x) &#123; if(d[l[x]]&gt;=d[r[x]]) d[x]=d[l[x]],t[x]=t[l[x]]; else d[x]=d[r[x]],t[x]=t[r[x]];&#125;inline int merge(int a,int b,int x,int y) &#123; if(!a) return b; if(!b) return a; if(x==y) &#123; d[a]+=d[b]; t[a]=x; return a; &#125; int mid=(x+y)&gt;&gt;1; l[a]=merge(l[a],l[b],x,mid),r[a]=merge(r[a],r[b],mid+1,y); update(a); return a;&#125;inline void Dfs1(int x) &#123; sum[x]=1; int maxx=-1; for(register int i=head[x];i;i=from[i]) if(!deep[to[i]]) &#123; deep[to[i]]=deep[x]+1,fa[to[i]]=x; Dfs1(to[i]); sum[x]+=sum[to[i]]; if(sum[to[i]]&gt;maxx) maxx=sum[to[i]],son[x]=to[i]; &#125;&#125;inline void Dfs2(int x,int topx) &#123; top[x]=topx; if(!son[x]) return ; Dfs2(son[x],topx); for(register int i=head[x];i;i=from[i]) if(!top[to[i]]) Dfs2(to[i],to[i]);&#125;inline int LCA(int x,int y) &#123; while(top[x]!=top[y]) &#123; if(deep[top[x]]&lt;deep[top[y]]) swap(x,y); x=fa[top[x]]; &#125; return deep[x]&lt;deep[y]?x:y;&#125;inline int Change(int a,int x,int y,int pos,int val) &#123; if(!a) a=++cnt; if(x==y) &#123; d[a]+=val; t[a]=x; return a; &#125; int mid=(x+y)&gt;&gt;1; if(pos&lt;=mid) l[a]=Change(l[a],x,mid,pos,val); else r[a]=Change(r[a],mid+1,y,pos,val); update(a); return a;&#125;inline void ReDfs(int x) &#123; for(register int i=head[x];i;i=from[i]) if(deep[to[i]]&gt;deep[x]) ReDfs(to[i]),root[x]=merge(root[x],root[to[i]],1,w); if(d[root[x]]) ans[x]+=t[root[x]];&#125;int main() &#123; int n=read(),m=read(),x,y,z; for(register int i=1;i&lt;n;++i) x=read(),y=read(),add(x,y),add(y,x); deep[1]=1; Dfs1(1),Dfs2(1,1); for(register int i=1;i&lt;=m;++i) X[i]=read(),Y[i]=read(),Z[i]=read(),w=max(w,Z[i]); for(register int i=1;i&lt;=m;++i) &#123; int lca=LCA(X[i],Y[i]); root[X[i]]=Change(root[X[i]],1,w,Z[i],1),root[Y[i]]=Change(root[Y[i]],1,w,Z[i],1); root[lca]=Change(root[lca],1,w,Z[i],-1); if(fa[lca]) root[fa[lca]]=Change(root[fa[lca]],1,w,Z[i],-1); &#125; ReDfs(1); for(register int i=1;i&lt;=n;++i) printf("%d\n",ans[i]); return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>差分</tag>
+        <tag>线段树</tag>
+        <tag>树链剖分</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[关于LIS和LCS]]></title>
     <url>%2F2019%2F04%2F13%2F%E5%85%B3%E4%BA%8ELIS%E5%92%8CLCS%2F</url>
     <content type="text"><![CDATA[本文主要用于记录$LIS$和$LCS$的一些思想 $LIS$，即最长上升子序列问题 $LCS$，即最长公共子序列问题 两种类型相似的典型动态规划问题，这里只讲$O$$($$n$$logn$$)$算法 $LIS$ 首先设$f$$[$$i$$]$为长度为$i$的上升子序列最后一位的值 好像听起来感觉稍微有点绕哈 因为$f$$[$$i$$]$也是一个单调上升序列 所以我们每次插入一个新的数字，就可以二分查找出一个数字 使得每次替换最优，这里运用了贪心的思想 123456789101112#include&lt;bits/stdc++.h&gt;using namespace std;int n,ans,a[100001],f[100001];const int INF=2000000002;int main() &#123; n=read(); for(register int i=0;i&lt;n;++i) scanf("%d",&amp;a[i]); for(register int i=0;i&lt;n;++i) f[i]=INF; for(register int i=0;i&lt;n;++i) *lower_bound(f,f+n,a[i])=a[i]; printf("%d\n",lower_bound(f,f+n,INF)-f); return 0;&#125; $LCS$ 解决这个问题的本质是把该问题转化为$LIS$ 当两个序列中元素全部相同的情况下 我们可以用$cap$$[$$i$$]$来记录$i$元素在序列$a$中的位置 然后对序列$b$进行类似$LIS$的操作即可 1234567891011121314151617181920#include&lt;bits/stdc++.h&gt;#define mod 1000000007using namespace std;const int maxn=100001;int n,l,r,ans,mid,a[maxn],b[maxn],f[maxn],cap[maxn];int main() &#123; scanf("%d",&amp;n); for(register int i=1;i&lt;=n;++i) scanf("%d",&amp;a[i]),cap[a[i]]=i; for(register int i=1;i&lt;=n;++i) scanf("%d",&amp;b[i]),f[i]=mod; for(register int i=1;i&lt;=n;++i) &#123; l=0,r=ans; if(cap[b[i]]&gt;f[ans]) f[++ans]=cap[b[i]]; else &#123; l=lower_bound(f,f+r+1,cap[b[i]])-f; f[l]=min(f[l],cap[b[i]]); &#125; &#125; printf("%d\n",ans); return 0;&#125;]]></content>
@@ -179,8 +192,8 @@
         <category>题解</category>
       </categories>
       <tags>
-        <tag>树链剖分</tag>
         <tag>线段树</tag>
+        <tag>树链剖分</tag>
       </tags>
   </entry>
   <entry>

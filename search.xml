@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[Luogu3942]将军令]]></title>
+    <url>%2F2019%2F04%2F26%2FLuogu3942-%E5%B0%86%E5%86%9B%E4%BB%A4%2F</url>
+    <content type="text"><![CDATA[一道难度适中的小清新乱搞好题 这题的正解是贪心，不过我好像$Hack$了正解 贪心策略好像还是比较简单的 找到当前没被覆盖的深度最深的点 然后找到它的$K$级父亲，往周围标记距离在$K$以内的点 如果有更优的标记，即离每次开始标记的点更近 那么就暴力更新标记，知道全部的点都被标记为止 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849#include&lt;bits/stdc++.h&gt;using namespace std;const int maxn=200002;int n,k,t,ans,cnt,f[maxn],Q[maxn],fa[maxn],to[maxn],from[maxn],head[maxn];inline void add(int u,int v) &#123; from[++cnt]=head[u]; to[cnt]=v; head[u]=cnt;&#125;inline void bfs() &#123; Q[1]=1; fa[1]=1; int he=1,ta=2; while(he&lt;ta) &#123; int x=Q[he++]; for(register int i=head[x];i;i=from[i]) if(!fa[to[i]]) fa[to[i]]=x,Q[ta++]=to[i]; &#125;&#125;inline int read() &#123; char ch=getchar(); int num=0; while(!isdigit(ch)) ch=getchar(); while(isdigit(ch)) num=(num&lt;&lt;3)+(num&lt;&lt;1)+(ch^'0'),ch=getchar(); return num;&#125;inline void update(int x) &#123; if(!fa[x]) return ; for(register int i=head[x];i;i=from[i]) if(f[x]-1&gt;f[to[i]]) &#123; f[to[i]]=f[x]-1; update(to[i]); &#125;&#125;int main() &#123; n=read(),k=read(),t=read(); for(register int i=1;i&lt;n;++i) &#123; int u=read(),v=read(); add(u,v); add(v,u); &#125; bfs(); memset(f,-1,sizeof(f)); for(register int i=n;i;--i) &#123; if(f[Q[i]]==-1) &#123; ++ans; int x=Q[i]; for(register int j=k;j;--j) x=fa[x]; f[x]=k; update(x); &#125; &#125; printf("%d\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>贪心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[Luogu3941]入阵曲]]></title>
+    <url>%2F2019%2F04%2F26%2FLuogu3941-%E5%85%A5%E9%98%B5%E6%9B%B2%2F</url>
+    <content type="text"><![CDATA[一道难度适中的的小清新思维好题 我们先对原矩阵做一遍膜$K$意义下的前缀和 不难发现，膜$K$意义下前缀和相等的两个矩形 它们的前缀和的差一定是$K$的倍数 但是我们必须保证这两个矩形不重叠的部分一定是一个矩形 那么我们可以先枚举上下边界再枚举右边界 开一个桶依次记录膜$K$意义下的前缀和 最后根据每个数出现的次数计算贡献即可 特别要注意的是把桶清空的时候不能$memset$ 12345678910111213141516171819202122232425#include&lt;bits/stdc++.h&gt;using namespace std;long long m,n,ans,mod;long long a[404][404],b[404],c[1000001];inline long long read() &#123; char ch=getchar(); long long num=0; while(!isdigit(ch)) ch=getchar(); while(isdigit(ch)) num=(num&lt;&lt;3)+(num&lt;&lt;1)+(ch^'0'),ch=getchar(); return num;&#125;int main() &#123; n=read(),m=read(),mod=read(); for(register int i=1;i&lt;=n;++i) for(register int j=1;j&lt;=m;++j) a[i][j]=read(),(a[i][j]+=a[i-1][j]+a[i][j-1]-a[i-1][j-1]+mod)%=mod; for(register int i=0;i&lt;n;++i) for(register int j=i+1;j&lt;=n;++j) &#123; c[0]=1; for(register int k=1;k&lt;=m;++k) b[k]=(a[j][k]-a[i][k]+mod)%mod,ans+=c[b[k]]++; for(register int k=1;k&lt;=m;++k) c[b[k]]=0; &#125; printf("%lld\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>前缀和</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[Luogu4556]雨天的尾巴]]></title>
     <url>%2F2019%2F04%2F14%2FLuogu4556-%E9%9B%A8%E5%A4%A9%E7%9A%84%E5%B0%BE%E5%B7%B4%2F</url>
     <content type="text"><![CDATA[这题给我的第一感觉就是树链剖分$+$树上差分，然而我不会 事实上主流做法确实是树链剖分，复杂度$O$$($$n$$logn^2$$)$ 然而这题还可以线段树合并，复杂度$O$$($$n$$logn$$)$ 但是跑得比树链剖分慢一倍，别问我为什么常数那么大 直接对每一个节点都维护一颗权值线段树 再套一个树上差分，最后直接线段树合并 因为这题空间卡得紧，所以离线操作 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576#include&lt;bits/stdc++.h&gt;using namespace std;const int M=100001;const int N=8000008;int w,cnt,num,d[N],l[N],r[N],t[N],to[M&lt;&lt;1],from[M&lt;&lt;1];int X[M],Y[M],Z[M],fa[M],ans[M],son[M],sum[M],top[M],deep[M],head[M],root[M];inline void add(int u,int v) &#123; from[++num]=head[u]; to[num]=v; head[u]=num;&#125;inline int read() &#123; char ch=getchar(); int c=0; while(!isdigit(ch)) ch=getchar(); while(isdigit(ch)) c=(c&lt;&lt;3)+(c&lt;&lt;1)+(ch^'0'),ch=getchar(); return c;&#125;inline void update(int x) &#123; if(d[l[x]]&gt;=d[r[x]]) d[x]=d[l[x]],t[x]=t[l[x]]; else d[x]=d[r[x]],t[x]=t[r[x]];&#125;inline int merge(int a,int b,int x,int y) &#123; if(!a) return b; if(!b) return a; if(x==y) &#123; d[a]+=d[b]; t[a]=x; return a; &#125; int mid=(x+y)&gt;&gt;1; l[a]=merge(l[a],l[b],x,mid),r[a]=merge(r[a],r[b],mid+1,y); update(a); return a;&#125;inline void Dfs1(int x) &#123; sum[x]=1; int maxx=-1; for(register int i=head[x];i;i=from[i]) if(!deep[to[i]]) &#123; deep[to[i]]=deep[x]+1,fa[to[i]]=x; Dfs1(to[i]); sum[x]+=sum[to[i]]; if(sum[to[i]]&gt;maxx) maxx=sum[to[i]],son[x]=to[i]; &#125;&#125;inline void Dfs2(int x,int topx) &#123; top[x]=topx; if(!son[x]) return ; Dfs2(son[x],topx); for(register int i=head[x];i;i=from[i]) if(!top[to[i]]) Dfs2(to[i],to[i]);&#125;inline int LCA(int x,int y) &#123; while(top[x]!=top[y]) &#123; if(deep[top[x]]&lt;deep[top[y]]) swap(x,y); x=fa[top[x]]; &#125; return deep[x]&lt;deep[y]?x:y;&#125;inline int Change(int a,int x,int y,int pos,int val) &#123; if(!a) a=++cnt; if(x==y) &#123; d[a]+=val; t[a]=x; return a; &#125; int mid=(x+y)&gt;&gt;1; if(pos&lt;=mid) l[a]=Change(l[a],x,mid,pos,val); else r[a]=Change(r[a],mid+1,y,pos,val); update(a); return a;&#125;inline void ReDfs(int x) &#123; for(register int i=head[x];i;i=from[i]) if(deep[to[i]]&gt;deep[x]) ReDfs(to[i]),root[x]=merge(root[x],root[to[i]],1,w); if(d[root[x]]) ans[x]+=t[root[x]];&#125;int main() &#123; int n=read(),m=read(),x,y,z; for(register int i=1;i&lt;n;++i) x=read(),y=read(),add(x,y),add(y,x); deep[1]=1; Dfs1(1),Dfs2(1,1); for(register int i=1;i&lt;=m;++i) X[i]=read(),Y[i]=read(),Z[i]=read(),w=max(w,Z[i]); for(register int i=1;i&lt;=m;++i) &#123; int lca=LCA(X[i],Y[i]); root[X[i]]=Change(root[X[i]],1,w,Z[i],1),root[Y[i]]=Change(root[Y[i]],1,w,Z[i],1); root[lca]=Change(root[lca],1,w,Z[i],-1); if(fa[lca]) root[fa[lca]]=Change(root[fa[lca]],1,w,Z[i],-1); &#125; ReDfs(1); for(register int i=1;i&lt;=n;++i) printf("%d\n",ans[i]); return 0;&#125;]]></content>
@@ -8,9 +30,9 @@
         <category>题解</category>
       </categories>
       <tags>
-        <tag>差分</tag>
-        <tag>线段树</tag>
         <tag>树链剖分</tag>
+        <tag>线段树</tag>
+        <tag>差分</tag>
       </tags>
   </entry>
   <entry>
@@ -192,8 +214,8 @@
         <category>题解</category>
       </categories>
       <tags>
-        <tag>线段树</tag>
         <tag>树链剖分</tag>
+        <tag>线段树</tag>
       </tags>
   </entry>
   <entry>

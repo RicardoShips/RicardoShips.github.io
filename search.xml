@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Burnside引理和Polya定理]]></title>
+    <url>%2F2019%2F06%2F27%2FBurnside%E5%BC%95%E7%90%86%E5%92%8CPolya%E5%AE%9A%E7%90%86%2F</url>
+    <content type="text"><![CDATA[死记硬背一波公式 先死记硬背一波公式 $L$ $=$ $\frac 1 {|G|}$$\sum\limits_{i=1}^{|G|}D(g_i)$ $L$ $=$ $\frac 1 {|G|}$$\sum\limits_{i=1}^{|G|}m^{C(g_i)}​$]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>Burnside</tag>
+        <tag>Polya</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[Luogu3943]星空]]></title>
+    <url>%2F2019%2F05%2F11%2FLuogu3943-%E6%98%9F%E7%A9%BA%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[[Luogu3942]将军令]]></title>
     <url>%2F2019%2F04%2F26%2FLuogu3942-%E5%B0%86%E5%86%9B%E4%BB%A4%2F</url>
     <content type="text"><![CDATA[一道难度适中的小清新乱搞好题 这题的正解是贪心，不过我好像$Hack$了正解 贪心策略好像还是比较简单的 找到当前没被覆盖的深度最深的点 然后找到它的$K$级父亲，往周围标记距离在$K$以内的点 如果有更优的标记，即离每次开始标记的点更近 那么就暴力更新标记，知道全部的点都被标记为止 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849#include&lt;bits/stdc++.h&gt;using namespace std;const int maxn=200002;int n,k,t,ans,cnt,f[maxn],Q[maxn],fa[maxn],to[maxn],from[maxn],head[maxn];inline void add(int u,int v) &#123; from[++cnt]=head[u]; to[cnt]=v; head[u]=cnt;&#125;inline void bfs() &#123; Q[1]=1; fa[1]=1; int he=1,ta=2; while(he&lt;ta) &#123; int x=Q[he++]; for(register int i=head[x];i;i=from[i]) if(!fa[to[i]]) fa[to[i]]=x,Q[ta++]=to[i]; &#125;&#125;inline int read() &#123; char ch=getchar(); int num=0; while(!isdigit(ch)) ch=getchar(); while(isdigit(ch)) num=(num&lt;&lt;3)+(num&lt;&lt;1)+(ch^'0'),ch=getchar(); return num;&#125;inline void update(int x) &#123; if(!fa[x]) return ; for(register int i=head[x];i;i=from[i]) if(f[x]-1&gt;f[to[i]]) &#123; f[to[i]]=f[x]-1; update(to[i]); &#125;&#125;int main() &#123; n=read(),k=read(),t=read(); for(register int i=1;i&lt;n;++i) &#123; int u=read(),v=read(); add(u,v); add(v,u); &#125; bfs(); memset(f,-1,sizeof(f)); for(register int i=n;i;--i) &#123; if(f[Q[i]]==-1) &#123; ++ans; int x=Q[i]; for(register int j=k;j;--j) x=fa[x]; f[x]=k; update(x); &#125; &#125; printf("%d\n",ans); return 0;&#125;]]></content>

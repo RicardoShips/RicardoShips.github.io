@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Burnside引理和Polya定理]]></title>
     <url>%2F2019%2F06%2F27%2FBurnside%E5%BC%95%E7%90%86%E5%92%8CPolya%E5%AE%9A%E7%90%86%2F</url>
-    <content type="text"><![CDATA[死记硬背一波公式 先死记硬背一波公式 $L$ $=$ $\frac 1 {|G|}$$\sum\limits_{i=1}^{|G|}D(g_i)$ $L$ $=$ $\frac 1 {|G|}$$\sum\limits_{i=1}^{|G|}m^{C(g_i)}​$]]></content>
+    <content type="text"><![CDATA[先死记硬背一波公式 $L$ $=$ $\frac 1 {|G|}$$\sum\limits_{i=1}^{|G|}D(g_i)$ $L$ $=$ $\frac 1 {|G|}$$\sum\limits_{i=1}^{|G|}m^{C(g_i)}$]]></content>
       <categories>
         <category>学习笔记</category>
       </categories>

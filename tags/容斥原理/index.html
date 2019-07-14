@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="贪心,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -79,18 +79,16 @@
 
 
 
-<meta name="description" content="一道难度适中的小清新乱搞好题">
-<meta name="keywords" content="贪心">
-<meta property="og:type" content="article">
-<meta property="og:title" content="[Luogu3942]将军令">
-<meta property="og:url" content="http://ricardoships.github.io/2019/04/26/Luogu3942-将军令/index.html">
+<meta name="description" content="Blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Something For Nothing">
+<meta property="og:url" content="http://ricardoships.github.io/tags/容斥原理/index.html">
 <meta property="og:site_name" content="Something For Nothing">
-<meta property="og:description" content="一道难度适中的小清新乱搞好题">
+<meta property="og:description" content="Blog">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-26T14:08:12.474Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[Luogu3942]将军令">
-<meta name="twitter:description" content="一道难度适中的小清新乱搞好题">
+<meta name="twitter:title" content="Something For Nothing">
+<meta name="twitter:description" content="Blog">
 
 
 
@@ -120,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://ricardoships.github.io/2019/04/26/Luogu3942-将军令/">
+  <link rel="canonical" href="http://ricardoships.github.io/tags/容斥原理/">
 
 
 
 
 
-  <title>[Luogu3942]将军令 | Something For Nothing</title>
+  <title>Tag: 容斥原理 | Something For Nothing</title>
   
 
 
@@ -145,7 +143,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -281,180 +279,52 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block tag">
 
-  
+    <div id="posts" class="posts-collapse">
+      <div class="collection-title">
+        <h1>容斥原理<small>Tag</small>
+        </h1>
+      </div>
 
-  
-  
-  
+      
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://ricardoships.github.io/2019/04/26/Luogu3942-将军令/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="RicardoShips">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Something For Nothing">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
+            <a class="post-title-link" href="/2019/07/14/NOI2010-能量采集/" itemprop="url">
+              
+                <span itemprop="name">[NOI2010]能量采集</span>
+              
+            </a>
         
-          <h1 class="post-title" itemprop="name headline">[Luogu3942]将军令</h1>
-        
+      </h2>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-26T22:07:40+08:00">
-                2019-04-26
-              </time>
-            
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-07-14T22:30:51+08:00" content="2019-07-14">
+          07-14
+        </time>
+      </div>
 
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/题解/" itemprop="url" rel="index">
-                    <span itemprop="name">题解</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>一道难度适中的小清新<del>乱搞</del>好题</p>
-<a id="more"></a>
-<p>这题的正解是贪心，<del>不过我好像$Hack$了正解</del></p>
-<p>贪心策略好像还是比较简单的</p>
-<p>找到当前没被覆盖的深度最深的点</p>
-<p>然后找到它的$K$级父亲，往周围标记距离在$K$以内的点</p>
-<p>如果有更优的标记，即离每次开始标记的点更近</p>
-<p>那么就暴力更新标记，知道全部的点都被标记为止</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">200002</span>;</span><br><span class="line"><span class="keyword">int</span> n,k,t,ans,cnt,f[maxn],Q[maxn],fa[maxn],to[maxn],from[maxn],head[maxn];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">    from[++cnt]=head[u];</span><br><span class="line">    to[cnt]=v;</span><br><span class="line">    head[u]=cnt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">bfs</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Q[<span class="number">1</span>]=<span class="number">1</span>; fa[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> he=<span class="number">1</span>,ta=<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">while</span>(he&lt;ta) &#123;</span><br><span class="line">        <span class="keyword">int</span> x=Q[he++];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=head[x];i;i=from[i])</span><br><span class="line">            <span class="keyword">if</span>(!fa[to[i]]) fa[to[i]]=x,Q[ta++]=to[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span> ch=getchar(); <span class="keyword">int</span> num=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch)) ch=getchar();</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch)) num=(num&lt;&lt;<span class="number">3</span>)+(num&lt;&lt;<span class="number">1</span>)+(ch^<span class="string">'0'</span>),ch=getchar();</span><br><span class="line">    <span class="keyword">return</span> num;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!fa[x]) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=head[x];i;i=from[i])</span><br><span class="line">        <span class="keyword">if</span>(f[x]<span class="number">-1</span>&gt;f[to[i]]) &#123;</span><br><span class="line">            f[to[i]]=f[x]<span class="number">-1</span>;</span><br><span class="line">            update(to[i]);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    n=read(),k=read(),t=read();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> u=read(),v=read();</span><br><span class="line">        add(u,v); add(v,u);</span><br><span class="line">    &#125;</span><br><span class="line">    bfs(); <span class="built_in">memset</span>(f,<span class="number">-1</span>,<span class="keyword">sizeof</span>(f));</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=n;i;--i) &#123;</span><br><span class="line">        <span class="keyword">if</span>(f[Q[i]]==<span class="number">-1</span>) &#123;</span><br><span class="line">            ++ans; <span class="keyword">int</span> x=Q[i];</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> j=k;j;--j) x=fa[x];</span><br><span class="line">            f[x]=k; update(x);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/贪心/" rel="tag"># 贪心</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/04/26/Luogu3941-入阵曲/" rel="next" title="[Luogu3941]入阵曲">
-                <i class="fa fa-chevron-left"></i> [Luogu3941]入阵曲
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/11/Luogu3943-星空/" rel="prev" title="[Luogu3943]星空">
-                [Luogu3943]星空 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
       
     </div>
+
   </div>
+  
+  
+  
+
+  
 
 
           </div>
@@ -462,10 +332,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -727,10 +593,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 

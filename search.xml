@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[HAOI2008]硬币购物]]></title>
+    <url>%2F2019%2F07%2F14%2FHAOI2008-%E7%A1%AC%E5%B8%81%E8%B4%AD%E7%89%A9%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[[NOI2010]能量采集]]></title>
+    <url>%2F2019%2F07%2F14%2FNOI2010-%E8%83%BD%E9%87%8F%E9%87%87%E9%9B%86%2F</url>
+    <content type="text"><![CDATA[鸽子终于更博了 考虑设$F[i]$为$i$是$m$和$n$公因数的方案数，显然$F[i]=(m/i)*(n/i)$ 然后对$i$进行容斥，就能得到$F[i]$为$i$是$m$和$n$最小公因数的方案数 最后套用公式，直接计算答案即可 12345678910111213#include&lt;bits/stdc++.h&gt;using namespace std;long long m,n,k,ans,f[100001];int main () &#123; scanf("%lld%lld",&amp;n,&amp;m); k=min(m,n); for(register int i=k;i;--i) &#123; f[i]=(n/i)*(m/i); for(register int j=i+i;j&lt;=k;j+=i) f[i]-=f[j]; (ans+=(i*2-1)*f[i]); &#125; printf("%lld\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>动态规划</tag>
+        <tag>容斥原理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[POI2014]DOO-Around the world]]></title>
+    <url>%2F2019%2F07%2F14%2FPOI2014-DOO-Around-the-world%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[[Luogu3943]星空]]></title>
     <url>%2F2019%2F05%2F11%2FLuogu3943-%E6%98%9F%E7%A9%BA%2F</url>
     <content type="text"></content>
@@ -193,8 +215,8 @@
         <category>题解</category>
       </categories>
       <tags>
-        <tag>KMP</tag>
         <tag>动态规划</tag>
+        <tag>KMP</tag>
       </tags>
   </entry>
   <entry>

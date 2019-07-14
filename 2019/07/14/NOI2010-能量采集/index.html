@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="贪心,">
+  <meta name="keywords" content="动态规划,容斥原理,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="一道难度适中的小清新乱搞好题">
-<meta name="keywords" content="贪心">
+<meta name="description" content="鸽子终于更博了">
+<meta name="keywords" content="动态规划,容斥原理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[Luogu3942]将军令">
-<meta property="og:url" content="http://ricardoships.github.io/2019/04/26/Luogu3942-将军令/index.html">
+<meta property="og:title" content="[NOI2010]能量采集">
+<meta property="og:url" content="http://ricardoships.github.io/2019/07/14/NOI2010-能量采集/index.html">
 <meta property="og:site_name" content="Something For Nothing">
-<meta property="og:description" content="一道难度适中的小清新乱搞好题">
+<meta property="og:description" content="鸽子终于更博了">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-26T14:08:12.474Z">
+<meta property="og:updated_time" content="2019-07-14T14:44:33.212Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[Luogu3942]将军令">
-<meta name="twitter:description" content="一道难度适中的小清新乱搞好题">
+<meta name="twitter:title" content="[NOI2010]能量采集">
+<meta name="twitter:description" content="鸽子终于更博了">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://ricardoships.github.io/2019/04/26/Luogu3942-将军令/">
+  <link rel="canonical" href="http://ricardoships.github.io/2019/07/14/NOI2010-能量采集/">
 
 
 
 
 
-  <title>[Luogu3942]将军令 | Something For Nothing</title>
+  <title>[NOI2010]能量采集 | Something For Nothing</title>
   
 
 
@@ -295,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://ricardoships.github.io/2019/04/26/Luogu3942-将军令/">
+    <link itemprop="mainEntityOfPage" href="http://ricardoships.github.io/2019/07/14/NOI2010-能量采集/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="RicardoShips">
@@ -312,7 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">[Luogu3942]将军令</h1>
+          <h1 class="post-title" itemprop="name headline">[NOI2010]能量采集</h1>
         
 
         <div class="post-meta">
@@ -324,8 +324,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-26T22:07:40+08:00">
-                2019-04-26
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-14T22:30:51+08:00">
+                2019-07-14
               </time>
             
 
@@ -384,15 +384,12 @@
       
 
       
-        <p>一道难度适中的小清新<del>乱搞</del>好题</p>
+        <p>鸽子终于更博了</p>
 <a id="more"></a>
-<p>这题的正解是贪心，<del>不过我好像$Hack$了正解</del></p>
-<p>贪心策略好像还是比较简单的</p>
-<p>找到当前没被覆盖的深度最深的点</p>
-<p>然后找到它的$K$级父亲，往周围标记距离在$K$以内的点</p>
-<p>如果有更优的标记，即离每次开始标记的点更近</p>
-<p>那么就暴力更新标记，知道全部的点都被标记为止</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">200002</span>;</span><br><span class="line"><span class="keyword">int</span> n,k,t,ans,cnt,f[maxn],Q[maxn],fa[maxn],to[maxn],from[maxn],head[maxn];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">    from[++cnt]=head[u];</span><br><span class="line">    to[cnt]=v;</span><br><span class="line">    head[u]=cnt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">bfs</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Q[<span class="number">1</span>]=<span class="number">1</span>; fa[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> he=<span class="number">1</span>,ta=<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">while</span>(he&lt;ta) &#123;</span><br><span class="line">        <span class="keyword">int</span> x=Q[he++];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=head[x];i;i=from[i])</span><br><span class="line">            <span class="keyword">if</span>(!fa[to[i]]) fa[to[i]]=x,Q[ta++]=to[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span> ch=getchar(); <span class="keyword">int</span> num=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch)) ch=getchar();</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch)) num=(num&lt;&lt;<span class="number">3</span>)+(num&lt;&lt;<span class="number">1</span>)+(ch^<span class="string">'0'</span>),ch=getchar();</span><br><span class="line">    <span class="keyword">return</span> num;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!fa[x]) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=head[x];i;i=from[i])</span><br><span class="line">        <span class="keyword">if</span>(f[x]<span class="number">-1</span>&gt;f[to[i]]) &#123;</span><br><span class="line">            f[to[i]]=f[x]<span class="number">-1</span>;</span><br><span class="line">            update(to[i]);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    n=read(),k=read(),t=read();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> u=read(),v=read();</span><br><span class="line">        add(u,v); add(v,u);</span><br><span class="line">    &#125;</span><br><span class="line">    bfs(); <span class="built_in">memset</span>(f,<span class="number">-1</span>,<span class="keyword">sizeof</span>(f));</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=n;i;--i) &#123;</span><br><span class="line">        <span class="keyword">if</span>(f[Q[i]]==<span class="number">-1</span>) &#123;</span><br><span class="line">            ++ans; <span class="keyword">int</span> x=Q[i];</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> j=k;j;--j) x=fa[x];</span><br><span class="line">            f[x]=k; update(x);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>考虑设$F[i]$为$i$是$m$和$n$公因数的方案数，显然$F[i]=(m/i)*(n/i)$</p>
+<p>然后对$i$进行容斥，就能得到$F[i]$为$i$是$m$和$n$最小公因数的方案数</p>
+<p>最后套用公式，直接计算答案即可</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> m,n,k,ans,f[<span class="number">100001</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>,&amp;n,&amp;m); k=min(m,n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=k;i;--i) &#123;</span><br><span class="line">        f[i]=(n/i)*(m/i);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> j=i+i;j&lt;=k;j+=i) f[i]-=f[j];</span><br><span class="line">        (ans+=(i*<span class="number">2</span><span class="number">-1</span>)*f[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -409,7 +406,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/贪心/" rel="tag"># 贪心</a>
+            <a href="/tags/动态规划/" rel="tag"># 动态规划</a>
+          
+            <a href="/tags/容斥原理/" rel="tag"># 容斥原理</a>
           
         </div>
       
@@ -422,8 +421,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/26/Luogu3941-入阵曲/" rel="next" title="[Luogu3941]入阵曲">
-                <i class="fa fa-chevron-left"></i> [Luogu3941]入阵曲
+              <a href="/2019/07/14/POI2014-DOO-Around-the-world/" rel="next" title="[POI2014]DOO-Around the world">
+                <i class="fa fa-chevron-left"></i> [POI2014]DOO-Around the world
               </a>
             
           </div>
@@ -432,8 +431,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/11/Luogu3943-星空/" rel="prev" title="[Luogu3943]星空">
-                [Luogu3943]星空 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/07/14/HAOI2008-硬币购物/" rel="prev" title="[HAOI2008]硬币购物">
+                [HAOI2008]硬币购物 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

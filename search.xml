@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Burnside引理和Polya定理]]></title>
-    <url>%2F2019%2F06%2F27%2FBurnside%E5%BC%95%E7%90%86%E5%92%8CPolya%E5%AE%9A%E7%90%86%2F</url>
-    <content type="text"><![CDATA[先死记硬背一波公式 $L $ $=$ $\frac 1 {|G|}$ $\sum\limits_{i=1}^{|G|}D(g_i)$ $L$ $=$ $\frac 1 {|G|}$ $\sum\limits_{i=1}^{|G|}m^{C(g_i)}​$]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>Burnside</tag>
-        <tag>Polya</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[[Luogu3943]星空]]></title>
     <url>%2F2019%2F05%2F11%2FLuogu3943-%E6%98%9F%E7%A9%BA%2F</url>
     <content type="text"></content>
@@ -47,31 +35,9 @@
         <category>题解</category>
       </categories>
       <tags>
-        <tag>树链剖分</tag>
-        <tag>线段树</tag>
         <tag>差分</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[关于LIS和LCS]]></title>
-    <url>%2F2019%2F04%2F13%2F%E5%85%B3%E4%BA%8ELIS%E5%92%8CLCS%2F</url>
-    <content type="text"><![CDATA[本文主要用于记录$LIS$和$LCS$的一些思想 $LIS$，即最长上升子序列问题 $LCS$，即最长公共子序列问题 两种类型相似的典型动态规划问题，这里只讲$O$$($$n$$logn$$)$算法 $LIS$ 首先设$f$$[$$i$$]$为长度为$i$的上升子序列最后一位的值 好像听起来感觉稍微有点绕哈 因为$f$$[$$i$$]$也是一个单调上升序列 所以我们每次插入一个新的数字，就可以二分查找出一个数字 使得每次替换最优，这里运用了贪心的思想 123456789101112#include&lt;bits/stdc++.h&gt;using namespace std;int n,ans,a[100001],f[100001];const int INF=2000000002;int main() &#123; n=read(); for(register int i=0;i&lt;n;++i) scanf("%d",&amp;a[i]); for(register int i=0;i&lt;n;++i) f[i]=INF; for(register int i=0;i&lt;n;++i) *lower_bound(f,f+n,a[i])=a[i]; printf("%d\n",lower_bound(f,f+n,INF)-f); return 0;&#125; $LCS$ 解决这个问题的本质是把该问题转化为$LIS$ 当两个序列中元素全部相同的情况下 我们可以用$cap$$[$$i$$]$来记录$i$元素在序列$a$中的位置 然后对序列$b$进行类似$LIS$的操作即可 1234567891011121314151617181920#include&lt;bits/stdc++.h&gt;#define mod 1000000007using namespace std;const int maxn=100001;int n,l,r,ans,mid,a[maxn],b[maxn],f[maxn],cap[maxn];int main() &#123; scanf("%d",&amp;n); for(register int i=1;i&lt;=n;++i) scanf("%d",&amp;a[i]),cap[a[i]]=i; for(register int i=1;i&lt;=n;++i) scanf("%d",&amp;b[i]),f[i]=mod; for(register int i=1;i&lt;=n;++i) &#123; l=0,r=ans; if(cap[b[i]]&gt;f[ans]) f[++ans]=cap[b[i]]; else &#123; l=lower_bound(f,f+r+1,cap[b[i]])-f; f[l]=min(f[l],cap[b[i]]); &#125; &#125; printf("%d\n",ans); return 0;&#125;]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>动态规划</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[[Luogu3376]网络最大流]]></title>
-    <url>%2F2019%2F04%2F12%2FLuogu3376-%E7%BD%91%E7%BB%9C%E6%9C%80%E5%A4%A7%E6%B5%81%2F</url>
-    <content type="text"><![CDATA[本文主要用于记录几种常用的最大流算法 $Dinic$ 想看总结的戳这里 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657#include&lt;bits/stdc++.h&gt;#define INF 1000000009using namespace std;const int maxn=200002;int m,n,s,t,w,x,y,z,ans,num=-1;int cur[maxn],deep[maxn],head[maxn];struct SX &#123; int to,dis,from; &#125; edge[maxn] ;inline void Add(int from,int to,int dis) &#123; edge[++num].from=head[from]; edge[num].to=to; edge[num].dis=dis; head[from]=num;&#125;inline bool Bfs()&#123; memset(deep,0,sizeof(deep)); queue &lt; int &gt; Q; while(!Q.empty()) Q.pop(); Q.push(s); deep[s]=1; while(!Q.empty()) &#123; int u=Q.front(); Q.pop(); for(register int i=head[u];i!=-1;i=edge[i].from) &#123; int v=edge[i].to; if(deep[v]==0&amp;&amp;edge[i].dis&gt;0) deep[v]=deep[u]+1,Q.push(v); &#125; &#125; if(deep[t]) return true; else return false;&#125;inline int Dfs(int u,int f) &#123; if(u==t) return f; for(register int &amp;i=cur[u];i!=-1;i=edge[i].from) &#123; int v=edge[i].to; if(deep[v]==deep[u]+1&amp;&amp;edge[i].dis&gt;0) &#123; int d=Dfs(v,min(f,edge[i].dis)); if(d&gt;0) &#123; edge[i].dis-=d; edge[i^1].dis+=d; return d; &#125; &#125; &#125; return 0;&#125;int main() &#123; memset(head,-1,sizeof(head)); scanf("%d%d%d%d",&amp;n,&amp;m,&amp;s,&amp;t); for(register int i=1;i&lt;=m;++i) &#123; scanf("%d%d%d",&amp;x,&amp;y,&amp;z); Add(x,y,z); Add(y,x,0); &#125; while(Bfs()) &#123; for(register int i=1;i&lt;=n;++i) cur[i]=head[i]; while(w=Dfs(s,INF)) ans+=w; &#125; printf("%d\n",ans); return 0;&#125;]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>网络流</tag>
+        <tag>线段树</tag>
+        <tag>树链剖分</tag>
       </tags>
   </entry>
   <entry>
@@ -102,18 +68,8 @@
     <content type="text"></content>
   </entry>
   <entry>
-    <title><![CDATA[[Luogu3809]后缀排序]]></title>
-    <url>%2F2019%2F04%2F05%2FLuogu3809-%E5%90%8E%E7%BC%80%E6%8E%92%E5%BA%8F%2F</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
     <title><![CDATA[[国家集训队]最长双回文串]]></title>
     <url>%2F2019%2F04%2F05%2F%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-%E6%9C%80%E9%95%BF%E5%8F%8C%E5%9B%9E%E6%96%87%E4%B8%B2%2F</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
-    <title><![CDATA[[Luogu3805]Manacher算法]]></title>
-    <url>%2F2019%2F04%2F05%2FLuogu3805-Manacher%E7%AE%97%E6%B3%95%2F</url>
     <content type="text"></content>
   </entry>
   <entry>
@@ -122,33 +78,13 @@
     <content type="text"></content>
   </entry>
   <entry>
-    <title><![CDATA[[Luogu3796]AC自动机（加强版）]]></title>
-    <url>%2F2019%2F04%2F05%2FLuogu3796-AC%E8%87%AA%E5%8A%A8%E6%9C%BA%EF%BC%88%E5%8A%A0%E5%BC%BA%E7%89%88%EF%BC%89%2F</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
-    <title><![CDATA[[Luogu3808]AC自动机（简单版）]]></title>
-    <url>%2F2019%2F04%2F05%2FLuogu3808-AC%E8%87%AA%E5%8A%A8%E6%9C%BA%EF%BC%88%E7%AE%80%E5%8D%95%E7%89%88%EF%BC%89%2F</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
     <title><![CDATA[[ZJOI2014]力]]></title>
     <url>%2F2019%2F04%2F05%2FZJOI2014-%E5%8A%9B%2F</url>
     <content type="text"></content>
   </entry>
   <entry>
-    <title><![CDATA[[Luogu3807]卢卡斯定理]]></title>
-    <url>%2F2019%2F04%2F05%2FLuogu3807-%E5%8D%A2%E5%8D%A1%E6%96%AF%E5%AE%9A%E7%90%86%2F</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
     <title><![CDATA[[Luogu4139]上帝和集合的正确用法]]></title>
     <url>%2F2019%2F04%2F05%2FLuogu4139-%E4%B8%8A%E5%B8%9D%E5%92%8C%E9%9B%86%E5%90%88%E7%9A%84%E6%AD%A3%E7%A1%AE%E7%94%A8%E6%B3%95%2F</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
-    <title><![CDATA[[Luogu4781]拉格朗日插值]]></title>
-    <url>%2F2019%2F04%2F05%2FLuogu4781-%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E6%8F%92%E5%80%BC%2F</url>
     <content type="text"></content>
   </entry>
   <entry>
@@ -187,28 +123,8 @@
     <content type="text"></content>
   </entry>
   <entry>
-    <title><![CDATA[[Luogu3391]文艺平衡树]]></title>
-    <url>%2F2019%2F04%2F05%2FLuogu3391-%E6%96%87%E8%89%BA%E5%B9%B3%E8%A1%A1%E6%A0%91%2F</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
-    <title><![CDATA[[Luogu3369]普通平衡树]]></title>
-    <url>%2F2019%2F04%2F05%2FLuogu3369-%E6%99%AE%E9%80%9A%E5%B9%B3%E8%A1%A1%E6%A0%91%2F</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
-    <title><![CDATA[[Luogu3083]多项式乘法（FFT）]]></title>
-    <url>%2F2019%2F04%2F05%2FLuogu3083-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E4%B9%98%E6%B3%95%EF%BC%88FFT%EF%BC%89%2F</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
     <title><![CDATA[[Luogu1361]小M的作物]]></title>
     <url>%2F2019%2F04%2F05%2FLuogu1361-%E5%B0%8FM%E7%9A%84%E4%BD%9C%E7%89%A9%2F</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
-    <title><![CDATA[[Luogu3386]二分图匹配]]></title>
-    <url>%2F2019%2F04%2F05%2FLuogu3386-%E4%BA%8C%E5%88%86%E5%9B%BE%E5%8C%B9%E9%85%8D%2F</url>
     <content type="text"></content>
   </entry>
   <entry>
@@ -221,30 +137,6 @@
       <tags>
         <tag>LCA</tag>
         <tag>拓扑排序</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[[Luogu3384]树链剖分]]></title>
-    <url>%2F2019%2F04%2F04%2FLuogu3384-%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86%2F</url>
-    <content type="text"><![CDATA[在学习树链剖分之前，务必先学习线段树 不然就会像我一样，学了等于没学 这个我会补一篇总结 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121#include&lt;bits/stdc++.h&gt;using namespace std;int a[2000002];int b[2000002];int fa[2000002];int idx[2000002];int son[2000002];int top[2000002];int tot[2000002];int deep[2000002];int head[2000002];int m,n,r,p,x,y,z,cnt,num,tpe;struct Node &#123; int u,v,next; &#125; edge[2000002];struct Tree &#123; int f,l,r,w,size; &#125; tree[2000002];inline int read()&#123; char ch=getchar();int c=0,f=1; while(!isdigit(ch)) &#123; if(ch=='-') f=0; ch=getchar(); &#125; while(isdigit(ch)) c=(c&lt;&lt;3)+(c&lt;&lt;1)+(ch^'0'),ch=getchar(); return f?c:-c;&#125;inline void update(int k) &#123; tree[k].w=(tree[k&lt;&lt;1].w+tree[k&lt;&lt;1|1].w+p)%p; &#125;inline void add(int u,int v)&#123; edge[++num].u=u; edge[num].v=v; edge[num].next=head[u]; head[u]=num;&#125;inline void build(int k,int l,int r)&#123; tree[k].l=l,tree[k].r=r,tree[k].size=r-l+1; if(l==r) &#123; tree[k].w=a[l]; return ; &#125; int mid=(l+r)&gt;&gt;1; build(k&lt;&lt;1,l,mid),build(k&lt;&lt;1|1,mid+1,r);update(k);&#125;inline void Dfs1(int u,int f)&#123; deep[u]=deep[f]+1; fa[u]=f;son[u]=0;tot[u]=1; for(register int i=head[u];i;i=edge[i].next) &#123; if(edge[i].v==f) continue ; Dfs1(edge[i].v,u);tot[u]+=tot[edge[i].v]; if(tot[edge[i].v]&gt;tot[son[u]]) son[u]=edge[i].v; &#125;&#125;inline void Dfs2(int u,int f)&#123; idx[u]=++cnt;a[cnt]=b[u];top[u]=f; if(!son[u]) return ; Dfs2(son[u],f); for(register int i=head[u];i;i=edge[i].next) if(!idx[edge[i].v]) Dfs2(edge[i].v,edge[i].v);&#125;inline void pushdown(int k)&#123; if(!tree[k].f) return ; (tree[k&lt;&lt;1].w+=tree[k&lt;&lt;1].size*tree[k].f)%=p; (tree[k&lt;&lt;1|1].w+=tree[k&lt;&lt;1|1].size*tree[k].f)%=p; (tree[k&lt;&lt;1].f+=tree[k].f)%=p;(tree[k&lt;&lt;1|1].f+=tree[k].f)%=p;tree[k].f=0;&#125;inline void IntervalAdd(int k,int l,int r,int val)&#123; if(l&lt;=tree[k].l&amp;&amp;tree[k].r&lt;=r) &#123; tree[k].w+=tree[k].size*val; tree[k].f+=val;return ; &#125; pushdown(k);int mid=(tree[k].l+tree[k].r)&gt;&gt;1; if(l&lt;=mid) IntervalAdd(k&lt;&lt;1,l,r,val); if(r&gt;mid) IntervalAdd(k&lt;&lt;1|1,l,r,val); update(k);&#125;inline void TreeAdd(int x,int y,int val)&#123; while(top[x]!=top[y]) &#123; if(deep[top[x]]&lt;deep[top[y]]) swap(x,y); IntervalAdd(1,idx[top[x]],idx[x],val);x=fa[top[x]]; &#125; if(deep[x]&gt;deep[y]) swap(x,y); IntervalAdd(1,idx[x],idx[y],val);&#125;inline int IntervalSum(int k,int l,int r)&#123; int ans=0; if(l&lt;=tree[k].l&amp;&amp;tree[k].r&lt;=r) return tree[k].w; pushdown(k);int mid=(tree[k].l+tree[k].r)&gt;&gt;1; if(l&lt;=mid) (ans+=IntervalSum(k&lt;&lt;1,l,r))%=p; if(r&gt;mid) (ans+=IntervalSum(k&lt;&lt;1|1,l,r))%=p; return ans;&#125;inline void TreeSum(int x,int y)&#123; int ans=0; while(top[x]!=top[y]) &#123; if(deep[top[x]]&lt;deep[top[y]]) swap(x,y); (ans+=IntervalSum(1,idx[top[x]],idx[x]))%=p;x=fa[top[x]]; &#125; if(deep[x]&gt;deep[y]) swap(x,y); (ans+=IntervalSum(1,idx[x],idx[y]))%=p; printf("%d\n",ans);&#125;int main()&#123; n=read(),m=read(),r=read(),p=read(); for(register int i=1;i&lt;=n;++i) b[i]=read(); for(register int i=1;i&lt;=n-1;++i) x=read(),y=read(),add(x,y),add(y,x); Dfs1(r,0);Dfs2(r,r);build(1,1,n); for(register int i=1;i&lt;=m;++i) &#123; tpe=read(); if(tpe==1) x=read(),y=read(),z=read(),TreeAdd(x,y,z%p); else if(tpe==2) x=read(),y=read(),TreeSum(x,y); else if(tpe==3) x=read(),z=read(),IntervalAdd(1,idx[x],idx[x]+tot[x]-1,z%p); else x=read(),printf("%d\n",IntervalSum(1,idx[x],idx[x]+tot[x]-1)); &#125; return 0;&#125;]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>树链剖分</tag>
-        <tag>线段树</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[[Luogu3810]陌上花开]]></title>
-    <url>%2F2019%2F03%2F23%2FLuogu3810-%E9%99%8C%E4%B8%8A%E8%8A%B1%E5%BC%80%2F</url>
-    <content type="text"><![CDATA[一入压行深似海，从此换行是路人 排序解决第一维 $CDQ$解决第二维 树状数组解决第三维 留坑代填 12345678910111213141516171819202122232425262728293031323334353637383940414243#include&lt;bits/stdc++.h&gt;using namespace std;int n,k,cnt,ans[100001],tree[200002];struct sakura &#123; int a,b,c,ans,sum; &#125; node[100001],now[100001];inline bool cmp1(sakura x,sakura y) &#123; if(x.a!=y.a) return x.a&lt;y.a; else if(x.b!=y.b) return x.b&lt;y.b; else return x.c&lt;y.c;&#125;inline bool cmp2(sakura x,sakura y) &#123; if(x.b!=y.b) return x.b&lt;y.b; else return x.c&lt;y.c;&#125;inline void add(int x,int val) &#123; for(register int i=x;i&lt;=k;i+=(i&amp;-i)) tree[i]+=val;&#125;inline int query(int x) &#123; int num=0; for(register int i=x;i;i-=(i&amp;-i)) num+=tree[i]; return num;&#125;inline void CDQ(int l,int r) &#123; if(l==r) return ; int j=l,mid=(l+r)&gt;&gt;1; CDQ(l,mid),CDQ(mid+1,r); sort(&amp;now[l],&amp;now[mid+1],cmp2),sort(&amp;now[mid+1],&amp;now[r+1],cmp2); for(register int i=mid+1;i&lt;=r;++i) &#123; while(j&lt;=mid&amp;&amp;now[j].b&lt;=now[i].b) add(now[j].c,now[j].sum),++j; now[i].ans+=query(now[i].c); &#125; for(register int i=l;i&lt;j;++i) add(now[i].c,-now[i].sum);&#125;int main() &#123; scanf("%d%d",&amp;n,&amp;k); for(register int i=1;i&lt;=n;++i) scanf("%d%d%d",&amp;node[i].a,&amp;node[i].b,&amp;node[i].c); sort(node+1,node+n+1,cmp1); for(register int i=1;i&lt;=n;++i) &#123; if(node[i-1].a==node[i].a&amp;&amp;node[i-1].b==node[i].b&amp;&amp;node[i-1].c==node[i].c) ++now[cnt].sum; else ++cnt,now[cnt]=node[i],++now[cnt].sum; &#125; CDQ(1,cnt); for(register int i=1;i&lt;=cnt;++i) ans[now[i].ans+now[i].sum-1]+=now[i].sum; for(register int i=0;i&lt;n;++i) printf("%d\n",ans[i]); return 0;&#125;]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>CDQ分治</tag>
-        <tag>树状数组</tag>
       </tags>
   </entry>
   <entry>
@@ -270,89 +162,11 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[[Luogu1835]素数密度]]></title>
-    <url>%2F2019%2F03%2F09%2FLuogu1835-%E7%B4%A0%E6%95%B0%E5%AF%86%E5%BA%A6%2F</url>
-    <content type="text"><![CDATA[今天模拟赛第一题成功劝退 欧拉筛显然是不行的，但是我们要用它来预处理 先用欧拉筛来筛出$O$$($$\sqrt{m}$$)$内的质数 然后用类似埃氏筛的方法，用已经筛出来的质数去再在$($n$ $,$ $m$)$范围内筛 最后还要用$unsigned$卡卡常开开$O2$就过了 12345678910111213141516171819202122232425#include&lt;bits/stdc++.h&gt;#define int unsigned intusing namespace std;int prime[100001];int ovo[100001];int n,m,ans,tot;signed main() &#123; scanf("%d%d",&amp;n,&amp;m); ovo[0]=ovo[1]=1; for(register int i=1;i&lt;=46342;++i) &#123; if(!ovo[i]) prime[++tot]=i; for(register int j=1;j&lt;=tot&amp;&amp;i*prime[j]&lt;=46342;++j) &#123; ++ovo[i*prime[j]]; if(i%prime[j]==0) break ; &#125; &#125; n=max(n,(int)2); for(register int i=n;i&lt;=m;++i) &#123; for(register int j=1;j&lt;=tot&amp;&amp;prime[j]*prime[j]&lt;=i;++j) if(i%prime[j]==0) &#123; --ans; break ; &#125; ++ans; &#125; printf("%d\n",ans); return 0;&#125;]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>欧拉筛</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[[Luogu5239]回忆京都]]></title>
-    <url>%2F2019%2F03%2F05%2FLuogu5239-%E5%9B%9E%E5%BF%86%E4%BA%AC%E9%83%BD%2F</url>
-    <content type="text"><![CDATA[提到组合数就想起杨辉三角 这道题的数据范围显然不能直接搞 我们可以预处理出杨辉三角 从上往下做一遍前缀和 最后只要在一行里面统计答案即可 12345678910111213141516171819202122#include&lt;bits/stdc++.h&gt;using namespace std;long long m,n,ans,Q;long long f[1008][1008];const long long mod=19260817;int main()&#123; f[1][1]=1; for(register int i=2;i&lt;=1001;++i) for(register int j=1;j&lt;=i;++j) f[i][j]=(f[i-1][j]+f[i-1][j-1])%mod; for(register int i=1;i&lt;=1001;++i) for(register int j=i+1;j&lt;=1001;++j) (f[j][i]+=f[j-1][i])%=mod; scanf("%lld",&amp;Q); while(Q--) &#123; scanf("%lld%lld",&amp;n,&amp;m); ans=0;++m,++n; for(register int i=2;i&lt;=n;++i) (ans+=f[m][i])%=mod; printf("%lld\n",ans); &#125; return 0;&#125;]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>组合数</tag>
-        <tag>杨辉三角</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[[Luogu5238]整数校验器]]></title>
-    <url>%2F2019%2F03%2F05%2FLuogu5238-%E6%95%B4%E6%95%B0%E6%A0%A1%E9%AA%8C%E5%99%A8%2F</url>
-    <content type="text"><![CDATA[把洛谷月赛当$ACM$打差点出惨案 就是这道题导致开黑被发现。。。 开始是自己码的，码了半个小时结果全$WA$ 然后大力调调调，调了半个小时结果还是全$WA$ 然后拿着$Jerry$的代码魔改之后就交了，可能魔改得不彻底吧 言归正传，这道题严格意义上来说应该算一道大模拟 需要判断的情况特别多，还有这种一个负号的 总之大力分类讨论几波即可，下面贴代码 123456789101112131415161718192021222324252627282930#include&lt;bits/stdc++.h&gt;using namespace std;char s[1000001];long long m,n,l,r,T;unsigned long long num;int main()&#123; scanf("%lld%lld%lld",&amp;l,&amp;r,&amp;T); while(T--) &#123; scanf("%s",s+1); n=strlen(s+1);num=0; if(s[1]=='-'&amp;&amp;(n==1||s[2]=='0'))&#123; puts("1"); continue ; &#125; if(s[1]=='0'&amp;&amp;n!=1) &#123; puts("1"); continue ; &#125; if(s[1]!='-'&amp;&amp;n&gt;19) &#123; puts("2"); continue ; &#125; if(s[1]=='-'&amp;&amp;n&gt;20) &#123; puts("2"); continue ; &#125; if(s[1]!='-') &#123; for(register long long i=1;i&lt;=n;++i) num=num*10+s[i]-'0'; if(num&gt;=(unsigned long long)1&lt;&lt;63) &#123; puts("2"); continue ; &#125; m=num; &#125; if(s[1]=='-') &#123; for(register long long i=2;i&lt;=n;++i) num=num*10+s[i]-'0'; if(num&gt;(unsigned long long)1&lt;&lt;63) &#123; puts("2"); continue ; &#125; m=-num; &#125; puts(l&lt;=m&amp;&amp;m&lt;=r?"0":"2"); &#125; return 0;&#125;]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>模拟</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[[Luogu3375]KMP字符串匹配]]></title>
-    <url>%2F2019%2F02%2F27%2FLuogu3375-KMP%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%2F</url>
-    <content type="text"><![CDATA[因为是模板题所以就只贴代码 学习笔记戳这里 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include&lt;bits/stdc++.h&gt;using namespace std;char s1[1000001];char s2[1000001];int m,n,tot;int ans[1000001];int next[1000001];inline void P()&#123; next[0]=-1; for(register int i=1;i&lt;m;++i) &#123; int j=next[i-1]; while(j&gt;=0&amp;&amp;s2[j+1]!=s2[i]) j=next[j]; if(s2[j+1]==s2[i]) next[i]=j+1; else next[i]=-1; &#125;&#125;inline void KMP()&#123; int i=0,j=0; while(i&lt;n) &#123; if(s1[i]==s2[j]) &#123; ++i;++j; if(j==m) &#123; ans[++tot]=i-m+1; j=next[j-1]+1; &#125; &#125; else &#123; if(j==0) ++i; else j=next[j-1]+1; &#125; &#125;&#125;int main()&#123; scanf("%s%s",s1,s2); n=strlen(s1);m=strlen(s2); P();KMP(); for(register int i=1;i&lt;=tot;++i) printf("%d\n",ans[i]); for(register int i=0;i&lt;m;++i) printf("%d ",next[i]+1); return 0;&#125;]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>KMP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[浅谈KMP]]></title>
-    <url>%2F2019%2F02%2F27%2F%E6%B5%85%E8%B0%88KMP%2F</url>
-    <content type="text"><![CDATA[$KMP$算法是一种很基本的字符串匹配算法 $KMP$算法通常用来解决在母串中寻找子串的问题 但是$KMP$算法不太容易理解，我觉得我是不可能讲清楚的 $KMP$算法最难的地方就是失配指针，也就是$Next$数组 如果是普通的一位一位去匹配的话，会匹配许多无效信息 那么我们可以考虑利用已知信息，构建一个失配指针来解决这个问题 失配指针的作用就是在每次匹配失败的时候 直接跳转到下一个有效信息进行匹配，避免时间的浪费 失配指针的构建跟当前成功匹配串的最长相同前后缀有关 因为最长相同前后缀一定是相同的 那么如果当前这一位匹配失败，那么我们可以将整个串跳转到后缀上再重新开始匹配 这就是$KMP$算法的思想，是不是感觉特别简单？？？ 至于我们怎么预处理计算$Next$数组，就是用子串匹配子串 这里要结合代码讲一下，码风有点小众先注明一下 所有字符串从$0$开始，$Next$数组的初始值为$-1$，那么真实值就要$+1$ 1234567for (register int i=1;i&lt;n;++i)&#123; int j=Next[i-1]; while (S[i]!=S[j+1]&amp;&amp;j&gt;=0) j=F[j]; if (B[j+1]==B[i]) Next[i]=j+1; else Next[i]=-1;&#125; 因为这个是一个线性的递推，所以可以一直往前找到一个最大的相同前后缀为止 如果还没有看懂的话可以自己手玩几组样例，感觉其实我并没有讲清楚 最后安利一下$SYC$大佬的博客]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>KMP</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[[CTSC2014]企鹅QQ]]></title>
     <url>%2F2019%2F02%2F26%2FCTSC2014-%E4%BC%81%E9%B9%85QQ%2F</url>
     <content type="text"><![CDATA[这道题是一道哈希的裸题 其实学长之前上课讲哈希的时候顺带讲过 只是当时我在干嘛？？？ 先把所有字符串的哈希值都预处理出来 然后枚举哪一位不一样 把所有字符串这一位前缀和后缀的哈希值加起来 最后判断刚才计算的哈希值是否相等并且统计答案即可 12345678910111213141516171819202122232425#include&lt;bits/stdc++.h&gt;using namespace std;int l,m,n,ans,now;char s[202];unsigned long long t[30003];unsigned long long _hash[30003][202];unsigned long long hash_[30003][202];int main()&#123; scanf("%d%d%d",&amp;n,&amp;l,&amp;m); for(register int i=1;i&lt;=n;++i) &#123; scanf("%s",s+1); for(register int j=1;j&lt;=l;++j) _hash[i][j]=_hash[i][j-1]*223+s[j]; for(register int j=l;j&gt;=1;--j) hash_[i][j]=hash_[i][j+1]*233+s[j]; &#125; for(register int i=1;i&lt;=l;++i) &#123; for(register int j=1;j&lt;=n;++j) t[j]=_hash[j][i-1]*229+hash_[j][i+1]*239; sort(t+1,t+n+1);now=1; for(register int j=2;j&lt;=n;++j) t[j-1]==t[j]?ans+=now++:now=1; &#125; printf("%d\n",ans); return 0;&#125;]]></content>
       <categories>
         <category>题解</category>
-      </categories>
-      <tags>
-        <tag>哈希</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[[Luogu3370]字符串哈希]]></title>
-    <url>%2F2019%2F02%2F25%2FLuogu3370-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C%2F</url>
-    <content type="text"><![CDATA[因为是模板题所以就只贴代码 学习笔记戳这里 这份远古代码貌似还是当时$JBY$大佬边教我边打的 可惜$JBY$大佬退役太早，而且也身不由己 123456789101112131415161718192021222324252627282930313233343536373839#include&lt;bits/stdc++.h&gt;#define moa 19260817#define mob 19491001using namespace std;char s[2002];int m,n,ans;struct AG&#123; int a; int b;&#125;f[10001];inline bool cmp(AG xx,AG yy)&#123; if(xx.a==yy.a) return xx.b&lt;yy.b; return xx.a&lt;yy.a;&#125;int main()&#123; scanf("%d",&amp;n); for(register int i=1;i&lt;=n;++i) &#123; scanf("%s",s+1); m=strlen(s+1); for(register int j=1;j&lt;=m;++j) &#123; f[i].a=(f[i].a*11+(int)s[j])%moa; f[i].b=(f[i].b*13+(int)s[j])%mob; &#125; &#125; sort(f+1,f+n+1,cmp); ans=1; for(register int i=2;i&lt;=n;++i) if(f[i].a!=f[i-1].a||f[i].b!=f[i-1].b) ++ans; printf("%d\n",ans); return 0;&#125;]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>哈希</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[字符串哈希]]></title>
-    <url>%2F2019%2F02%2F25%2F%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C%2F</url>
-    <content type="text"><![CDATA[字符串哈希是一种对于字符串问题的乱搞骗分方法 很多字符串问题都能用哈希得到很高的部分分，所以可以把哈希当暴力打 个人理解，哈希就是把所有字符当做数字来计算 这里的进制最好取一个小一点的质数 就算不取质数也一定要和后面的模数互质 不然的话哈希冲突的概率会成倍增加 如果这个字符串很长的话，计算出来的数字明显是存不下的 所以我们可以通过取模，将这个数字映射到我们能够存下的范围内 既然是映射就会存在冲突，即两个不同的串对应两个不同的数对应两个相同的映射 为了减小哈希冲突的概率，模数我们一般要取一个大一点的质数 当然还是有很多毒瘤出题人专门制造哈希冲突 虽然可能会被卡，但是我们还是有两种方法来解决的 自然溢出 通过不取模让它自然溢出，实际上就是把模数变得很大 然后再用一些奇技淫巧来判断值是否相同，比如$Trie$树 双模数哈希 就是做两遍哈希，只有两个值都完全相等的时候才能通过 至于用如何哈希解决其他的一些字符串问题，先挖个坑在这里以后有时间再慢慢填 谨以此文纪念当初退役前三天教会我哈希的$JBY$大佬]]></content>
-      <categories>
-        <category>学习笔记</category>
       </categories>
       <tags>
         <tag>哈希</tag>
@@ -392,73 +206,6 @@
       </categories>
       <tags>
         <tag>动态规划</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[[Luogu3378]堆]]></title>
-    <url>%2F2019%2F02%2F22%2FLuogu3378-%E5%A0%86%2F</url>
-    <content type="text"><![CDATA[因为是模板题所以就只贴代码 学习笔记戳这里 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include&lt;bits/stdc++.h&gt;using namespace std;int heap[1000001];int m,n,x,size;inline void put(int y)&#123; int now,next; heap[++size]=y; now=size; while(now&gt;1) &#123; next=now&gt;&gt;1; if(heap[now]&gt;=heap[next]) break; swap(heap[now],heap[next]); now=next; &#125;&#125;inline void get()&#123; int now,next; heap[1]=heap[size--]; now=1; while(now*2&lt;=size) &#123; next=now*2; if(next&lt;size&amp;&amp;heap[next+1]&lt;heap[next]) next++; if(heap[now]&lt;=heap[next]) break; swap(heap[now],heap[next]); now=next; &#125;&#125;int main()&#123; scanf("%d",&amp;n); for(register int i=1;i&lt;=n;++i) &#123; scanf("%d",&amp;m); if(m==1) &#123; scanf("%d",&amp;x); put(x); &#125; if(m==2) printf("%d\n",heap[1]); if(m==3) get(); &#125; return 0;&#125;]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>堆</tag>
-        <tag>数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[浅谈手打堆]]></title>
-    <url>%2F2019%2F02%2F22%2F%E6%B5%85%E8%B0%88%E6%89%8B%E6%89%93%E5%A0%86%2F</url>
-    <content type="text"><![CDATA[故事的起因很有趣，还是去年的事了 $Noip2018$之前谢骚说他不会手打堆？？？ 我当时就一句这么简单的东西怎么不会 然后他就因为这个一直膜我到现在 那时候就有了写一写手打堆的念头 只是因为谢骚$Noip2018$混到一等之后功成身退，所以就一直咕到现在 堆，一般指的是小根堆，它是一颗完全二叉树 它满足一个性质，父亲的权值不大于儿子的权值 由于这个性质，树根存的就是最小值 这里我们来看一下堆的两种操作 插入操作 为了保证插入后也是一棵完全二叉树，我们从最下面一层最右边的叶子节点后面插入 如果最下面一层已满，就新增一层再从最左边开始插入 如果这个结点的权值大于它父亲的权值，就进行交换 直到不满足或者已经到根节点就停止，那么插入操作的复杂度就是$logn$的 删除操作 先把根节点与最后一个节点交换，再删除最后一个节点 如果根节点的权值大于它的儿子的权值，就进行交换 这里究竟是左儿子还是右儿子需要分类讨论一下 直到不满足或者已经到最下面一层就停止，那么删除操作的复杂度就是$logn$的 实际上各种操作都是建立在向上向下交换的基础上的 其实学这玩意还不如用$STL$]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>堆</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[[USACO1.3]修理牛棚 Barn Repair]]></title>
-    <url>%2F2019%2F02%2F21%2FUSACO1-3-%E4%BF%AE%E7%90%86%E7%89%9B%E6%A3%9A-Barn-Repair%2F</url>
-    <content type="text"><![CDATA[代码应该算是比较简练的 首先可以考虑贪心，而且是$O$ $($ $m$ $)$的贪心 然后再来思考一下贪心策略 这道题其实比较适合反向思维，思考难度因人而异 就是先确定一大块板，再去把它分成很多块小板 具体的来说就是从第一个牛棚到最后一个牛棚 因为这段区间的长度是一定的 又因为总共要覆盖$m$块木板,所以中间最多只能有$m$ $-$ $1$块空隙 所以我们只要找出$m$ $-$ $1$块最大的空隙，以确保木板总长度最短 所以我们可以使用两遍快速排序 第一遍排序牛棚，确定区间的长度 第二遍排序空隙，求出最长的$m$ $-$ $1$块空隙 然后依次减去最长的$m$ $-$ $1$块空隙就是所得的答案 123456789101112131415161718192021222324#include&lt;bits/stdc++.h&gt;using namespace std;int w[222];int y[222];int c,m,s,ans;int main()&#123; scanf("%d%d%d",&amp;m,&amp;s,&amp;c); for(register int i=1;i&lt;=c;++i) scanf("%d",&amp;w[i]); if(m&gt;=c) ans=c; else &#123; sort(w+1,w+c+1); ans=w[c]-w[1]+1; for(register int i=1;i&lt;=c-1;++i) y[i]=w[i+1]-w[i]-1; sort(y+1,y+c); for(register int i=c-1;i&gt;=c-m+1;--i) ans-=y[i]; &#125; printf("%d\n",ans); return 0;&#125;]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>贪心</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[[USACO1.2]命名那个数字 Name That Number]]></title>
-    <url>%2F2019%2F02%2F21%2FUSACO1-2-%E5%91%BD%E5%90%8D%E9%82%A3%E4%B8%AA%E6%95%B0%E5%AD%97-Name-That-Number%2F</url>
-    <content type="text"><![CDATA[这道题好像$AC$人数有点少啊 严格意义上来说，这道题是一道水题 就是把名字库转换成数字库，然后暴力匹配即可 但是我同桌提出了一种神奇的暴力 可以很好的锻炼码力，但是可能对新人不太友好 那么的话身为他同桌的我还是帮他填这个坑 跟其他玄学做法相比，其实思维难度真心不大 首先，我们可以先将数字转换成可以用的名字 然后用这些名字去可以选用的名字中匹配 然而这样的最坏复杂度是多少？？？ 卧槽竟然是一个常数。。。 怎么都感觉过不了，然而好像真的有人卡过去了。。。 不知道是数据太水还是$ta$太强了 所以显然是不能暴力匹配的，所以我们可以考虑二分 二分查找来缩小范围，然后就只需要匹配一个 二分的条件就是字典序匹配，从小到大 然而怎么最坏复杂度还是不对？？？ 不管了反正这题数据水 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566#include&lt;bits/stdc++.h&gt;using namespace std;char name[5005][15];char k[15];char s[15];bool flag;int m,n;char num[11][4]=&#123;&#123;&#125;,&#123;&#125;,&#123;'A','B','C'&#125;,&#123;'D','E','F'&#125;,&#123;'G','H','I'&#125;,&#123;'J','K','L'&#125;,&#123;'M','N','O'&#125;,&#123;'P','R','S'&#125;,&#123;'T','U','V'&#125;,&#123;'W','X','Y'&#125;&#125;;inline void Half()&#123; int l=1,r=4618,mid; while(l&lt;=r) &#123; mid=(l+r)/2; int lon=strlen(name[mid]); flag=true; for(register int i=0;i&lt;n||i&lt;lon;++i) &#123; if(name[mid][i]&lt;k[i]) &#123; l=mid+1; flag=false; break; &#125; if(name[mid][i]&gt;k[i]) &#123; r=mid-1; flag=false; break; &#125; &#125; if(flag) break; &#125; if(strlen(name[mid])!=n) return ; for(register int i=0;i&lt;n;++i) if(name[mid][i]!=k[i]) return ; printf("%s\n",k); ++m;&#125;inline void Dfs(int z)&#123; if(z==n) &#123; Half(); return ; &#125; else &#123; int now=s[z]-'0'; for(register int i=0;i&lt;=2;++i) &#123; k[z]=num[now][i]; Dfs(z+1); &#125; &#125;&#125;int main()&#123; scanf("%s",s); for(register int i=1;i&lt;=4617;++i) scanf("%s",name[i]); n=strlen(s); Dfs(0); if(m==0) puts("NONE"); return 0;&#125;]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>二分</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[[USACO1.2]方块转换 Transformations]]></title>
-    <url>%2F2019%2F02%2F19%2FUSACO1-2-%E6%96%B9%E5%9D%97%E8%BD%AC%E6%8D%A2-Transformations%2F</url>
-    <content type="text"><![CDATA[一道大模拟又被我打出了160行 还好一次A掉不至于当场去世 毫无技术含量可言 只要基本懂字符串就行 首先，翻转$90$、$180$、$270$其实等于一个操作 就是写一个翻转$90$函数用三遍而已 翻转转移方程可以手玩一下 就是$s$[$i$] [$j$]=s[$n$-$j$+$1$][$i$]，还是比较好推的 然后写一次对称过来，再用三次翻转$90$函数 最后再看是不是和初始状态相同 建议每变化一次就去验证一次 如果成功就直接$return$ $0$，简单粗暴 下面一些题外话 大家做这种题一定要细心 哪怕你压行也要尽量控制代码长度 不然考场上真的很难查错，也很浪费时间 本人天生反面教材 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158#include&lt;bits/stdc++.h&gt;using namespace std;char s[11][11];char x[11][11];char y[11][11];char z[11][11];bool flag;int n,ans;inline void C()&#123; for(register int i=1;i&lt;=n;++i) for(register int j=1;j&lt;=n;++j) y[i][j]=x[n-j+1][i];&#125;inline void M()&#123; for(register int i=1;i&lt;=n;++i) for(register int j=1;j&lt;=n;++j) x[i][j]=y[i][j];&#125;inline void V()&#123; for(register int i=1;i&lt;=n;++i) for(register int j=1;j&lt;=n;++j) y[i][j]=x[i][n-j+1];&#125;int main()&#123; scanf("%d",&amp;n); for(register int i=1;i&lt;=n;++i) &#123; for(register int j=1;j&lt;=n;++j) &#123; cin&gt;&gt;s[i][j]; x[i][j]=s[i][j]; &#125; getchar(); &#125; for(register int i=1;i&lt;=n;++i) &#123; for(register int j=1;j&lt;=n;++j) cin&gt;&gt;z[i][j]; getchar(); &#125; C();flag=true; for(register int i=1;i&lt;=n;++i) for(register int j=1;j&lt;=n;++j) if(y[i][j]!=z[i][j]) &#123; flag=false; break; &#125; if(flag) &#123; puts("1"); return 0; &#125; else M(); C();flag=true; for(register int i=1;i&lt;=n;++i) for(register int j=1;j&lt;=n;++j) if(y[i][j]!=z[i][j]) &#123; flag=false; break; &#125; if(flag) &#123; puts("2"); return 0; &#125; else M(); C();flag=true; for(register int i=1;i&lt;=n;++i) for(register int j=1;j&lt;=n;++j) if(y[i][j]!=z[i][j]) &#123; flag=false; break; &#125; if(flag) &#123; puts("3"); return 0; &#125; else &#123; for(register int i=1;i&lt;=n;++i) for(register int j=1;j&lt;=n;++j) x[i][j]=s[i][j]; &#125; V();flag=true; for(register int i=1;i&lt;=n;++i) for(register int j=1;j&lt;=n;++j) if(y[i][j]!=z[i][j]) &#123; flag=false; break; &#125; if(flag) &#123; puts("4"); return 0; &#125; else M(); C();flag=true; for(register int i=1;i&lt;=n;++i) for(register int j=1;j&lt;=n;++j) if(y[i][j]!=z[i][j]) &#123; flag=false; break; &#125; if(flag) &#123; puts("5"); return 0; &#125; else M(); C();flag=true; for(register int i=1;i&lt;=n;++i) for(register int j=1;j&lt;=n;++j) if(y[i][j]!=z[i][j]) &#123; flag=false; break; &#125; if(flag) &#123; puts("5"); return 0; &#125; else M(); C();flag=true; for(register int i=1;i&lt;=n;++i) for(register int j=1;j&lt;=n;++j) if(y[i][j]!=z[i][j]) &#123; flag=false; break; &#125; if(flag) &#123; puts("5"); return 0; &#125; flag=true; for(register int i=1;i&lt;=n;++i) for(register int j=1;j&lt;=n;++j) if(s[i][j]!=z[i][j]) &#123; flag=false; break; &#125; if(flag) puts("6"); else puts("7"); return 0;&#125;]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>模拟</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[[USACO1.1]坏掉的项链Broken Necklace]]></title>
-    <url>%2F2019%2F02%2F19%2FUSACO1-1-%E5%9D%8F%E6%8E%89%E7%9A%84%E9%A1%B9%E9%93%BEBroken-Necklace%2F</url>
-    <content type="text"><![CDATA[话说$USACO$的水题质量挺高的，好像真的是这样 这道题当时我可是调了一个下午的 这题暴力能过，复杂度就懒得算了 不需要什么思路，直接上模拟 就是枚举断开位置，然后分别往两边找 找到不能再找就停下，看看是否可以更新答案 需要特别提醒的是断开位置两边是$w$的情况 那就需要继续找到第一个不是$w$的位置 用这个位置上的字符去判断 然后就被我硬生生的打出了一道大模拟 别人平均$60$行，我打出了$160$行？？？ 心态崩了，我要妹子 看来我还是太菜了 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156#include&lt;bits/stdc++.h&gt;using namespace std;char a,b;char s[404];bool t[404];int n,l,r,ans,sum;int main()&#123; scanf("%d",&amp;n); for(register int i=1;i&lt;=n;++i) cin&gt;&gt;s[i]; memset(t,false,sizeof(t)); a=s[1];b=s[n]; if(a=='w') &#123; for(register int i=1;i&lt;=n;++i) if(s[i]!='w') &#123; a=s[i]; break; &#125; &#125; if(b=='w') &#123; for(register int i=n;i&gt;=1;--i) if(s[i]!='w') &#123; b=s[i]; break; &#125; &#125; for(register int i=1;i&lt;=n;++i) if(s[i]==a||s[i]=='w') t[i]=true; else break; for(register int i=n;i&gt;=1;--i) if(s[i]==b||s[i]=='w') t[i]=true; else break; for(register int i=1;i&lt;=n;++i) if(t[i]) ++ans; for(register int i=1;i&lt;=n-1;++i) &#123; memset(t,false,sizeof(t)); a=s[i];b=s[i+1];sum=0; if(a=='w') &#123; for(register int j=i;j&gt;=1;--j) &#123; if(j==1) &#123; if(s[j]!='w') &#123; a=s[j]; break; &#125; else &#123; for(register int k=n;k&gt;=i+1;--k) if(s[j]!='w') &#123; a=s[j]; break; &#125; &#125; &#125; else &#123; if(s[j]!='w') &#123; a=s[j]; break; &#125; &#125; &#125; &#125; if(b=='w') &#123; for(register int j=i+1;j&lt;=n;++j) &#123; if(j==n) &#123; if(s[j]!='w') &#123; b=s[j]; break; &#125; else &#123; for(register int k=1;k&lt;=i;++k) if(s[j]!='w') &#123; b=s[j]; break; &#125; &#125; &#125; else &#123; if(s[j]!='w') &#123; b=s[j]; break; &#125; &#125; &#125; &#125; for(register int j=i;j&gt;=1;--j) &#123; if(j==1) &#123; if(s[j]==a||s[j]=='w') &#123; t[j]=true; for(register int k=n;k&gt;=i+1;--k) if(s[k]==a||s[k]=='w') t[k]=true; else break; &#125; else break; &#125; else &#123; if(s[j]==a||s[j]=='w') t[j]=true; else break; &#125; &#125; for(register int j=i+1;j&lt;=n;++j) &#123; if(j==n) &#123; if(s[j]==b||s[j]=='w') &#123; t[j]=true; for(register int k=1;k&lt;=i;++k) if(s[k]==b||s[k]=='w') t[k]=true; else break; &#125; else break; &#125; else &#123; if(s[j]==b||s[j]=='w') t[j]=true; else break; &#125; &#125; for(register int j=1;j&lt;=n;++j) if(t[j]) ++sum; ans=max(ans,sum); &#125; printf("%d\n",ans); return 0;&#125;]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>模拟</tag>
       </tags>
   </entry>
 </search>

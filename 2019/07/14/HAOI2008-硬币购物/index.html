@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="动态规划,容斥原理,">
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="Blog">
+<meta name="description" content="一边听课一边打摆">
+<meta name="keywords" content="动态规划,容斥原理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[HAOI2008]硬币购物">
 <meta property="og:url" content="http://ricardoships.github.io/2019/07/14/HAOI2008-硬币购物/index.html">
 <meta property="og:site_name" content="Something For Nothing">
-<meta property="og:description" content="Blog">
+<meta property="og:description" content="一边听课一边打摆">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-14T14:31:12.918Z">
+<meta property="og:updated_time" content="2019-07-15T01:11:58.675Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[HAOI2008]硬币购物">
-<meta name="twitter:description" content="Blog">
+<meta name="twitter:description" content="一边听课一边打摆">
 
 
 
@@ -334,6 +335,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/题解/" itemprop="url" rel="index">
+                    <span itemprop="name">题解</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -361,7 +384,14 @@
       
 
       
-        
+        <p>一边听课一边打摆</p>
+<a id="more"></a>
+<p>因为每次都做一次背包会$T$飞，考虑先不考虑限制预处理方案数</p>
+<p>然后考虑限制，用总方案数减去不合法的方案数</p>
+<p>第$i$种硬币要超出限制至少要用$d[i]+1$个</p>
+<p>那么考虑限制之后不合法的方案数就是$F[s-c[i]*(d[i]+1)]$</p>
+<p>最后对硬币进行容斥，计算答案即可</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">100007</span>;</span><br><span class="line"><span class="keyword">int</span> s,tot,c[<span class="number">4</span>],d[<span class="number">4</span>];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> f[maxn]=&#123;<span class="number">1</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">4</span>;++i) <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;c[i]);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">4</span>;++i)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> j=c[i];j&lt;maxn;++j) f[j]+=f[j-c[i]];</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;tot);</span><br><span class="line">    <span class="keyword">while</span>(tot--) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">4</span>;++i) <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;d[i]);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;s); <span class="keyword">register</span> <span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">16</span>;++i) &#123;</span><br><span class="line">            <span class="keyword">register</span> <span class="keyword">int</span> num=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">register</span> <span class="keyword">long</span> <span class="keyword">long</span> sum=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">4</span>;++j)</span><br><span class="line">                <span class="keyword">if</span>(i&amp;(<span class="number">1</span>&lt;&lt;j)) ++num,sum+=c[j]*(d[j]+<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span>(s&lt;sum) <span class="keyword">continue</span> ;</span><br><span class="line">            ans+=(num&amp;<span class="number">1</span>)?-f[s-sum]:f[s-sum];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -375,6 +405,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/动态规划/" rel="tag"># 动态规划</a>
+          
+            <a href="/tags/容斥原理/" rel="tag"># 容斥原理</a>
+          
+        </div>
       
 
       

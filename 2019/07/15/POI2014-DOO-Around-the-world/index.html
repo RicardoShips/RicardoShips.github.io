@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="动态规划,">
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="Blog">
+<meta name="description" content="摆了一天补篇题解可还行">
+<meta name="keywords" content="动态规划">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[POI2014]DOO-Around the world">
-<meta property="og:url" content="http://ricardoships.github.io/2019/07/14/POI2014-DOO-Around-the-world/index.html">
+<meta property="og:url" content="http://ricardoships.github.io/2019/07/15/POI2014-DOO-Around-the-world/index.html">
 <meta property="og:site_name" content="Something For Nothing">
-<meta property="og:description" content="Blog">
+<meta property="og:description" content="摆了一天补篇题解可还行">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-14T14:30:20.736Z">
+<meta property="og:updated_time" content="2019-07-15T14:36:38.185Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[POI2014]DOO-Around the world">
-<meta name="twitter:description" content="Blog">
+<meta name="twitter:description" content="摆了一天补篇题解可还行">
 
 
 
@@ -119,7 +120,7 @@
 
 
 
-  <link rel="canonical" href="http://ricardoships.github.io/2019/07/14/POI2014-DOO-Around-the-world/">
+  <link rel="canonical" href="http://ricardoships.github.io/2019/07/15/POI2014-DOO-Around-the-world/">
 
 
 
@@ -294,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://ricardoships.github.io/2019/07/14/POI2014-DOO-Around-the-world/">
+    <link itemprop="mainEntityOfPage" href="http://ricardoships.github.io/2019/07/15/POI2014-DOO-Around-the-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="RicardoShips">
@@ -323,8 +324,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-14T22:30:20+08:00">
-                2019-07-14
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-15T21:49:56+08:00">
+                2019-07-15
               </time>
             
 
@@ -333,6 +334,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/题解/" itemprop="url" rel="index">
+                    <span itemprop="name">题解</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -361,7 +384,16 @@
       
 
       
-        
+        <p>摆了一天补篇题解可还行</p>
+<a id="more"></a>
+<p>先断环成链复制一遍，再前缀和预处理</p>
+<p>显然终点都在$[n+1,2n]$中，把终点当作起点倒推</p>
+<p>考虑设走$f[i]$步可以到达的最远的点为$fa[i]$</p>
+<p>如果当前所在点为$i$，找到可以到达的最远的点为$j$</p>
+<p>那么$f[i]=f[j]+1$，$fa[i]=fa[j]​$</p>
+<p>如果$i-fa[i]&gt;=n$，那么直接退出输出$f[i]$</p>
+<p>因为不存在一个更靠后的位置答案更优，<del>证明不会</del></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">2000002</span>;</span><br><span class="line"><span class="keyword">int</span> m,n,x,s,f[maxn],fa[maxn],sum[maxn];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span> ch=getchar(); <span class="keyword">int</span> num=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch)) ch=getchar();</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch)) num=(num&lt;&lt;<span class="number">3</span>)+(num&lt;&lt;<span class="number">1</span>)+(ch^<span class="string">'0'</span>),ch=getchar();</span><br><span class="line">    <span class="keyword">return</span> num;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    n=read(),s=read();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i) &#123;</span><br><span class="line">    	<span class="keyword">int</span> x=read(); m=max(m,x);</span><br><span class="line">    	fa[i]=i,sum[i]=sum[i<span class="number">-1</span>]+x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=n+<span class="number">1</span>;i&lt;=(n&lt;&lt;<span class="number">1</span>);++i)</span><br><span class="line">        sum[i]=sum[i<span class="number">-1</span>]+sum[i-n]-sum[i-n<span class="number">-1</span>];</span><br><span class="line">    <span class="keyword">while</span>(s--) &#123;</span><br><span class="line">    	<span class="keyword">register</span> <span class="keyword">int</span> i,j,d=read();</span><br><span class="line">    	<span class="keyword">if</span>(d&lt;m) <span class="built_in">puts</span>(<span class="string">"NO"</span>);</span><br><span class="line">    	<span class="keyword">else</span> <span class="keyword">for</span>(i=n+<span class="number">1</span>,j=<span class="number">1</span>;i&lt;=(n&lt;&lt;<span class="number">1</span>);++i) &#123;</span><br><span class="line">    		<span class="keyword">while</span>(sum[i]-sum[j]&gt;d) ++j;</span><br><span class="line">    		f[i]=f[j]+<span class="number">1</span>,fa[i]=fa[j];</span><br><span class="line">    		<span class="keyword">if</span>(i-fa[i]&gt;=n) &#123;</span><br><span class="line">    			<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,f[i]);</span><br><span class="line">    			<span class="keyword">break</span> ;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -376,6 +408,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/动态规划/" rel="tag"># 动态规划</a>
+          
+        </div>
+      
 
       
       
@@ -385,8 +423,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/11/Luogu3943-星空/" rel="next" title="[Luogu3943]星空">
-                <i class="fa fa-chevron-left"></i> [Luogu3943]星空
+              <a href="/2019/07/14/HAOI2008-硬币购物/" rel="next" title="[HAOI2008]硬币购物">
+                <i class="fa fa-chevron-left"></i> [HAOI2008]硬币购物
               </a>
             
           </div>
@@ -394,10 +432,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/14/NOI2010-能量采集/" rel="prev" title="[NOI2010]能量采集">
-                [NOI2010]能量采集 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

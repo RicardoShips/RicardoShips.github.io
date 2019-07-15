@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[POI2014]DOO-Around the world]]></title>
+    <url>%2F2019%2F07%2F15%2FPOI2014-DOO-Around-the-world%2F</url>
+    <content type="text"><![CDATA[摆了一天补篇题解可还行 先断环成链复制一遍，再前缀和预处理 显然终点都在$[n+1,2n]$中，把终点当作起点倒推 考虑设走$f[i]$步可以到达的最远的点为$fa[i]$ 如果当前所在点为$i$，找到可以到达的最远的点为$j$ 那么$f[i]=f[j]+1$，$fa[i]=fa[j]​$ 如果$i-fa[i]&gt;=n$，那么直接退出输出$f[i]$ 因为不存在一个更靠后的位置答案更优，证明不会 1234567891011121314151617181920212223242526272829303132#include&lt;bits/stdc++.h&gt;using namespace std;const int maxn=2000002;int m,n,x,s,f[maxn],fa[maxn],sum[maxn];inline int read () &#123; char ch=getchar(); int num=0; while(!isdigit(ch)) ch=getchar(); while(isdigit(ch)) num=(num&lt;&lt;3)+(num&lt;&lt;1)+(ch^'0'),ch=getchar(); return num;&#125;int main () &#123; n=read(),s=read(); for(register int i=1;i&lt;=n;++i) &#123; int x=read(); m=max(m,x); fa[i]=i,sum[i]=sum[i-1]+x; &#125; for(register int i=n+1;i&lt;=(n&lt;&lt;1);++i) sum[i]=sum[i-1]+sum[i-n]-sum[i-n-1]; while(s--) &#123; register int i,j,d=read(); if(d&lt;m) puts("NO"); else for(i=n+1,j=1;i&lt;=(n&lt;&lt;1);++i) &#123; while(sum[i]-sum[j]&gt;d) ++j; f[i]=f[j]+1,fa[i]=fa[j]; if(i-fa[i]&gt;=n) &#123; printf("%d\n",f[i]); break ; &#125; &#125; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>动态规划</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[HAOI2008]硬币购物]]></title>
     <url>%2F2019%2F07%2F14%2FHAOI2008-%E7%A1%AC%E5%B8%81%E8%B4%AD%E7%89%A9%2F</url>
     <content type="text"><![CDATA[一边听课一边打摆 因为每次都做一次背包会$T$飞，考虑先不考虑限制预处理方案数 然后考虑限制，用总方案数减去不合法的方案数 第$i$种硬币要超出限制至少要用$d[i]+1$个 那么考虑限制之后不合法的方案数就是$F[s-c[i]*(d[i]+1)]$ 最后对硬币进行容斥，计算答案即可 12345678910111213141516171819202122232425#include&lt;bits/stdc++.h&gt;using namespace std;const int maxn=100007;int s,tot,c[4],d[4];long long f[maxn]=&#123;1&#125;;int main () &#123; for(register int i=0;i&lt;4;++i) scanf("%d",&amp;c[i]); for(register int i=0;i&lt;4;++i) for(register int j=c[i];j&lt;maxn;++j) f[j]+=f[j-c[i]]; scanf("%d",&amp;tot); while(tot--) &#123; for(register int i=0;i&lt;4;++i) scanf("%d",&amp;d[i]); scanf("%d",&amp;s); register long long ans=0; for(register int i=0;i&lt;16;++i) &#123; register int num=0; register long long sum=0; for(register int j=0;j&lt;4;++j) if(i&amp;(1&lt;&lt;j)) ++num,sum+=c[j]*(d[j]+1); if(s&lt;sum) continue ; ans+=(num&amp;1)?-f[s-sum]:f[s-sum]; &#125; printf("%lld\n",ans); &#125; return 0;&#125;]]></content>
@@ -23,11 +34,6 @@
         <tag>动态规划</tag>
         <tag>容斥原理</tag>
       </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[[POI2014]DOO-Around the world]]></title>
-    <url>%2F2019%2F07%2F14%2FPOI2014-DOO-Around-the-world%2F</url>
-    <content type="text"></content>
   </entry>
   <entry>
     <title><![CDATA[[Luogu3943]星空]]></title>
@@ -222,8 +228,8 @@
         <category>题解</category>
       </categories>
       <tags>
-        <tag>动态规划</tag>
         <tag>KMP</tag>
+        <tag>动态规划</tag>
       </tags>
   </entry>
   <entry>

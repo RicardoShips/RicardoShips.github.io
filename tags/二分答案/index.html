@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="前缀和,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -79,18 +79,16 @@
 
 
 
-<meta name="description" content="一道难度适中的的小清新思维好题">
-<meta name="keywords" content="前缀和">
-<meta property="og:type" content="article">
-<meta property="og:title" content="[Luogu3941]入阵曲">
-<meta property="og:url" content="http://ricardoships.github.io/2019/04/26/Luogu3941-入阵曲/index.html">
+<meta name="description" content="Blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Something For Nothing">
+<meta property="og:url" content="http://ricardoships.github.io/tags/二分答案/index.html">
 <meta property="og:site_name" content="Something For Nothing">
-<meta property="og:description" content="一道难度适中的的小清新思维好题">
+<meta property="og:description" content="Blog">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-26T13:59:09.242Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[Luogu3941]入阵曲">
-<meta name="twitter:description" content="一道难度适中的的小清新思维好题">
+<meta name="twitter:title" content="Something For Nothing">
+<meta name="twitter:description" content="Blog">
 
 
 
@@ -120,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://ricardoships.github.io/2019/04/26/Luogu3941-入阵曲/">
+  <link rel="canonical" href="http://ricardoships.github.io/tags/二分答案/">
 
 
 
 
 
-  <title>[Luogu3941]入阵曲 | Something For Nothing</title>
+  <title>Tag: 二分答案 | Something For Nothing</title>
   
 
 
@@ -145,7 +143,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -281,182 +279,52 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block tag">
 
-  
+    <div id="posts" class="posts-collapse">
+      <div class="collection-title">
+        <h1>二分答案<small>Tag</small>
+        </h1>
+      </div>
 
-  
-  
-  
+      
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://ricardoships.github.io/2019/04/26/Luogu3941-入阵曲/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="RicardoShips">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Something For Nothing">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
+            <a class="post-title-link" href="/2019/07/31/ZJOI2006-皇帝的烦恼/" itemprop="url">
+              
+                <span itemprop="name">[ZJOI2006]皇帝的烦恼</span>
+              
+            </a>
         
-          <h1 class="post-title" itemprop="name headline">[Luogu3941]入阵曲</h1>
-        
+      </h2>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-26T21:41:46+08:00">
-                2019-04-26
-              </time>
-            
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-07-31T20:58:41+08:00" content="2019-07-31">
+          07-31
+        </time>
+      </div>
 
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/题解/" itemprop="url" rel="index">
-                    <span itemprop="name">题解</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>一道难度适中的的小清新思维好题</p>
-<a id="more"></a>
-<p>我们先对原矩阵做一遍膜$K$意义下的前缀和</p>
-<p>不难发现，膜$K$意义下前缀和相等的两个矩形</p>
-<p>它们的前缀和的差一定是$K$的倍数</p>
-<p>但是我们必须保证这两个矩形不重叠的部分一定是一个矩形</p>
-<p>那么我们可以先枚举上下边界再枚举右边界</p>
-<p>开一个桶依次记录膜$K$意义下的前缀和</p>
-<p>最后根据每个数出现的次数计算贡献即可</p>
-<p>特别要注意的是把桶清空的时候不能$memset$</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> m,n,ans,mod;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> a[<span class="number">404</span>][<span class="number">404</span>],b[<span class="number">404</span>],c[<span class="number">1000001</span>];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="title">read</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span> ch=getchar(); <span class="keyword">long</span> <span class="keyword">long</span> num=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch)) ch=getchar();</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch)) num=(num&lt;&lt;<span class="number">3</span>)+(num&lt;&lt;<span class="number">1</span>)+(ch^<span class="string">'0'</span>),ch=getchar();</span><br><span class="line">    <span class="keyword">return</span> num;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    n=read(),m=read(),mod=read();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=m;++j)</span><br><span class="line">            a[i][j]=read(),(a[i][j]+=a[i<span class="number">-1</span>][j]+a[i][j<span class="number">-1</span>]-a[i<span class="number">-1</span>][j<span class="number">-1</span>]+mod)%=mod;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;=n;++j) &#123;</span><br><span class="line">            c[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> k=<span class="number">1</span>;k&lt;=m;++k)</span><br><span class="line">                b[k]=(a[j][k]-a[i][k]+mod)%mod,ans+=c[b[k]]++;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> k=<span class="number">1</span>;k&lt;=m;++k) c[b[k]]=<span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/前缀和/" rel="tag"># 前缀和</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/04/14/Luogu4556-雨天的尾巴/" rel="next" title="[Luogu4556]雨天的尾巴">
-                <i class="fa fa-chevron-left"></i> [Luogu4556]雨天的尾巴
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/26/Luogu3942-将军令/" rel="prev" title="[Luogu3942]将军令">
-                [Luogu3942]将军令 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
       
     </div>
+
   </div>
+  
+  
+  
+
+  
 
 
           </div>
@@ -464,10 +332,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -729,10 +593,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 

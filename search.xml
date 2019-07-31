@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[ZJOI2006]皇帝的烦恼]]></title>
+    <url>%2F2019%2F07%2F31%2FZJOI2006-%E7%9A%87%E5%B8%9D%E7%9A%84%E7%83%A6%E6%81%BC%2F</url>
+    <content type="text"><![CDATA[今天打摆被抓有点烦 正解是二分+$DP$，但是先想想怎么贪心乱搞 可能相邻两个将军所需徽章数之和的最大值就是答案？？ 不难发现，当$n$为奇数时显然不成立 考虑每一种徽章最多可以给$\lfloor \frac {n} {2} \rfloor$个人 所以$ans$最大不会超过$\lceil \frac{\sum a[i]}{\frac{n}{2}} \rceil$ 最后把上面的两种情况取最大值即可 1234567891011121314151617181920#include&lt;bits/stdc++.h&gt;using namespace std;int ans,sum,a[100001];inline int read () &#123; char ch=getchar(); int num=0; while(!isdigit(ch)) ch=getchar(); while(isdigit(ch)) num=(num&lt;&lt;3)+(num&lt;&lt;1)+(ch^'0'),ch=getchar(); return num;&#125;int main () &#123; register int n=read(); for(register int i=1;i&lt;=n;++i) a[i]=read(),sum+=a[i]; ans=a[1]+a[n]; for(register int i=1;i&lt;n;++i) ans=max(ans,a[i]+a[i+1]); ans=max(ans,(sum+(n&gt;&gt;1)-1)/(n&gt;&gt;1)); printf("%d\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>动态规划</tag>
+        <tag>贪心</tag>
+        <tag>二分答案</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[NOI2006]网络收费]]></title>
     <url>%2F2019%2F07%2F30%2FNOI2006-%E7%BD%91%E7%BB%9C%E6%94%B6%E8%B4%B9%2F</url>
     <content type="text"><![CDATA[一道难度较大的树形$DP$思维题 考虑设$dp[i][j]$为以$i$节点为根，有$j$个$B$类叶子节点的子树的最小费用 对于每一对叶子节点$i$和$j$，它们的贡献$f_{i,j}$只会在它们的$Lca_{i,j}$上计算 那么可以把$f_{i,j}$先记录在它们的$Lca_{i,j}$上 然后考虑$dfs$维护$dp$，预处理出每个叶子节点可能产生的贡献 最后根据$A$和$B$两类叶子节点个数的限制，分情况进行转移即可 12345678910111213141516171819202122232425262728293031323334353637383940414243#include&lt;bits/stdc++.h&gt;#define INF 0x3f3f3f3fusing namespace std;int m,n,ans,tmp,t[1088],vis[12],c[1088][2],f[1088][12],dp[2102][1088];inline int read () &#123; char ch=getchar(); int num=0; while(!isdigit(ch)) ch=getchar(); while(isdigit(ch)) num=(num&lt;&lt;3)+(num&lt;&lt;1)+(ch^'0'),ch=getchar(); return num;&#125;inline int lca (int x,int y) &#123; for(register int i=n-1;i&gt;=0;--i) if((x&gt;&gt;i)^(y&gt;&gt;i)) return n-i-1;&#125;inline void dfs (int x,int dep,int l,int r) &#123; if(dep==n) &#123; dp[x][0]=c[x-m][0],dp[x][1]=c[x-m][1]; for(register int i=n-1;i&gt;=0;--i) dp[x][vis[i]^1]+=f[x-m][i]; return ; &#125; memset(dp[x],INF,sizeof(dp[x])); register int mid=(l+r)&gt;&gt;1; vis[dep]=0; dfs(x&lt;&lt;1,dep+1,l,mid),dfs(x&lt;&lt;1|1,dep+1,mid+1,r); for(register int i=0;i&lt;=mid-l+1;++i) for(register int j=0;j&lt;=r-mid&amp;&amp;i+j&lt;=r-l+1;++j) if(i+j&lt;=r-l-i-j+1) dp[x][i+j]=min(dp[x][i+j],dp[x&lt;&lt;1][i]+dp[x&lt;&lt;1|1][j]); vis[dep]=1; dfs(x&lt;&lt;1,dep+1,l,mid),dfs(x&lt;&lt;1|1,dep+1,mid+1,r); for(register int i=0;i&lt;=mid-l+1;++i) for(register int j=0;j&lt;=r-mid&amp;&amp;i+j&lt;=r-l+1;++j) if(i+j&gt;r-l-i-j+1) dp[x][i+j]=min(dp[x][i+j],dp[x&lt;&lt;1][i]+dp[x&lt;&lt;1|1][j]);&#125;int main () &#123; n=read(),m=1&lt;&lt;n; ans=INF; for(register int i=0;i&lt;m;++i) t[i]=read(); for(register int i=0;i&lt;m;++i) c[i][t[i]^1]=read(); for(register int i=0;i&lt;m-1;++i) for(register int j=i+1;j&lt;m;++j) tmp=read(),f[i][lca(i,j)]+=tmp,f[j][lca(i,j)]+=tmp; dfs(1,0,1,m); for(register int i=0;i&lt;=m;++i) ans=min(ans,dp[1][i]); printf("%d\n",ans); return 0;&#125;]]></content>

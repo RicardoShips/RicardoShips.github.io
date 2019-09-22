@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[NOI2015]荷马史诗]]></title>
+    <url>%2F2019%2F09%2F22%2FNOI2015-%E8%8D%B7%E9%A9%AC%E5%8F%B2%E8%AF%97%2F</url>
+    <content type="text"><![CDATA[$K$维哈夫曼树模板题 最底层记得补零 12345678910111213141516171819202122232425#include&lt;bits/stdc++.h&gt;using namespace std;#define pa pair &lt; long long , int &gt;priority_queue &lt; pa , vector &lt; pa &gt; , greater &lt; pa &gt; &gt; Q ;inline long long read () &#123; char ch=getchar(); register long long num=0; while(!isdigit(ch)) ch=getchar(); while(isdigit(ch)) num=(num&lt;&lt;3)+(num&lt;&lt;1)+(ch^'0'),ch=getchar(); return num;&#125;int main () &#123; register int n,k; scanf("%d%d",&amp;n,&amp;k); register long long ans=0; for(register int i=1;i&lt;=n;++i) Q.push(make_pair(read(),0)); while((n-1)%(k-1)!=0) ++n,Q.push(make_pair(0,0)); while(Q.size()&gt;=k) &#123; pa u=make_pair(0,0); for(register int i=1;i&lt;=k;++i) &#123; pa v=Q.top(); Q.pop(); u.first+=v.first; u.second=max(u.second,v.second+1); &#125; ans+=u.first; Q.push(u); &#125; printf("%lld\n%d\n",ans,Q.top().second); return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>哈夫曼树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[ZJOI2010]数字计数]]></title>
+    <url>%2F2019%2F08%2F26%2FZJOI2010-%E6%95%B0%E5%AD%97%E8%AE%A1%E6%95%B0%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[[国家集训队]墨墨的等式]]></title>
+    <url>%2F2019%2F08%2F24%2F%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-%E5%A2%A8%E5%A2%A8%E7%9A%84%E7%AD%89%E5%BC%8F%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[[ZJOI2006]皇帝的烦恼]]></title>
     <url>%2F2019%2F07%2F31%2FZJOI2006-%E7%9A%87%E5%B8%9D%E7%9A%84%E7%83%A6%E6%81%BC%2F</url>
-    <content type="text"><![CDATA[今天打摆被抓有点烦 正解是二分+$DP$，但是先想想怎么贪心乱搞 可能相邻两个将军所需徽章数之和的最大值就是答案？？ 不难发现，当$n$为奇数时显然不成立 考虑每一种徽章最多可以给$\lfloor \frac {n} {2} \rfloor$个人 所以$ans$最大不会超过$\lceil \frac{\sum a[i]}{\frac{n}{2}} \rceil$ 最后把上面的两种情况取最大值即可 1234567891011121314151617181920#include&lt;bits/stdc++.h&gt;using namespace std;int ans,sum,a[100001];inline int read () &#123; char ch=getchar(); int num=0; while(!isdigit(ch)) ch=getchar(); while(isdigit(ch)) num=(num&lt;&lt;3)+(num&lt;&lt;1)+(ch^'0'),ch=getchar(); return num;&#125;int main () &#123; register int n=read(); for(register int i=1;i&lt;=n;++i) a[i]=read(),sum+=a[i]; ans=a[1]+a[n]; for(register int i=1;i&lt;n;++i) ans=max(ans,a[i]+a[i+1]); ans=max(ans,(sum+(n&gt;&gt;1)-1)/(n&gt;&gt;1)); printf("%d\n",ans); return 0;&#125;]]></content>
+    <content type="text"><![CDATA[今天打摆被抓有点烦 正解是二分+$DP$，但是先想想怎么贪心乱搞 可能相邻两个将军所需徽章数之和的最大值就是答案？？ 不难发现，当$n$为奇数时显然不成立 考虑每一种徽章最多可以给$\lfloor \frac {n} {2} \rfloor$个人 所以$ans$最大不会超过$\lceil \frac{\sum a[i]}{\lfloor \frac {n} {2} \rfloor} \rceil$ 最后把上面的两种情况取最大值即可 1234567891011121314151617181920#include&lt;bits/stdc++.h&gt;using namespace std;int ans,sum,a[100001];inline int read () &#123; char ch=getchar(); int num=0; while(!isdigit(ch)) ch=getchar(); while(isdigit(ch)) num=(num&lt;&lt;3)+(num&lt;&lt;1)+(ch^'0'),ch=getchar(); return num;&#125;int main () &#123; register int n=read(); for(register int i=1;i&lt;=n;++i) a[i]=read(),sum+=a[i]; ans=a[1]+a[n]; for(register int i=1;i&lt;n;++i) ans=max(ans,a[i]+a[i+1]); ans=max(ans,(sum+(n&gt;&gt;1)-1)/(n&gt;&gt;1)); printf("%d\n",ans); return 0;&#125;]]></content>
       <categories>
         <category>题解</category>
       </categories>
@@ -265,8 +286,8 @@
         <category>题解</category>
       </categories>
       <tags>
-        <tag>KMP</tag>
         <tag>动态规划</tag>
+        <tag>KMP</tag>
       </tags>
   </entry>
   <entry>

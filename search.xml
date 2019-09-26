@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[POI2014]KUR-Couriers]]></title>
+    <url>%2F2019%2F09%2F25%2FPOI2014-KUR-Couriers%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[[GXOI/GZOI2019]与或和]]></title>
+    <url>%2F2019%2F09%2F22%2FGXOI-GZOI2019-%E4%B8%8E%E6%88%96%E5%92%8C%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[[NOI2015]荷马史诗]]></title>
     <url>%2F2019%2F09%2F22%2FNOI2015-%E8%8D%B7%E9%A9%AC%E5%8F%B2%E8%AF%97%2F</url>
     <content type="text"><![CDATA[$K$维哈夫曼树模板题 最底层记得补零 12345678910111213141516171819202122232425#include&lt;bits/stdc++.h&gt;using namespace std;#define pa pair &lt; long long , int &gt;priority_queue &lt; pa , vector &lt; pa &gt; , greater &lt; pa &gt; &gt; Q ;inline long long read () &#123; char ch=getchar(); register long long num=0; while(!isdigit(ch)) ch=getchar(); while(isdigit(ch)) num=(num&lt;&lt;3)+(num&lt;&lt;1)+(ch^'0'),ch=getchar(); return num;&#125;int main () &#123; register int n,k; scanf("%d%d",&amp;n,&amp;k); register long long ans=0; for(register int i=1;i&lt;=n;++i) Q.push(make_pair(read(),0)); while((n-1)%(k-1)!=0) ++n,Q.push(make_pair(0,0)); while(Q.size()&gt;=k) &#123; pa u=make_pair(0,0); for(register int i=1;i&lt;=k;++i) &#123; pa v=Q.top(); Q.pop(); u.first+=v.first; u.second=max(u.second,v.second+1); &#125; ans+=u.first; Q.push(u); &#125; printf("%lld\n%d\n",ans,Q.top().second); return 0;&#125;]]></content>
@@ -286,8 +296,8 @@
         <category>题解</category>
       </categories>
       <tags>
-        <tag>动态规划</tag>
         <tag>KMP</tag>
+        <tag>动态规划</tag>
       </tags>
   </entry>
   <entry>

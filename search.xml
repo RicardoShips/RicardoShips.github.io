@@ -14,7 +14,13 @@
   <entry>
     <title><![CDATA[[GXOI/GZOI2019]与或和]]></title>
     <url>%2F2019%2F09%2F22%2FGXOI-GZOI2019-%E4%B8%8E%E6%88%96%E5%92%8C%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[一日双更休闲至极 考虑对矩阵中的数按二进制位计算贡献 对于$AND$运算，只有全$1$子矩阵有贡献 对于$OR$运算，只有全$0$子矩阵没有贡献 可以用单调栈做到$O(n^2)$计算贡献 1234567891011121314151617181920212223242526272829303132333435363738394041#include&lt;bits/stdc++.h&gt;#define mod 1000000007using namespace std;int a[1001][1001],b[1001][1001],u[1001][1001],high[1001],wide[1001];inline long long clac (int n) &#123; register long long sum=0,top=0,res=0; for(register int i=1;i&lt;=n;++i) &#123; for(register int j=1;j&lt;=n;++j) &#123; u[i][j]=(b[i][j])?u[i-1][j]+1:0; register long long w=1,h=u[i][j]; while(top&amp;&amp;h&lt;=high[top]) sum-=high[top]*wide[top],w+=wide[top--]; high[++top]=h,wide[top]=w; sum+=w*h; res+=sum; &#125; sum=top=0; &#125; return res%mod;&#125;inline int read () &#123; char ch=getchar(); register int num=0; while(!isdigit(ch)) ch=getchar(); while(isdigit(ch)) num=(num&lt;&lt;3)+(num&lt;&lt;1)+(ch^'0'),ch=getchar(); return num;&#125;int main () &#123; register int n=read(),m=(n+1)*n/2; for(register int i=1;i&lt;=n;++i) for(register int j=1;j&lt;=n;++j) a[i][j]=read(); register long long g=0,f=0,num=(long long)m*m%mod; for(register int k=0;k&lt;32;++k) &#123; for(register int i=1;i&lt;=n;++i) for(register int j=1;j&lt;=n;++j) b[i][j]=(a[i][j]&gt;&gt;k)&amp;1; (f+=clac(n)*(1&lt;&lt;k)%mod)%=mod; for(register int i=1;i&lt;=n;++i) for(register int j=1;j&lt;=n;++j) b[i][j]^=1; (g+=(num-clac(n)+mod)*(1&lt;&lt;k)%mod)%=mod; &#125; printf("%lld %lld\n",f,g); return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>单调栈</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[[NOI2015]荷马史诗]]></title>

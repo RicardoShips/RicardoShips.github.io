@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="单调栈,">
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="Blog">
+<meta name="description" content="一日双更休闲至极">
+<meta name="keywords" content="单调栈">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[GXOI&#x2F;GZOI2019]与或和">
 <meta property="og:url" content="http://ricardoships.github.io/2019/09/22/GXOI-GZOI2019-与或和/index.html">
 <meta property="og:site_name" content="Something For Nothing">
-<meta property="og:description" content="Blog">
+<meta property="og:description" content="一日双更休闲至极">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-22T11:35:44.177Z">
+<meta property="og:updated_time" content="2019-10-05T14:02:53.462Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[GXOI&#x2F;GZOI2019]与或和">
-<meta name="twitter:description" content="Blog">
+<meta name="twitter:description" content="一日双更休闲至极">
 
 
 
@@ -334,6 +335,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/题解/" itemprop="url" rel="index">
+                    <span itemprop="name">题解</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -361,7 +384,13 @@
       
 
       
-        
+        <p><del>一日双更休闲至极</del></p>
+<a id="more"></a>
+<p>考虑对矩阵中的数按二进制位计算贡献</p>
+<p>对于$AND$运算，只有全$1$子矩阵有贡献</p>
+<p>对于$OR$运算，只有全$0$子矩阵没有贡献</p>
+<p>可以用单调栈做到$O(n^2)$计算贡献</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mod 1000000007</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> a[<span class="number">1001</span>][<span class="number">1001</span>],b[<span class="number">1001</span>][<span class="number">1001</span>],u[<span class="number">1001</span>][<span class="number">1001</span>],high[<span class="number">1001</span>],wide[<span class="number">1001</span>];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="title">clac</span> <span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">register</span> <span class="keyword">long</span> <span class="keyword">long</span> sum=<span class="number">0</span>,top=<span class="number">0</span>,res=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i) &#123;</span><br><span class="line">	    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;++j) &#123;</span><br><span class="line">	    	u[i][j]=(b[i][j])?u[i<span class="number">-1</span>][j]+<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">	    	<span class="keyword">register</span> <span class="keyword">long</span> <span class="keyword">long</span> w=<span class="number">1</span>,h=u[i][j];</span><br><span class="line">	    	<span class="keyword">while</span>(top&amp;&amp;h&lt;=high[top])</span><br><span class="line">			    sum-=high[top]*wide[top],w+=wide[top--];</span><br><span class="line">			high[++top]=h,wide[top]=w;</span><br><span class="line">			sum+=w*h; res+=sum;</span><br><span class="line">		&#125;</span><br><span class="line">		sum=top=<span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res%mod;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">char</span> ch=getchar(); <span class="keyword">register</span> <span class="keyword">int</span> num=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch)) ch=getchar();</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch)) num=(num&lt;&lt;<span class="number">3</span>)+(num&lt;&lt;<span class="number">1</span>)+(ch^<span class="string">'0'</span>),ch=getchar();</span><br><span class="line">	<span class="keyword">return</span> num;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">register</span> <span class="keyword">int</span> n=read(),m=(n+<span class="number">1</span>)*n/<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">	    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;++j) a[i][j]=read();</span><br><span class="line">	<span class="keyword">register</span> <span class="keyword">long</span> <span class="keyword">long</span> g=<span class="number">0</span>,f=<span class="number">0</span>,num=(<span class="keyword">long</span> <span class="keyword">long</span>)m*m%mod;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> k=<span class="number">0</span>;k&lt;<span class="number">32</span>;++k) &#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">		    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;++j) b[i][j]=(a[i][j]&gt;&gt;k)&amp;<span class="number">1</span>;</span><br><span class="line">		(f+=clac(n)*(<span class="number">1</span>&lt;&lt;k)%mod)%=mod;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">		    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;++j) b[i][j]^=<span class="number">1</span>;</span><br><span class="line">		(g+=(num-clac(n)+mod)*(<span class="number">1</span>&lt;&lt;k)%mod)%=mod;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld %lld\n"</span>,f,g);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -375,6 +404,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/单调栈/" rel="tag"># 单调栈</a>
+          
+        </div>
       
 
       
@@ -489,7 +524,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

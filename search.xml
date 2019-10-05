@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[[POI2014]KUR-Couriers]]></title>
     <url>%2F2019%2F09%2F25%2FPOI2014-KUR-Couriers%2F</url>
-    <content type="text"><![CDATA[主席树都不会写迟早药丸 递归查询是否存在有严格众数的区间 123456789101112131415161718192021222324252627282930313233#include&lt;bits/stdc++.h&gt;using namespace std;const int maxn=500005;int cnt,a[maxn],ls[maxn&lt;&lt;5],rs[maxn&lt;&lt;5],sum[maxn&lt;&lt;5],root[maxn];inline void Modify (int &amp;now,int last,int l,int r,int pos) &#123; now=++cnt; sum[now]=sum[last]+1; if(l==r) return ; register int mid=(l+r)&gt;&gt;1; if(pos&lt;=mid) rs[now]=rs[last],Modify(ls[now],ls[last],l,mid,pos); else ls[now]=ls[last],Modify(rs[now],rs[last],mid+1,r,pos);&#125;inline int Query (int u,int v,int l,int r,int num) &#123; if(l==r) return (l+r)&gt;&gt;1; register int mid=(l+r)&gt;&gt;1; register int xl=sum[ls[v]]-sum[ls[u]],xr=sum[rs[v]]-sum[rs[u]]; if(xl&lt;=num/2&amp;&amp;xr&lt;=num/2) return 0; else if(xl&gt;num/2) return Query(ls[u],ls[v],l,mid,num); else if(xr&gt;num/2) return Query(rs[u],rs[v],mid+1,r,num);&#125;inline int read () &#123; char ch=getchar(); register int num=0; while(!isdigit(ch)) ch=getchar(); while(isdigit(ch)) num=(num&lt;&lt;3)+(num&lt;&lt;1)+(ch^'0'),ch=getchar(); return num;&#125;int main () &#123; register int n=read(),Q=read(); for(register int i=1;i&lt;=n;++i) a[i]=read(); for(register int i=1;i&lt;=n;++i) Modify(root[i],root[i-1],1,n,a[i]); while(Q--) &#123; register int l=read(),r=read(); printf("%d\n",Query(root[l-1],root[r],1,n,r-l+1)); &#125; return 0;&#125;]]></content>
+    <content type="text"><![CDATA[主席树都不会写迟早药丸 递归查询是否存在有严格众数的区间即可 123456789101112131415161718192021222324252627282930313233#include&lt;bits/stdc++.h&gt;using namespace std;const int maxn=500005;int cnt,a[maxn],ls[maxn&lt;&lt;5],rs[maxn&lt;&lt;5],sum[maxn&lt;&lt;5],root[maxn];inline void Modify (int &amp;now,int last,int l,int r,int pos) &#123; now=++cnt; sum[now]=sum[last]+1; if(l==r) return ; register int mid=(l+r)&gt;&gt;1; if(pos&lt;=mid) rs[now]=rs[last],Modify(ls[now],ls[last],l,mid,pos); else ls[now]=ls[last],Modify(rs[now],rs[last],mid+1,r,pos);&#125;inline int Query (int u,int v,int l,int r,int num) &#123; if(l==r) return (l+r)&gt;&gt;1; register int mid=(l+r)&gt;&gt;1; register int xl=sum[ls[v]]-sum[ls[u]],xr=sum[rs[v]]-sum[rs[u]]; if(xl&lt;=num/2&amp;&amp;xr&lt;=num/2) return 0; else if(xl&gt;num/2) return Query(ls[u],ls[v],l,mid,num); else if(xr&gt;num/2) return Query(rs[u],rs[v],mid+1,r,num);&#125;inline int read () &#123; char ch=getchar(); register int num=0; while(!isdigit(ch)) ch=getchar(); while(isdigit(ch)) num=(num&lt;&lt;3)+(num&lt;&lt;1)+(ch^'0'),ch=getchar(); return num;&#125;int main () &#123; register int n=read(),Q=read(); for(register int i=1;i&lt;=n;++i) a[i]=read(); for(register int i=1;i&lt;=n;++i) Modify(root[i],root[i-1],1,n,a[i]); while(Q--) &#123; register int l=read(),r=read(); printf("%d\n",Query(root[l-1],root[r],1,n,r-l+1)); &#125; return 0;&#125;]]></content>
       <categories>
         <category>题解</category>
       </categories>
@@ -303,8 +303,8 @@
         <category>题解</category>
       </categories>
       <tags>
-        <tag>动态规划</tag>
         <tag>KMP</tag>
+        <tag>动态规划</tag>
       </tags>
   </entry>
   <entry>

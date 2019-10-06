@@ -3,18 +3,13 @@
   <entry>
     <title><![CDATA[[HAOI2015]小Z的房间]]></title>
     <url>%2F2019%2F10%2F06%2FHAOI2015-%E5%B0%8FZ%E7%9A%84%E6%88%BF%E9%97%B4%2F</url>
-    <content type="text"><![CDATA[。。。最近多校联考天天爆零搞得心态有点炸 某天联考有道矩阵树定理，然而我不会 所以就被一堆神仙爆踩了 后来觉得还是得补一补矩阵树定理，也算是涨个姿势 但是行列式真的好难啊 这题就是矩阵树定理模板题 首先把原图转换成基尔霍夫矩阵 对于每个点特判它上方的点和左边的点 如果是房间就可以连，如果是柱子就不能连 因为模数不是质数，所以高斯消元要用辗转相除法 12345678910111213141516171819202122232425262728293031323334353637383940414243#include&lt;bits/stdc++.h&gt;#define mod 1000000000using namespace std;char s[11][11];int a[101][101],id[101][101];int main () &#123; register int m,n,num=0; scanf("%d%d",&amp;n,&amp;m); for(register int i=1;i&lt;=n;++i) scanf("%s",s[i]+1); for(register int i=1;i&lt;=n;++i) for(register int j=1;j&lt;=m;++j) if(s[i][j]=='.') id[i][j]=++num; for(register int i=1;i&lt;=n;++i) for(register int j=1;j&lt;=m;++j) if(s[i][j]=='.') &#123; if(s[i-1][j]=='.') &#123; ++a[id[i-1][j]][id[i-1][j]]; ++a[id[i][j]][id[i][j]]; --a[id[i-1][j]][id[i][j]]; --a[id[i][j]][id[i-1][j]]; &#125; if(s[i][j-1]=='.') &#123; ++a[id[i][j-1]][id[i][j-1]]; ++a[id[i][j]][id[i][j]]; --a[id[i][j-1]][id[i][j]]; --a[id[i][j]][id[i][j-1]]; &#125; &#125; register long long ans=1; for(register int i=1;i&lt;num;++i) &#123; for(register int j=i+1;j&lt;num;++j) while(a[j][i]) &#123; register int x=a[i][i]/a[j][i]; for(register int k=i;k&lt;num;++k) &#123; register long long tmp=(long long)a[j][k]*x%mod; a[i][k]=((long long)a[i][k]-tmp+mod)%mod; &#125; swap(a[i],a[j]),ans=-ans; &#125; (ans*=a[i][i])%=mod,(ans+=mod)%=mod; &#125; printf("%lld\n",ans); return 0;&#125;]]></content>
+    <content type="text"><![CDATA[最近多校联考天天爆零搞得心态有点炸 某天联考有道矩阵树定理，然而我不会 所以就被一堆神仙爆踩了 后来觉得还是得补一补矩阵树定理，也算是涨个姿势 但是行列式真的好难啊 这题就是矩阵树定理模板题 首先把原图转换成基尔霍夫矩阵 对于每个点特判它上方的点和左边的点 如果是房间就可以连，如果是柱子就不能连 因为模数不是质数，所以高斯消元要用辗转相除法 12345678910111213141516171819202122232425262728293031323334353637383940414243#include&lt;bits/stdc++.h&gt;#define mod 1000000000using namespace std;char s[11][11];int a[101][101],id[101][101];int main () &#123; register int m,n,num=0; scanf("%d%d",&amp;n,&amp;m); for(register int i=1;i&lt;=n;++i) scanf("%s",s[i]+1); for(register int i=1;i&lt;=n;++i) for(register int j=1;j&lt;=m;++j) if(s[i][j]=='.') id[i][j]=++num; for(register int i=1;i&lt;=n;++i) for(register int j=1;j&lt;=m;++j) if(s[i][j]=='.') &#123; if(s[i-1][j]=='.') &#123; ++a[id[i-1][j]][id[i-1][j]]; ++a[id[i][j]][id[i][j]]; --a[id[i-1][j]][id[i][j]]; --a[id[i][j]][id[i-1][j]]; &#125; if(s[i][j-1]=='.') &#123; ++a[id[i][j-1]][id[i][j-1]]; ++a[id[i][j]][id[i][j]]; --a[id[i][j-1]][id[i][j]]; --a[id[i][j]][id[i][j-1]]; &#125; &#125; register long long ans=1; for(register int i=1;i&lt;num;++i) &#123; for(register int j=i+1;j&lt;num;++j) while(a[j][i]) &#123; register int x=a[i][i]/a[j][i]; for(register int k=i;k&lt;num;++k) &#123; register long long tmp=(long long)a[j][k]*x%mod; a[i][k]=((long long)a[i][k]-tmp+mod)%mod; &#125; swap(a[i],a[j]),ans=-ans; &#125; (ans*=a[i][i])%=mod,(ans+=mod)%=mod; &#125; printf("%lld\n",ans); return 0;&#125;]]></content>
       <categories>
         <category>题解</category>
       </categories>
       <tags>
         <tag>Matrix-Tree</tag>
       </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[[HEOI2015]小Z的房间]]></title>
-    <url>%2F2019%2F10%2F06%2FHEOI2015-%E5%B0%8FZ%E7%9A%84%E6%88%BF%E9%97%B4%2F</url>
-    <content type="text"></content>
   </entry>
   <entry>
     <title><![CDATA[[NOI2013]快餐店]]></title>

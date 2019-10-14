@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Codeforces Round #592 (Div.2)]]></title>
+    <url>%2F2019%2F10%2F14%2FCodeforces-Round-592-Div-2%2F</url>
+    <content type="text"><![CDATA[纪念一下人生首次$CF$翻车（雾 $A$ 判断是否$\lceil \frac{a}{c}\rceil+\lceil\frac{b}{d}\rceil\leq k$即可 12345678910111213#include&lt;bits/stdc++.h&gt;using namespace std;int main () &#123; register int T; scanf("%d",&amp;T); while(T--) &#123; register int a,b,c,d,f,g,k; scanf("%d%d%d%d%d",&amp;a,&amp;b,&amp;c,&amp;d,&amp;k); f=(a-1)/c+1,g=(b-1)/d+1; if(f+g&gt;k) puts("-1"); else printf("%d %d\n",k-g,g); &#125; return 0;&#125; $B$ 如果没有楼梯使得上下两层房间连通，显然答案为$n$ 如果有楼梯使得上下两层房间连通，可以考虑贪心 显然从两边往中间寻找楼梯，答案一定最优（雾 12345678910111213141516#include&lt;bits/stdc++.h&gt;using namespace std;char s[1001];int main () &#123; register int T; scanf("%d",&amp;T); while(T--) &#123; register int n,flag=false; scanf("%d%s",&amp;n,s+1); for(register int i=0;i&lt;=(n-1)/2;++i) if(s[i+1]=='1'||s[n-i]=='1') &#123; printf("%d\n",(n-i)&lt;&lt;1); flag=true; break ; &#125; if(!flag) printf("%d\n",n); &#125; return 0;&#125; $C$ 先吐槽一句这道题，真$TM$拖节奏+崩心态 一眼扩展欧几里得解同余方程，但是早就忘得差不多了 直接拿了之前的板子，大力调一波交上去就$WA$ 发现可能会爆$long$ $long$，改成__$int128$怒提一发$CE$ 最后改成暴力枚举就过了？？？不过最后评测的时候还是$TLE$ 这道题前前后后总共花了大概$1h$，最后还没做出来 回过头来看看这道题，发现还是比较妙的 先扔一个结论，如果方程有解，那么在$y \leq w$范围内一定有解 考虑证明，假设存在$y’=aw+b(a \ge 1,0 \leq b &lt; w)$使得$xw+y’d=p$ 即$xw+(aw+b)d=xw+awd+bd=(x+ad)w+bd$ 观察这个式子左右两项，左边的系数和为$x+aw+b$，右边的系数为$x+ad+b$ 因为$w&gt;d$，所以在$y \leq w$范围内$x+y$一定最小，得证 在$[0,w)$范围内枚举$y$，计算是否存在合法的$x$即可 1234567891011121314#include&lt;bits/stdc++.h&gt;using namespace std;int main () &#123; register long long n,p,w,d,z=0; scanf("%lld%lld%lld%lld",&amp;n,&amp;p,&amp;w,&amp;d); for(register long long i=0;i&lt;w;++i) if((p-i*d)%w==0) &#123; register long long x=(p-i*d)/w; if(x&gt;=0&amp;&amp;x+i&lt;=n) printf("%lld %lld %lld\n",x,i,n-x-i); else puts("-1"); z=1; break ; &#125; if(!z) puts("-1"); return 0;&#125; $D$ $E$ $F$ $G$]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>贪心</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[HAOI2015]小Z的房间]]></title>
     <url>%2F2019%2F10%2F06%2FHAOI2015-%E5%B0%8FZ%E7%9A%84%E6%88%BF%E9%97%B4%2F</url>
     <content type="text"><![CDATA[最近多校联考天天爆零搞得心态有点炸 某天联考有道矩阵树定理，然而我不会 所以就被一堆神仙爆踩了 后来觉得还是得补一补矩阵树定理，也算是涨个姿势 但是行列式真的好难啊 这题就是矩阵树定理模板题 首先把原图转换成基尔霍夫矩阵 对于每个点特判它上方的点和左边的点 如果是房间就可以连，如果是柱子就不能连 因为模数不是质数，所以高斯消元要用辗转相除法 12345678910111213141516171819202122232425262728293031323334353637383940414243#include&lt;bits/stdc++.h&gt;#define mod 1000000000using namespace std;char s[11][11];int a[101][101],id[101][101];int main () &#123; register int m,n,num=0; scanf("%d%d",&amp;n,&amp;m); for(register int i=1;i&lt;=n;++i) scanf("%s",s[i]+1); for(register int i=1;i&lt;=n;++i) for(register int j=1;j&lt;=m;++j) if(s[i][j]=='.') id[i][j]=++num; for(register int i=1;i&lt;=n;++i) for(register int j=1;j&lt;=m;++j) if(s[i][j]=='.') &#123; if(s[i-1][j]=='.') &#123; ++a[id[i-1][j]][id[i-1][j]]; ++a[id[i][j]][id[i][j]]; --a[id[i-1][j]][id[i][j]]; --a[id[i][j]][id[i-1][j]]; &#125; if(s[i][j-1]=='.') &#123; ++a[id[i][j-1]][id[i][j-1]]; ++a[id[i][j]][id[i][j]]; --a[id[i][j-1]][id[i][j]]; --a[id[i][j]][id[i][j-1]]; &#125; &#125; register long long ans=1; for(register int i=1;i&lt;num;++i) &#123; for(register int j=i+1;j&lt;num;++j) while(a[j][i]) &#123; register int x=a[i][i]/a[j][i]; for(register int k=i;k&lt;num;++k) &#123; register long long tmp=(long long)a[j][k]*x%mod; a[i][k]=((long long)a[i][k]-tmp+mod)%mod; &#125; swap(a[i],a[j]),ans=-ans; &#125; (ans*=a[i][i])%=mod,(ans+=mod)%=mod; &#125; printf("%lld\n",ans); return 0;&#125;]]></content>
@@ -73,8 +84,8 @@
         <category>题解</category>
       </categories>
       <tags>
-        <tag>动态规划</tag>
         <tag>贪心</tag>
+        <tag>动态规划</tag>
         <tag>二分答案</tag>
       </tags>
   </entry>

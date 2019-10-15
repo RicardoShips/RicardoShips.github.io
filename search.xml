@@ -3,14 +3,16 @@
   <entry>
     <title><![CDATA[Codeforces Round #592 (Div.2)]]></title>
     <url>%2F2019%2F10%2F14%2FCodeforces-Round-592-Div-2%2F</url>
-    <content type="text"><![CDATA[纪念一下人生首次$CF$翻车（雾 $A$ 判断是否$\lceil \frac{a}{c}\rceil+\lceil\frac{b}{d}\rceil\leq k$即可 12345678910111213#include&lt;bits/stdc++.h&gt;using namespace std;int main () &#123; register int T; scanf("%d",&amp;T); while(T--) &#123; register int a,b,c,d,f,g,k; scanf("%d%d%d%d%d",&amp;a,&amp;b,&amp;c,&amp;d,&amp;k); f=(a-1)/c+1,g=(b-1)/d+1; if(f+g&gt;k) puts("-1"); else printf("%d %d\n",k-g,g); &#125; return 0;&#125; $B$ 如果没有楼梯使得上下两层房间连通，显然答案为$n$ 如果有楼梯使得上下两层房间连通，可以考虑贪心 显然从两边往中间寻找楼梯，答案一定最优（雾 12345678910111213141516#include&lt;bits/stdc++.h&gt;using namespace std;char s[1001];int main () &#123; register int T; scanf("%d",&amp;T); while(T--) &#123; register int n,flag=false; scanf("%d%s",&amp;n,s+1); for(register int i=0;i&lt;=(n-1)/2;++i) if(s[i+1]=='1'||s[n-i]=='1') &#123; printf("%d\n",(n-i)&lt;&lt;1); flag=true; break ; &#125; if(!flag) printf("%d\n",n); &#125; return 0;&#125; $C$ 先吐槽一句这道题，真$TM$拖节奏+崩心态 一眼扩展欧几里得解同余方程，但是早就忘得差不多了 直接拿了之前的板子，大力调一波交上去就$WA$ 发现可能会爆$long$ $long$，改成__$int128$怒提一发$CE$ 最后改成暴力枚举就过了？？？不过最后评测的时候还是$TLE$ 这道题前前后后总共花了大概$1h$，最后还没做出来 回过头来看看这道题，发现还是比较妙的 先扔一个结论，如果方程有解，那么在$y \leq w$范围内一定有解 考虑证明，假设存在$y’=aw+b(a \ge 1,0 \leq b &lt; w)$使得$xw+y’d=p$ 即$xw+(aw+b)d=xw+awd+bd=(x+ad)w+bd$ 观察这个式子左右两项，左边的系数和为$x+aw+b$，右边的系数为$x+ad+b$ 因为$w&gt;d$，所以在$y \leq w$范围内$x+y$一定最小，得证 在$[0,w)$范围内枚举$y$，计算是否存在合法的$x$即可 1234567891011121314#include&lt;bits/stdc++.h&gt;using namespace std;int main () &#123; register long long n,p,w,d,z=0; scanf("%lld%lld%lld%lld",&amp;n,&amp;p,&amp;w,&amp;d); for(register long long i=0;i&lt;w;++i) if((p-i*d)%w==0) &#123; register long long x=(p-i*d)/w; if(x&gt;=0&amp;&amp;x+i&lt;=n) printf("%lld %lld %lld\n",x,i,n-x-i); else puts("-1"); z=1; break ; &#125; if(!z) puts("-1"); return 0;&#125; $D$ 不难发现合法的情况一定是一条链 枚举链首前两个节点的颜色计算即可 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include&lt;bits/stdc++.h&gt;using namespace std;const int maxn=200001;long long ans,tmp;int n,num,fir,seco,third;int c[maxn],in[maxn],to[maxn],re[maxn];int from[maxn],head[maxn],C[maxn][4];inline void add (int u,int v) &#123; from[++num]=head[u]; to[num]=v; head[u]=num;&#125;inline void dfs (int now,int fa,int pre) &#123; c[now]=6-c[fa]-c[pre],tmp+=C[now][c[now]]; if(ans&gt;tmp&amp;&amp;in[now]==1) &#123; for(register int i=1;i&lt;=n;++i) re[i]=c[i]; ans=tmp; return ; &#125; for(register int i=head[now];i;i=from[i]) if(to[i]!=fa) dfs(to[i],now,fa);&#125;int main () &#123; scanf("%d",&amp;n); ans=1e18; for(register int i=1;i&lt;=n;++i) scanf("%d",&amp;C[i][1]); for(register int i=1;i&lt;=n;++i) scanf("%d",&amp;C[i][2]); for(register int i=1;i&lt;=n;++i) scanf("%d",&amp;C[i][3]); for(register int i=1;i&lt;n;++i) &#123; register int u,v; scanf("%d%d",&amp;u,&amp;v); add(u,v),add(v,u); ++in[u],++in[v]; &#125; for(register int i=1;i&lt;=n;++i) if(in[i]&gt;=3) &#123; puts("-1"); return 0; &#125; for(register int i=1;i&lt;=n;++i) if(in[i]==1) &#123; fir=i; break ; &#125; seco=to[head[fir]]; for(register int i=head[seco];i;i=from[i]) if(to[i]!=fir) third=to[i]; c[fir]=1,c[seco]=2,tmp=C[fir][c[fir]]+C[seco][c[seco]],dfs(third,seco,fir); c[fir]=1,c[seco]=3,tmp=C[fir][c[fir]]+C[seco][c[seco]],dfs(third,seco,fir); c[fir]=2,c[seco]=1,tmp=C[fir][c[fir]]+C[seco][c[seco]],dfs(third,seco,fir); c[fir]=2,c[seco]=3,tmp=C[fir][c[fir]]+C[seco][c[seco]],dfs(third,seco,fir); c[fir]=3,c[seco]=1,tmp=C[fir][c[fir]]+C[seco][c[seco]],dfs(third,seco,fir); c[fir]=3,c[seco]=2,tmp=C[fir][c[fir]]+C[seco][c[seco]],dfs(third,seco,fir); printf("%lld\n",ans); for(register int i=1;i&lt;=n;++i) printf("%d ",re[i]); printf("\n"); return 0;&#125; $E$ 将$a$数组排序，依次更新最大值/最小值 每次更新出现次数更少的使得代价更小 最后记得特判不能完全更新的情况 123456789101112131415161718192021222324252627282930#include&lt;bits/stdc++.h&gt;using namespace std;const int maxn=200001;int a[maxn],b[maxn],c[maxn];int main () &#123; register int n; register long long K; scanf("%d%lld",&amp;n,&amp;K); for(register int i=1;i&lt;=n;++i) scanf("%d",&amp;a[i]); sort(a+1,a+n+1); register int tot=0; for(register int i=1;i&lt;=n;++i) &#123; if(a[i-1]==a[i]) ++c[tot]; else b[++tot]=a[i],++c[tot]; &#125; register int l=1,r=tot,L=c[l],R=c[r]; while(l&lt;r) &#123; if(L&lt;R) &#123; register int tmp=b[l+1]-b[l]; if((long long)L*tmp&lt;=K) K-=(long long)L*tmp,L+=c[++l]; else &#123; b[l]+=K/L; break ; &#125; &#125; else &#123; register int tmp=b[r]-b[r-1]; if((long long)R*tmp&lt;=K) K-=(long long)R*tmp,R+=c[--r]; else &#123; b[r]-=K/R; break ; &#125; &#125; &#125; printf("%d\n",b[r]-b[l]); return 0;&#125; $F$ 咕咕咕 $G$ 咕咕咕]]></content>
+    <content type="text"><![CDATA[纪念一下人生首次$CF$翻车（雾 $A$ 判断是否$\lceil \frac{a}{c}\rceil+\lceil\frac{b}{d}\rceil\leq k$即可 12345678910111213#include&lt;bits/stdc++.h&gt;using namespace std;int main () &#123; register int T; scanf("%d",&amp;T); while(T--) &#123; register int a,b,c,d,f,g,k; scanf("%d%d%d%d%d",&amp;a,&amp;b,&amp;c,&amp;d,&amp;k); f=(a-1)/c+1,g=(b-1)/d+1; if(f+g&gt;k) puts("-1"); else printf("%d %d\n",k-g,g); &#125; return 0;&#125; $B$ 如果没有楼梯使得上下两层房间连通，显然答案为$n$ 如果有楼梯使得上下两层房间连通，可以考虑贪心 显然从两边往中间寻找楼梯，答案一定最优（雾 12345678910111213141516#include&lt;bits/stdc++.h&gt;using namespace std;char s[1001];int main () &#123; register int T; scanf("%d",&amp;T); while(T--) &#123; register int n,flag=false; scanf("%d%s",&amp;n,s+1); for(register int i=0;i&lt;=(n-1)/2;++i) if(s[i+1]=='1'||s[n-i]=='1') &#123; printf("%d\n",(n-i)&lt;&lt;1); flag=true; break ; &#125; if(!flag) printf("%d\n",n); &#125; return 0;&#125; $C$ 先吐槽一句这道题，真$TM$拖节奏+崩心态 一眼扩展欧几里得解同余方程，但是早就忘得差不多了 直接拿了之前的板子，大力调一波交上去就$WA$ 发现可能会爆$long$ $long$，改成__$int128$怒提一发$CE$ 最后改成暴力枚举就过了？？？不过最后评测的时候还是$TLE$ 这道题前前后后总共花了大概$1h$，最后还没做出来 回过头来看看这道题，发现还是比较妙的 先扔一个结论，如果方程有解，那么在$y \leq w$范围内一定有解 考虑证明，假设存在$y’=aw+b(a \ge 1,0 \leq b &lt; w)$使得$xw+y’d=p$ 即$xw+(aw+b)d=xw+awd+bd=(x+ad)w+bd$ 观察这个式子左右两项，左边的系数和为$x+aw+b$，右边的系数为$x+ad+b$ 因为$w&gt;d$，所以在$y \leq w$范围内$x+y$一定最小，得证 在$[0,w)$范围内枚举$y$，计算是否存在合法的$x$即可 1234567891011121314#include&lt;bits/stdc++.h&gt;using namespace std;int main () &#123; register long long n,p,w,d,z=0; scanf("%lld%lld%lld%lld",&amp;n,&amp;p,&amp;w,&amp;d); for(register long long i=0;i&lt;w;++i) if((p-i*d)%w==0) &#123; register long long x=(p-i*d)/w; if(x&gt;=0&amp;&amp;x+i&lt;=n) printf("%lld %lld %lld\n",x,i,n-x-i); else puts("-1"); z=1; break ; &#125; if(!z) puts("-1"); return 0;&#125; $D$ 不难发现合法的情况一定是一条链 枚举链首前两个节点的颜色计算即可 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include&lt;bits/stdc++.h&gt;using namespace std;const int maxn=200001;long long ans,tmp;int n,num,fir,seco,third;int c[maxn],in[maxn],to[maxn],re[maxn];int from[maxn],head[maxn],C[maxn][4];inline void add (int u,int v) &#123; from[++num]=head[u]; to[num]=v; head[u]=num;&#125;inline void dfs (int now,int fa,int pre) &#123; c[now]=6-c[fa]-c[pre],tmp+=C[now][c[now]]; if(ans&gt;tmp&amp;&amp;in[now]==1) &#123; for(register int i=1;i&lt;=n;++i) re[i]=c[i]; ans=tmp; return ; &#125; for(register int i=head[now];i;i=from[i]) if(to[i]!=fa) dfs(to[i],now,fa);&#125;int main () &#123; scanf("%d",&amp;n); ans=1e18; for(register int i=1;i&lt;=n;++i) scanf("%d",&amp;C[i][1]); for(register int i=1;i&lt;=n;++i) scanf("%d",&amp;C[i][2]); for(register int i=1;i&lt;=n;++i) scanf("%d",&amp;C[i][3]); for(register int i=1;i&lt;n;++i) &#123; register int u,v; scanf("%d%d",&amp;u,&amp;v); add(u,v),add(v,u); ++in[u],++in[v]; &#125; for(register int i=1;i&lt;=n;++i) if(in[i]&gt;=3) &#123; puts("-1"); return 0; &#125; for(register int i=1;i&lt;=n;++i) if(in[i]==1) &#123; fir=i; break ; &#125; seco=to[head[fir]]; for(register int i=head[seco];i;i=from[i]) if(to[i]!=fir) third=to[i]; c[fir]=1,c[seco]=2,tmp=C[fir][c[fir]]+C[seco][c[seco]],dfs(third,seco,fir); c[fir]=1,c[seco]=3,tmp=C[fir][c[fir]]+C[seco][c[seco]],dfs(third,seco,fir); c[fir]=2,c[seco]=1,tmp=C[fir][c[fir]]+C[seco][c[seco]],dfs(third,seco,fir); c[fir]=2,c[seco]=3,tmp=C[fir][c[fir]]+C[seco][c[seco]],dfs(third,seco,fir); c[fir]=3,c[seco]=1,tmp=C[fir][c[fir]]+C[seco][c[seco]],dfs(third,seco,fir); c[fir]=3,c[seco]=2,tmp=C[fir][c[fir]]+C[seco][c[seco]],dfs(third,seco,fir); printf("%lld\n",ans); for(register int i=1;i&lt;=n;++i) printf("%d ",re[i]); printf("\n"); return 0;&#125; $E$ 将$a$数组排序，依次更新最大值/最小值 每次更新出现次数更少的使得代价更小 最后记得特判不能完全更新的情况 123456789101112131415161718192021222324252627282930#include&lt;bits/stdc++.h&gt;using namespace std;const int maxn=200001;int a[maxn],b[maxn],c[maxn];int main () &#123; register int n; register long long K; scanf("%d%lld",&amp;n,&amp;K); for(register int i=1;i&lt;=n;++i) scanf("%d",&amp;a[i]); sort(a+1,a+n+1); register int tot=0; for(register int i=1;i&lt;=n;++i) &#123; if(a[i-1]==a[i]) ++c[tot]; else b[++tot]=a[i],++c[tot]; &#125; register int l=1,r=tot,L=c[l],R=c[r]; while(l&lt;r) &#123; if(L&lt;R) &#123; register int tmp=b[l+1]-b[l]; if((long long)L*tmp&lt;=K) K-=(long long)L*tmp,L+=c[++l]; else &#123; b[l]+=K/L; break ; &#125; &#125; else &#123; register int tmp=b[r]-b[r-1]; if((long long)R*tmp&lt;=K) K-=(long long)R*tmp,R+=c[--r]; else &#123; b[r]-=K/R; break ; &#125; &#125; &#125; printf("%d\n",b[r]-b[l]); return 0;&#125; $F$ 不难发现一些性质，对于每个点来说 如果它第一次不需要改变，那么它以后都不需要改变 如果它第$x(x \ge 2)$次不需要改变，那么它相邻的两个点第$x+1$次不需要改变 从第一次不需要改变的点开始递推，注意特判一些变化的情况即可 123456789101112131415161718192021#include&lt;bits/stdc++.h&gt;using namespace std;char s[200001];int vis[200001];queue &lt; int &gt; Q ;int main () &#123; register int k,n; scanf("%d%d%s",&amp;n,&amp;k,s); memset(vis,-1,sizeof(vis)); for(register int i=0;i&lt;n;++i) if(s[i]==s[(i+n-1)%n]||s[i]==s[(i+1)%n]) vis[i]=0,Q.push(i); while(!Q.empty()) &#123; register int x=Q.front(); Q.pop(); if(vis[(x+n-1)%n]==-1) vis[(x+n-1)%n]=vis[x]+1,Q.push((x+n-1)%n); if(vis[(x+1)%n]==-1) vis[(x+1)%n]=vis[x]+1,Q.push((x+1)%n); &#125; for(register int i=0;i&lt;n;++i) if(vis[i]==-1||vis[i]&gt;k) (k&amp;1)?putchar('B'+'W'-s[i]):putchar(s[i]); else (vis[i]&amp;1)?putchar('B'+'W'-s[i]):putchar(s[i]); printf("\n"); return 0;&#125; $G$ 咕咕咕]]></content>
       <categories>
         <category>题解</category>
       </categories>
       <tags>
         <tag>数学</tag>
         <tag>贪心</tag>
+        <tag>图论</tag>
         <tag>模拟</tag>
+        <tag>其他</tag>
       </tags>
   </entry>
   <entry>
@@ -32,6 +34,7 @@
         <category>题解</category>
       </categories>
       <tags>
+        <tag>图论</tag>
         <tag>基环树</tag>
       </tags>
   </entry>
@@ -60,7 +63,7 @@
   <entry>
     <title><![CDATA[[NOI2015]荷马史诗]]></title>
     <url>%2F2019%2F09%2F22%2FNOI2015-%E8%8D%B7%E9%A9%AC%E5%8F%B2%E8%AF%97%2F</url>
-    <content type="text"><![CDATA[$K$维哈夫曼树模板题 最底层记得补零 12345678910111213141516171819202122232425#include&lt;bits/stdc++.h&gt;using namespace std;#define pa pair &lt; long long , int &gt;priority_queue &lt; pa , vector &lt; pa &gt; , greater &lt; pa &gt; &gt; Q ;inline long long read () &#123; char ch=getchar(); register long long num=0; while(!isdigit(ch)) ch=getchar(); while(isdigit(ch)) num=(num&lt;&lt;3)+(num&lt;&lt;1)+(ch^'0'),ch=getchar(); return num;&#125;int main () &#123; register int n,k; scanf("%d%d",&amp;n,&amp;k); register long long ans=0; for(register int i=1;i&lt;=n;++i) Q.push(make_pair(read(),0)); while((n-1)%(k-1)!=0) ++n,Q.push(make_pair(0,0)); while(Q.size()&gt;=k) &#123; pa u=make_pair(0,0); for(register int i=1;i&lt;=k;++i) &#123; pa v=Q.top(); Q.pop(); u.first+=v.first; u.second=max(u.second,v.second+1); &#125; ans+=u.first; Q.push(u); &#125; printf("%lld\n%d\n",ans,Q.top().second); return 0;&#125;]]></content>
+    <content type="text"><![CDATA[$K$维哈夫曼树模板题 从小往大贪心即可 最底层记得补零 12345678910111213141516171819202122232425#include&lt;bits/stdc++.h&gt;using namespace std;#define pa pair &lt; long long , int &gt;priority_queue &lt; pa , vector &lt; pa &gt; , greater &lt; pa &gt; &gt; Q ;inline long long read () &#123; char ch=getchar(); register long long num=0; while(!isdigit(ch)) ch=getchar(); while(isdigit(ch)) num=(num&lt;&lt;3)+(num&lt;&lt;1)+(ch^'0'),ch=getchar(); return num;&#125;int main () &#123; register int n,k; scanf("%d%d",&amp;n,&amp;k); register long long ans=0; for(register int i=1;i&lt;=n;++i) Q.push(make_pair(read(),0)); while((n-1)%(k-1)!=0) ++n,Q.push(make_pair(0,0)); while(Q.size()&gt;=k) &#123; pa u=make_pair(0,0); for(register int i=1;i&lt;=k;++i) &#123; pa v=Q.top(); Q.pop(); u.first+=v.first; u.second=max(u.second,v.second+1); &#125; ans+=u.first; Q.push(u); &#125; printf("%lld\n%d\n",ans,Q.top().second); return 0;&#125;]]></content>
       <categories>
         <category>题解</category>
       </categories>
@@ -101,6 +104,7 @@
       <tags>
         <tag>动态规划</tag>
         <tag>LCA</tag>
+        <tag>树形DP</tag>
       </tags>
   </entry>
   <entry>
@@ -159,6 +163,7 @@
       </categories>
       <tags>
         <tag>贪心</tag>
+        <tag>图论</tag>
       </tags>
   </entry>
   <entry>
@@ -181,6 +186,7 @@
       </categories>
       <tags>
         <tag>差分</tag>
+        <tag>LCA</tag>
         <tag>线段树</tag>
         <tag>树链剖分</tag>
       </tags>
@@ -213,11 +219,6 @@
     <content type="text"></content>
   </entry>
   <entry>
-    <title><![CDATA[[国家集训队]最长双回文串]]></title>
-    <url>%2F2019%2F04%2F05%2F%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-%E6%9C%80%E9%95%BF%E5%8F%8C%E5%9B%9E%E6%96%87%E4%B8%B2%2F</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
     <title><![CDATA[[ZJOI2008]树的统计]]></title>
     <url>%2F2019%2F04%2F05%2FZJOI2008-%E6%A0%91%E7%9A%84%E7%BB%9F%E8%AE%A1%2F</url>
     <content type="text"></content>
@@ -243,16 +244,6 @@
     <content type="text"></content>
   </entry>
   <entry>
-    <title><![CDATA[[AtCoder2557]Ball Coloring]]></title>
-    <url>%2F2019%2F04%2F05%2FAtCoder2557-Ball-Coloring%2F</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
-    <title><![CDATA[[AtCoder2567]RGB Sequence]]></title>
-    <url>%2F2019%2F04%2F05%2FAtCoder2567-RGB-Sequence%2F</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
     <title><![CDATA[[HNOI2002]营业额统计]]></title>
     <url>%2F2019%2F04%2F05%2FHNOI2002-%E8%90%A5%E4%B8%9A%E9%A2%9D%E7%BB%9F%E8%AE%A1%2F</url>
     <content type="text"></content>
@@ -268,11 +259,6 @@
     <content type="text"></content>
   </entry>
   <entry>
-    <title><![CDATA[[Luogu1361]小M的作物]]></title>
-    <url>%2F2019%2F04%2F05%2FLuogu1361-%E5%B0%8FM%E7%9A%84%E4%BD%9C%E7%89%A9%2F</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
     <title><![CDATA[[ZJOI2012]灾难]]></title>
     <url>%2F2019%2F04%2F05%2FZJOI2012-%E7%81%BE%E9%9A%BE%2F</url>
     <content type="text"><![CDATA[$ZJOI$里面的小清新思维题，思路参考了一些大神的博客 首先每个节点死亡的条件就是指向它的所有食物都已经死亡 那么我们可以反向建图，每个点指向它的食物 既然保证这个图没有环，那么我们显然可以拓扑排序 然后我们继续思考，不难发现每个节点死亡的条件等价于它所有食物的$LCA$死亡 因为它所有食物的$LCA$已经死亡，所以它的所有食物也都会死亡 最后求一下所有子树大小的前缀和就行，这里记得要减去自身 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677#include&lt;bits/stdc++.h&gt;using namespace std;int m,n,sum,num1,num2;int to1[400004],to2[400004];int from1[400004],from2[400004];int head1[400004],head2[400004];int ans[100001],ind[100001],topo[100001];int f[100001][18],depth[100001],father[100001];inline void add1(int from,int to) &#123; from1[++num1]=head1[from]; to1[num1]=to; head1[from]=num1;&#125;inline void add2(int from,int to) &#123; from2[++num2]=head2[from]; to2[num2]=to; head2[from]=num2;&#125;inline int LCA(int x,int y) &#123; if(depth[x]&lt;depth[y]) swap(x,y); for(register int i=16;i&gt;=0;--i) if(f[x][i]!=0&amp;&amp;depth[f[x][i]]&gt;=depth[y]) x=f[x][i]; if(x==y) return y; for(register int i=16;i&gt;=0;--i) if(f[x][i]!=0&amp;&amp;f[y][i]!=0&amp;&amp;f[x][i]!=f[y][i]) x=f[x][i],y=f[y][i]; return father[x];&#125;inline void RMQ(int x) &#123; f[x][0]=father[x]; for(register int i=1;i&lt;=16;++i) f[x][i]=f[f[x][i-1]][i-1];&#125;inline void Build() &#123; depth[n+1]=1,father[n+1]=n+1; for(register int i=n;i;--i) &#123; int x=topo[i]; if(!head1[x]) &#123; add2(n+1,x),depth[x]=2; f[x][0]=n+1,father[x]=n+1; continue ; &#125; int lca=to1[head1[x]]; for(register int i=from1[head1[x]];i;i=from1[i]) lca=LCA(lca,to1[i]); depth[x]=depth[lca]+1,father[x]=lca; add2(lca,x),RMQ(x); &#125;&#125;inline void DPtree(int x) &#123; ans[x]=1; for(register int i=head2[x];i;i=from2[i]) DPtree(to2[i]),ans[x]+=ans[to2[i]];&#125;inline void Toposort() &#123; queue &lt; int &gt; Q; for(register int i=1;i&lt;=n;++i) if(!ind[i]) Q.push(i); while(!Q.empty()) &#123; int x=Q.front(); Q.pop(); topo[++sum]=x; for(register int i=head1[x];i;i=from1[i]) &#123; --ind[to1[i]]; if(!ind[to1[i]]) Q.push(to1[i]); &#125; &#125;&#125;int main() &#123; scanf("%d",&amp;n); for(register int i=1;i&lt;=n;++i) &#123; while(true) &#123; scanf("%d",&amp;m); if(!m) break ; else add1(i,m),++ind[m]; &#125; &#125; Toposort(); Build(); DPtree(n+1); for(register int i=1;i&lt;=n;++i) printf("%d\n",ans[i]-1); return 0;&#125;]]></content>
@@ -280,6 +266,7 @@
         <category>题解</category>
       </categories>
       <tags>
+        <tag>图论</tag>
         <tag>LCA</tag>
         <tag>拓扑排序</tag>
       </tags>
@@ -351,6 +338,54 @@
       </categories>
       <tags>
         <tag>动态规划</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[国家集训队]最长双回文串]]></title>
+    <url>%2F2019%2F02%2F21%2F%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-%E6%9C%80%E9%95%BF%E5%8F%8C%E5%9B%9E%E6%96%87%E4%B8%B2%2F</url>
+    <content type="text"><![CDATA[学长讲过的$Manacher$例题，上课睡觉没听懂 开题的时候毫无思路，最后终于找到思路了 思路主要是枚举分界点，把这个点两边的最长回文串的长度拼起来 在每一次$Manacher$操作完成之后，我们可以顺便维护 以这个回文串的左端点为其左端点的最长回文串的长度 以这个回文串的右端点为其右端点的最长回文串的长度 事实上，这两个最长回文串的长度一定不小于这个回文串的长度 这样我们就可以在线性的时间复杂度里预处理出每个点左右的最长回文串的长度 预处理之后还要递推，大致就是不断地将之前回文串的长度$-$$2$取最大值 最后枚举每个#所在位置，不断更新$ans$取最大值 123456789101112131415161718192021222324252627#include&lt;bits/stdc++.h&gt;using namespace std;char s[222222];char t[222222];int p[222222];int l[222222];int r[222222];int n,k,o,ans;int main()&#123; scanf("%s",t+1);n=strlen(t+1); for(register int i=1;i&lt;=n;++i) s[i*2]=t[i],s[i*2+1]='#'; s[0]=s[1]='#';n=n*2+2;s[n]='\0'; for(register int i=0;i&lt;n;++i) &#123; p[i]=i&lt;o?min(o-i,p[k*2-i]):1; while(s[i+p[i]]==s[i-p[i]]) ++p[i]; if(i+p[i]&gt;o) k=i,o=i+p[i]; l[i+p[i]-1]=max(p[i]-1,l[i+p[i]-1]); r[i-p[i]+1]=max(p[i]-1,r[i-p[i]+1]); &#125; for(register int i=n-3;i&gt;0;i-=2) l[i]=max(l[i],l[i+2]-2); for(register int i=3;i&lt;n;i+=2) r[i]=max(r[i],r[i-2]-2); for(register int i=1;i&lt;n;i+=2) if(l[i]&amp;&amp;r[i]) ans=max(ans,l[i]+r[i]); printf("%d\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>回文自动机</tag>
+        <tag>字符串</tag>
+        <tag>Manacher</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[AtCoder2567]RGB Sequence]]></title>
+    <url>%2F2019%2F01%2F23%2FAtCoder2567-RGB-Sequence%2F</url>
+    <content type="text"><![CDATA[先说几句题外话，这题是国家集训队作业 不过个人认为$AtCoder$上面的题质量真心不错 这题我硬是调了大半天，坑点还是有几个 而且这题竟然没有题解？？？赶紧过来水一发 这题正常人一眼过去就应该是$DP$，别告诉我你不是正常人 至于为什么显然是$DP$。。。方案数不是$DP$是什么？ 因为颜色的数量很少，只有三种 所以可以直接上三维$DP$，话说这好像还是我第一道三维$DP$ 所以我们可以用$f$ $[$ $i$ $]$ $[$ $j$ $]$ $[$ $k$ $]$来记录状态，统计方案数 $i$是当前枚举到的位置，$j$和$k$则分别是另外两种颜色最后出现的位置 建议将$j$设置为另外两种颜色靠后的那一种，枚举起来比较方便 然后思考状态转移方程，这里要分三种情况情况讨论 $i+1$位置上的颜色与$i$位置上的颜色一致 那么显然$j$和$k$的位置不变，$f$ $[$ $i+1$ $]$ $[$ $j$ $]$ $[$ $k$ $]$ $=$ $f$ $[$ $i$ $]$ $[$ $j$ $]$ $[$ $k$ $]$ $i+1$位置上的颜色与$j$位置上的颜色一致 那么$i$位置上的颜色就要后移一位，$f$ $[$ $i+1$ $]$ $[$ $i$ $]$ $[$ $k$ $]$ $=$ $f$ $[$ $i$ $]$ $[$ $j$ $]$ $[$ $k$ $]$ $i+1$位置上的颜色与$k$位置上的颜色一致 那么$i$和$j$位置上的颜色都要后移一位，$f$ $[$ $i+1$ $]$ $[$ $i$ $]$ $[$ $j$ $]$ $=$ $f$ $[$ $i$ $]$ $[$ $j$ $]$ $[$ $k$ $]$ 接下来我们以右端点为限制考虑贡献，这里脑补一下 根据$j$和$k$的大小关系判断区间内的颜色数量 不满足区间限制的直接赋值为0，不参与贡献 最后统计答案即可，这里要注意开$long$ $long$ 因为之前只是统计了区间内颜色数量而不是统计颜色方案数 就是之前没有计算区间内具体有什么颜色 所以统计答案之后一定要将$ans$乘以$3$ 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include&lt;bits/stdc++.h&gt;#define mod 1000000007using namespace std;int f[333][333][333];int m,n,l,r,x,ans,size;vector &lt; pair &lt; int , int &gt; &gt; rer[333];inline void update(int &amp;x,int y)&#123; x=((long long)1*x+y+mod)%mod; &#125;int main()&#123; scanf("%d%d",&amp;n,&amp;m); for(register int i=1;i&lt;=m;++i) &#123; scanf("%d%d%d",&amp;l,&amp;r,&amp;x); rer[r].push_back(make_pair(l,x)); &#125; f[1][0][0]=1; for(register int i=1;i&lt;=n;++i) &#123; size=rer[i].size(); for(register int j=0;j&lt;size;++j) &#123; l=rer[i][j].first;x=rer[i][j].second; for(register int k=0;k&lt;i;++k) for(register int p=0;p&lt;=max(0,k-1);++p) &#123; if(x==1) &#123; if(l&lt;=k) f[i][k][p]=0; &#125; else if(x==2) &#123; if(k&lt;l||l&lt;=p) f[i][k][p]=0; &#125; else &#123; if(p&lt;l) f[i][k][p]=0; &#125; &#125; &#125; if(i==n) break ; for(register int j=0;j&lt;i;++j) for(register int k=0;k&lt;=max(0,j-1);++k) if(!f[i][j][k]) continue ; else &#123; update(f[i+1][j][k],f[i][j][k]); update(f[i+1][i][k],f[i][j][k]); update(f[i+1][i][j],f[i][j][k]); &#125; &#125; for(register int j=0;j&lt;n;++j) for(register int k=0;k&lt;=max(0,j-1);++k) update(ans,f[n][j][k]); ans=((long long)3*ans)%mod; printf("%d\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>动态规划</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[AtCoder2557]Ball Coloring]]></title>
+    <url>%2F2019%2F01%2F22%2FAtCoder2557-Ball-Coloring%2F</url>
+    <content type="text"><![CDATA[不得不说一句，这题在$AtCoder$里算一道水题 但是我时间空间都被同桌巨佬爆踩，还是水得不行啊 首先分类讨论，假设我们把最大值的球涂成蓝色 最小值的球涂成红色，那么我们可以贪心 把每个袋子里面较大值的球涂成蓝色，较小值的球涂成红色 $O$ $($ $n$ $)$就可以求出红蓝球区间的最大差值的最小值 但是这样不一定能使$ans$最小，接着来看另一种情况 最小值的球也涂成蓝色，这样$Bmax$ $-$ $Bmin$就已经确定了 那么我们就要让红球的区间最大差值最小 所以我们可以在上面的基础上 按照$x$从小到大的顺序，把颜色依次翻转 在翻转的过程中$O$ $($ $n$ $)$求出红球区间的最大差值的最小值 最后我们只要把两种答案再取最小值，就是最后的$ans$ 123456789101112131415161718192021222324252627282930313233343536373839404142#include&lt;bits/stdc++.h&gt;#define INF 1000000007using namespace std;struct sakura&#123; long long x; long long y;&#125;ball[222222];long long x[222222];long long y[222222];long long maxn[222222];long long minl[222222];long long n,ans,ans1,ans2,bmax,bmin,rmax,rmin;inline bool cmp(sakura xx,sakura yy)&#123; return xx.x&lt;yy.x; &#125;int main()&#123; scanf("%lld",&amp;n); bmax=rmax=-1;bmin=rmin=INF; for(register int i=1;i&lt;=n;++i) &#123; scanf("%lld%lld",&amp;x[i],&amp;y[i]); if(x[i]&gt;y[i]) swap(x[i],y[i]); ball[i].x=x[i];ball[i].y=y[i]; bmax=max(bmax,y[i]); bmin=min(bmin,y[i]); rmax=max(rmax,x[i]); rmin=min(rmin,x[i]); &#125; ans1=(bmax-bmin)*(rmax-rmin); bmin=rmin;sort(ball+1,ball+n+1,cmp); ans2=INF;maxn[1]=minl[1]=ball[1].y; for(register int i=2;i&lt;=n;++i) &#123; maxn[i]=max(maxn[i-1],ball[i].y); minl[i]=min(minl[i-1],ball[i].y); if(i!=n) ans2=min(ans2,max(maxn[i],ball[n].x)-min(minl[i],ball[i+1].x)); &#125; ans2*=(bmax-bmin);ans=min(ans1,ans2); printf("%lld\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>贪心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[Luogu1361]小M的作物]]></title>
+    <url>%2F2019%2F01%2F15%2FLuogu1361-%E5%B0%8FM%E7%9A%84%E4%BD%9C%E7%89%A9%2F</url>
+    <content type="text"><![CDATA[最近学习网络流，感觉代码都巨长 网络流的题目无非都是一个套路 就是首先建模，然后随便套套模板 但是这题显然没有这么简单 一开始各种乱想，反正没想到最小割 然后随手点了一发题解，借鉴学习一下大神的思路 然后就TM恍然大悟，原来就是求最小割 最小割 $=$ 最大流 按照大神的思路，把$A$田地当做源点 $B$田地当做汇点，把$n$种植物当做中间点 没有最大收益的时候就直接连接源点、汇点和中间点 加上最大收益后，有些点就像是被捆绑在了一起 我们可以在这$m$个点集和源点、汇点之间， 再设置$2m$个中间点，把这些点和源点、汇点和中间点连接在一起 最大流量就是增加的收益 听起来真的很绕，但是真的是这样 题目要求最大收益，其实就是总收益 $-$ 最小割 剩下的部分，似乎直接上模板就差不多了 然而我$TM$直接$TLE$直接飞起 这题好像要优化一点点，至少朴素的$Dinic$模板不行 又是一位大神告诉我一个玄学优化 真$TM$一手骚操作，瞬间就切掉 这个不是我的东西我就先不讲了哈 自我感觉码风美好 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111#include&lt;bits/stdc++.h&gt;#define INF 99999999using namespace std;struct XM&#123; int to; int dis; int from;&#125;edge[4000004];int cur[40004];int deep[40004];int head[40004];int m,n,s,k,t,x,y,z,ans,num=-1;inline void add(int from,int to,int dis)&#123; edge[++num].from=head[from]; edge[num].to=to; edge[num].dis=dis; head[from]=num;&#125;inline bool Bfs()&#123; memset(deep,0,sizeof(deep)); queue &lt; int &gt; Q; while(!Q.empty()) Q.pop(); Q.push(s);deep[s]=1; while(!Q.empty()) &#123; int u=Q.front(); Q.pop(); for(register int i=head[u];i!=-1;i=edge[i].from) &#123; int v=edge[i].to; if(deep[v]==0&amp;&amp;edge[i].dis&gt;0) &#123; deep[v]=deep[u]+1; Q.push(v); &#125; &#125; &#125; if(deep[t]!=0) return true; else return false;&#125;inline int Dfs(int u,int f)&#123; if(u==t) return f; int sum=0; for(register int &amp;i=cur[u];i!=-1;i=edge[i].from) &#123; int v=edge[i].to; if(deep[v]==deep[u]+1&amp;&amp;edge[i].dis&gt;0) &#123; int d=Dfs(v,min(f,edge[i].dis)); if(d&gt;0) &#123; sum+=d;f-=d; edge[i].dis-=d; edge[i^1].dis+=d; if(!f) break; &#125; &#125; &#125; return sum;&#125;int main()&#123; scanf("%d",&amp;n); s=n+1;t=s+1; memset(head,-1,sizeof(head)); for(register int i=1;i&lt;=n;++i) &#123; scanf("%d",&amp;x); ans+=x; add(s,i,x); add(i,s,0); &#125; for(register int i=1;i&lt;=n;++i) &#123; scanf("%d",&amp;x); ans+=x; add(i,t,x); add(t,i,0); &#125; scanf("%d",&amp;m); for(register int i=1;i&lt;=m;++i) &#123; scanf("%d%d%d",&amp;k,&amp;x,&amp;y); ans+=x;ans+=y; add(s,n+i+2,x); add(n+i+2,s,0); add(n+m+i+2,t,y); add(t,n+m+i+2,0); for(register int j=1;j&lt;=k;++j) &#123; scanf("%d",&amp;z); add(n+i+2,z,INF); add(z,n+i+2,0); add(z,n+m+i+2,INF); add(n+m+i+2,z,0); &#125; &#125; while(Bfs()) &#123; memcpy(cur,head,sizeof(cur)); ans-=Dfs(s,INF); &#125; printf("%d\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>图论</tag>
+        <tag>网络流</tag>
+        <tag>最小割</tag>
       </tags>
   </entry>
 </search>
